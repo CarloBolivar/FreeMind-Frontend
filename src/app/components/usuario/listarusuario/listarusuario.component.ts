@@ -18,32 +18,31 @@ import { Rol } from '../../../models/rol';
 export class ListarusuarioComponent implements OnInit {
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7'];
   dataSource: MatTableDataSource<Usuario> = new MatTableDataSource<Usuario>();
-  
-  //lista roles disponibles
   listaRoles: Rol[] = [];
 
-  constructor(private uS: UsuarioService, private rS: RolService) {}
+  constructor(
+    private usuarioService: UsuarioService,
+    private rolService: RolService
+  ) {}
 
   ngOnInit(): void {
-    this.uS.list().subscribe(data => {
-      //console.log('usuarios recibidos:', data);
+    this.usuarioService.list().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     });
 
-    this.rS.list().subscribe(data => {
+    this.rolService.list().subscribe(data => {
       this.listaRoles = data;
     });
   }
 
   eliminar(id: number) {
-    this.uS.delete(id).subscribe(() => {
-      this.uS.list().subscribe(data => {
-        this.uS.setList(data);
+    this.usuarioService.delete(id).subscribe(() => {
+      this.usuarioService.list().subscribe(data => {
+        this.dataSource = new MatTableDataSource(data);
       });
     });
   }
 
-  //metodo rol nombre 
   getNombreRolPorId(idRol: number): string {
     const rolEncontrado = this.listaRoles.find(r => r.idRol === idRol);
     return rolEncontrado ? rolEncontrado.nombre : 'Rol no encontrado';

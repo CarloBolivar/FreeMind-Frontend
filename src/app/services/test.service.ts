@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Usuario } from '../models/usuario';
+import { Test } from '../models/test';
 import { Subject } from 'rxjs';
 import { environment } from '../../environment/environment';
 
@@ -9,22 +9,22 @@ const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
-  private url = `${base_url}/usuarios`;
-  private listaCambio = new Subject<Usuario[]>();
+export class TestService {
+  private url = `${base_url}/tests`;
+  private listaCambio = new Subject<Test[]>();
 
   constructor(private http: HttpClient) {}
 
   list() {
-    return this.http.get<Usuario[]>(this.url);
+    return this.http.get<Test[]>(this.url);
   }
 
-  insert(usuario: Usuario) {
-    return this.http.post<void>(this.url, usuario);
+  insert(test: Test) {
+    return this.http.post<void>(this.url, test);
   }
 
-  update(usuario: Usuario) {
-    return this.http.put<void>(this.url, usuario);
+  update(test: Test) {
+    return this.http.put<void>(this.url, test);
   }
 
   delete(id: number) {
@@ -32,14 +32,14 @@ export class UsuarioService {
   }
 
   listId(id: number) {
-    return this.http.get<Usuario>(`${this.url}/${id}`);
+    return this.http.get<Test>(`${this.url}/${id}`);
   }
 
   getList() {
     return this.listaCambio.asObservable();
   }
 
-  setList(lista: Usuario[]) {
+  setList(lista: Test[]) {
     this.listaCambio.next(lista);
   }
 }
