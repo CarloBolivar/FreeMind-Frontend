@@ -1,1 +1,45 @@
-<p>insertareditar works!</p>
+<div>
+  <h1>Registro de Cita</h1>
+  <form [formGroup]="form" (submit)="aceptar()">
+
+    <mat-form-field *ngIf="edicion">
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="codigo" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Estado</mat-label>
+      <input matInput formControlName="estado" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>ID Horario</mat-label>
+      <input matInput formControlName="idHorario" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>ID Paciente</mat-label>
+      <input matInput formControlName="idPaciente" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>ID Psicólogo</mat-label>
+      <input matInput formControlName="idPsicologo" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>ID Terapia</mat-label>
+      <input matInput formControlName="idTerapia" />
+    </mat-form-field>
+    <br />
+
+    <button mat-raised-button color="primary" type="submit">
+      {{ edicion ? 'Actualizar' : 'Registrar' }}
+    </button>
+  </form>
+</div>
