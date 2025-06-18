@@ -97,5 +97,11 @@
         }
       }
     }
+<<<<<<< HEAD
+=======
+  },
+  "cli": {
+    "analytics": "314d9a7e-25de-4611-8cdb-a4700ccf8bd5"
+>>>>>>> 6b145eb (Listar comentarios y listar test realizados)
   }
 }
