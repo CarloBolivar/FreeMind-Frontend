@@ -40,5 +40,13 @@ export const routes: Routes = [
       { path: 'nuevo', component: InsertareditartestComponent },
       { path: 'ediciones/:id', component: InsertareditartestComponent }
     ]
-  }
+  },
+  {
+    path: 'comentarios',
+    component:ComentarioComponent
+  },
+  {
+    path: 'testrealizados',
+    component:TestrealizadoComponent
+  },
 ];
