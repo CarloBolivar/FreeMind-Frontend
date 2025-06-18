@@ -7,13 +7,8 @@ import { TerapiaComponent } from './components/terapia/terapia.component';
 import { InsertareditarterapiaComponent } from './components/terapia/insertareditar/insertareditar.component';
 import { TestComponent } from './components/test/test.component';
 import { InsertareditartestComponent } from './components/test/insertareditar/insertareditar.component';
-import { <<<<<<< HEAD
 import { ComentarioComponent } from './components/comentario/comentario.component';
 import { TestrealizadoComponent } from './components/testrealizado/testrealizado.component';
-=======
-import { ComentarioComponent } from './components/comentario/comentario.component';
-import { TestrealizadoComponent } from './components/testrealizado/testrealizado.component';
->>>>>>> 6b145eb (Listar comentarios y listar test realizados)
 
 export const routes: Routes = [
   {
