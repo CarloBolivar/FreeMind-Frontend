@@ -7,8 +7,10 @@ import { TerapiaComponent } from './components/terapia/terapia.component';
 import { InsertareditarterapiaComponent } from './components/terapia/insertareditar/insertareditar.component';
 import { TestComponent } from './components/test/test.component';
 import { InsertareditartestComponent } from './components/test/insertareditar/insertareditar.component';
-import { ComentarioComponent } from './components/comentario/comentario.component';
+import { RecursoComponent } from './components/recurso/recurso.component';
+import { InsertareditarrecursoComponent } from './components/recurso/insertareditarrecurso/insertareditarrecurso.component';
 import { TestrealizadoComponent } from './components/testrealizado/testrealizado.component';
+import { InsertareditartestrealizadoComponent } from './components/testrealizado/insertareditartestrealizado/insertareditartestrealizado.component';
 
 export const routes: Routes = [
   {
@@ -44,11 +46,20 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'comentarios',
-    component:ComentarioComponent
-  },
+    path: 'recursos',
+    component: RecursoComponent,
+    children: [
+      { path: 'nuevo', component: InsertareditarrecursoComponent },
+      { path: 'ediciones/:id', component: InsertareditarrecursoComponent }
+    ]
+  }
+  ,
   {
     path: 'testrealizados',
-    component:TestrealizadoComponent
-  },
-]
+    component: TestrealizadoComponent,
+    children: [
+      { path: 'nuevo', component: InsertareditartestrealizadoComponent },
+      { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent }
+    ]
+  }
+];
