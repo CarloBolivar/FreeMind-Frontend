@@ -1,0 +1,55 @@
+<div class="container">
+  <div style="text-align: center; margin:5%"><h1>Registro de recursos</h1></div>
+  <div style="text-align: center; margin:5%">
+    <form [formGroup]="form" (submit)="aceptar()">
+      <div class="form-grid">
+        <div class="left-column">
+
+          <mat-form-field *ngIf="edicion">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="codigo" />
+            <mat-error *ngIf="form.get('codigo')?.hasError('required')">
+              El código es obligatorio para actualizar!!
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="tipo">
+              @for (food of tipos; track food) {
+                <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="form.get('tipo')?.hasError('required')">
+              El tipo es obligatorio!!
+            </mat-error>         
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Url</mat-label>
+            <input matInput formControlName="url">
+            <mat-error *ngIf="form.get('url')?.hasError('required')">
+              El url es obligatorio!!
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="right-column">
+          <mat-form-field>
+            <mat-label>Terapias</mat-label>
+              <mat-select formControlName="terapia">
+                <mat-option *ngFor="let t of listaTerapias" [value]="t.idTerapia">
+                  {{ t.titulo }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get('terapia')?.hasError('required')">
+                La terapia es obligatoria.
+              </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button mat-flat-button color="primary" class="btn-accion">Registrar</button>
+    </form>
+  </div>
+</div>
