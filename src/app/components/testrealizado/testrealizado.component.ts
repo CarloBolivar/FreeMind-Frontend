@@ -12,4 +12,5 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 })
 export class TestrealizadoComponent {
   constructor(public route:ActivatedRoute){}
+
 }
