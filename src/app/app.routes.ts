@@ -55,7 +55,7 @@ export const routes: Routes = [
   }
   ,
   {
-    path: 'testrealizados',
+    path: 'testsrealizados',
     component: TestrealizadoComponent,
     children: [
       { path: 'nuevo', component: InsertareditartestrealizadoComponent },

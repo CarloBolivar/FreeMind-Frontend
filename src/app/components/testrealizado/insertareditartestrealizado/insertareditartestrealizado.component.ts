@@ -93,7 +93,7 @@ ngOnInit(): void {
         this.trS.setList(data)
       })
       })
-    }this.router.navigate(['testrealizados'])
+    }this.router.navigate(['testsrealizados'])
     
   }
   }
