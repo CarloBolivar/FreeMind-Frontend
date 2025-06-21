@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <div><h1>Registro de usuarios</h1></div>
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
@@ -9,7 +9,6 @@
           El ID es obligatorio para actualizar.
         </mat-error>
       </mat-form-field>
-      <br />
 
       <mat-form-field>
         <mat-label>Nombre</mat-label>
@@ -18,7 +17,6 @@
           El nombre es obligatorio.
         </mat-error>
       </mat-form-field>
-      <br />
 
       <mat-form-field>
         <mat-label>Apellido</mat-label>
@@ -27,7 +25,6 @@
           El apellido es obligatorio.
         </mat-error>
       </mat-form-field>
-      <br />
 
       <mat-form-field>
         <mat-label>Correo</mat-label>
@@ -36,7 +33,6 @@
           El correo es obligatorio.
         </mat-error>
       </mat-form-field>
-      <br />
 
       <mat-form-field>
         <mat-label>Contraseña</mat-label>
@@ -45,7 +41,6 @@
           La contraseña es obligatoria.
         </mat-error>
       </mat-form-field>
-      <br />
 
       <mat-form-field>
         <mat-label>DNI</mat-label>
@@ -54,22 +49,18 @@
           El DNI es obligatorio.
         </mat-error>
       </mat-form-field>
-      <br />
 
       <mat-form-field>
         <mat-label>Especialidad</mat-label>
         <input matInput formControlName="especialidad" />
       </mat-form-field>
-      <br />
 
       <mat-form-field>
         <mat-label>Credencial</mat-label>
         <input matInput formControlName="credencial" />
       </mat-form-field>
-      <br />
 
       <mat-checkbox formControlName="enabled">Habilitado</mat-checkbox>
-      <br />
 
       <mat-form-field>
         <mat-label>Rol</mat-label>
@@ -82,9 +73,8 @@
           El rol es obligatorio.
         </mat-error>
       </mat-form-field>
-      <br />
 
-      <button matButton="filled">Registrar</button>
+      <button mat-flat-button color="primary" class="btn-accion">Registrar</button>
     </form>
   </div>
 </div>

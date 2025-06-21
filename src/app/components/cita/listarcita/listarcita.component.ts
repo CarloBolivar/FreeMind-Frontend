@@ -50,7 +50,7 @@ export class ListarcitaComponent implements OnInit {
     {
       idCita: 908,
       estado: 1,
-      idHorario: 9015,
+      idHorario: 9015,  
       idPaciente: 903,
       idPsicologo: 901,
       idTerapia: 992
