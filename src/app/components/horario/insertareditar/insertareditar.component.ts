@@ -4,9 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HorarioService } from '../../../services/horario.service';
 import { Horario } from '../../../models/horario';
+import { UsuarioService } from '../../../services/usuario.service';
+import { Usuario } from '../../../models/usuario';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-insertareditarhorario',
@@ -16,7 +20,9 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   templateUrl: '../insertareditar/insertareditar.component.html',
   styleUrls: ['../insertareditar/insertareditar.component.css']
@@ -24,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class InsertareditarhorarioComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   horario: Horario = {} as Horario;
+  usuariosDisponibles: Usuario[] = [];
 
   id: number = 0;
   edicion: boolean = false;
@@ -31,17 +38,21 @@ export class InsertareditarhorarioComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private hS: HorarioService,
+    private uS: UsuarioService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      idHorario: [''],
       fecha: ['', Validators.required],
       hora: ['', Validators.required],
       idUsuario: ['', Validators.required],
       disponible: [true, Validators.required]
+    });
+
+    this.uS.list().subscribe((data: Usuario[]) => {
+      this.usuariosDisponibles = data;
     });
 
     this.route.params.subscribe((data: Params) => {
@@ -53,32 +64,36 @@ export class InsertareditarhorarioComponent implements OnInit {
 
   aceptar(): void {
     if (this.form.valid) {
-      this.horario = this.form.value;
+      const formValue = this.form.value;
+      this.horario = {
+        idHorario: this.edicion ? this.id : 0,
+        fecha: formValue.fecha,
+        hora: formValue.hora,
+        idUsuario: formValue.idUsuario,
+        disponible: formValue.disponible,
+        nombreUsuario: ''
+      };
 
-      if (this.edicion) {
-        this.hS.update(this.horario).subscribe(() => {
-          this.router.navigate(['horarios']);
-        });
-      } else {
-        this.hS.insert(this.horario).subscribe(() => {
-          this.router.navigate(['horarios']);
-        });
-      }
+      const request = this.edicion
+        ? this.hS.update(this.horario)
+        : this.hS.insert(this.horario);
+
+      request.subscribe(() => {
+        this.router.navigate(['horarios']);
+      });
     }
   }
 
   init(): void {
-  if (this.edicion) {
-    this.hS.listId(this.id).subscribe((data: Horario) => {
-      this.form.setValue({
-        idHorario: data.idHorario,
-        fecha: data.fecha,
-        hora: data.hora,
-        idUsuario: data.idUsuario,
-        disponible: data.disponible
+    if (this.edicion) {
+      this.hS.listId(this.id).subscribe((data: Horario) => {
+        this.form.setValue({
+          fecha: data.fecha,
+          hora: data.hora,
+          idUsuario: data.idUsuario,
+          disponible: data.disponible
+        });
       });
-    });
+    }
   }
-}
-
 }

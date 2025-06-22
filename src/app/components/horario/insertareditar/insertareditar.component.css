@@ -1,0 +1,46 @@
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #3f51b5;
+}
+
+.form-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.left-column,
+.right-column {
+  flex: 0 0 48%;
+}
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+button.btn-accion {
+  background-color: #3f51b5;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  display: block;
+  margin: 20px auto 0;
+}
+
+button.btn-accion:hover {
+  background-color: #303f9f;
+}

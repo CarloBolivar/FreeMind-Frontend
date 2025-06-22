@@ -1,7 +1,8 @@
 export interface Horario {
   idHorario: number;
-  fecha: string;        // Formato ISO: 'YYYY-MM-DD'
-  hora: string;         // Formato: 'HH:mm:ss'
+  fecha: string;
+  hora: string;
   idUsuario: number;
+  nombreUsuario: string;
   disponible: boolean;
 }

@@ -1,6 +1,7 @@
 <div class="container">
   <h1>Lista de Horarios</h1>
-  <button mat-button color="primary" routerLink="nuevo">+ Nuevo Horario</button>
+
+  <button mat-button class="btn-accion" routerLink="nuevo">+ Nuevo Horario</button>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -19,9 +20,9 @@
       <td mat-cell *matCellDef="let h">{{ h.hora }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="idUsuario">
-      <th mat-header-cell *matHeaderCellDef>ID Psicólogo</th>
-      <td mat-cell *matCellDef="let h">{{ h.idUsuario }}</td>
+    <ng-container matColumnDef="nombreUsuario">
+      <th mat-header-cell *matHeaderCellDef>Psicólogo</th>
+      <td mat-cell *matCellDef="let h">{{ h.nombreUsuario }}</td>
     </ng-container>
 
     <ng-container matColumnDef="disponible">
@@ -29,13 +30,20 @@
       <td mat-cell *matCellDef="let h">{{ h.disponible ? 'Sí' : 'No' }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <ng-container matColumnDef="editar">
+  <th mat-header-cell *matHeaderCellDef>Editar</th>
+  <td mat-cell *matCellDef="let h">
+    <button mat-button class="btn-accion" [routerLink]="['/horarios/edicion', h.idHorario]">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </td>
+</ng-container>
+
+
+    <ng-container matColumnDef="eliminar">
+      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
       <td mat-cell *matCellDef="let h">
-        <button mat-icon-button color="primary" [routerLink]="['/horarios/ediciones', h.idHorario]">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="warn" (click)="eliminar(h.idHorario)">
+        <button mat-button class="btn-accion" color="warn" (click)="eliminar(h.idHorario)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

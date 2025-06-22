@@ -1,38 +1,47 @@
-<div>
-  <h1>{{ edicion ? 'Editar Horario' : 'Registrar Horario' }}</h1>
+<div class="container">
+  <h1>{{ edicion ? 'Editar Horario' : 'Registro de Horario' }}</h1>
+
   <form [formGroup]="form" (ngSubmit)="aceptar()">
+    <div class="form-grid">
+      <div class="left-column">
+        <mat-form-field *ngIf="edicion" class="example-full-width">
+          <mat-label>ID</mat-label>
+          <input matInput [value]="id" disabled />
+        </mat-form-field>
 
-    <mat-form-field *ngIf="edicion">
-      <mat-label>ID</mat-label>
-      <input matInput formControlName="idHorario" />
-    </mat-form-field>
-    <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Fecha</mat-label>
+          <input matInput type="date" formControlName="fecha" />
+          <mat-error *ngIf="form.get('fecha')?.invalid && form.get('fecha')?.touched">
+            Selecciona una fecha válida.
+          </mat-error>
+        </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Fecha</mat-label>
-      <input matInput type="date" formControlName="fecha" />
-    </mat-form-field>
-    <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Hora</mat-label>
+          <input matInput type="time" formControlName="hora" />
+          <mat-error *ngIf="form.get('hora')?.invalid && form.get('hora')?.touched">
+            Selecciona una hora válida.
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-    <mat-form-field>
-      <mat-label>Hora</mat-label>
-      <input matInput type="time" formControlName="hora" />
-    </mat-form-field>
-    <br />
+      <div class="right-column">
+        <mat-form-field class="example-full-width">
+          <mat-label>Psicólogo</mat-label>
+          <mat-select formControlName="idUsuario">
+            <mat-option *ngFor="let usuario of usuariosDisponibles" [value]="usuario.idUsuario">
+              {{ usuario.nombre }} {{ usuario.apellido }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('idUsuario')?.invalid && form.get('idUsuario')?.touched">
+            Selecciona un psicólogo.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
 
-    <mat-form-field>
-      <mat-label>ID Usuario (Psicólogo)</mat-label>
-      <input matInput formControlName="idUsuario" />
-    </mat-form-field>
-    <br />
-
-    <mat-form-field>
-      <mat-label>¿Disponible?</mat-label>
-      <input matInput type="text" formControlName="disponible" />
-    </mat-form-field>
-    <br />
-
-    <button mat-raised-button color="primary" type="submit">
+    <button mat-raised-button class="btn-accion" type="submit">
       {{ edicion ? 'Actualizar' : 'Registrar' }}
     </button>
   </form>
