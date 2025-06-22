@@ -1,4 +1,4 @@
-import { Usuario } from '../models/usuario';
+import { Usuario } from "./usuario"
 
 export class Comentario{
     idComentario:number=0

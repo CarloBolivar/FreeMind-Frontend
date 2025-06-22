@@ -11,6 +11,8 @@ import { RecursoComponent } from './components/recurso/recurso.component';
 import { InsertareditarrecursoComponent } from './components/recurso/insertareditarrecurso/insertareditarrecurso.component';
 import { TestrealizadoComponent } from './components/testrealizado/testrealizado.component';
 import { InsertareditartestrealizadoComponent } from './components/testrealizado/insertareditartestrealizado/insertareditartestrealizado.component';
+import { ComentarioComponent } from './components/comentario/comentario.component';
+import { InsertareditarcomentarioComponent } from './components/comentario/insertareditarcomentario/insertareditarcomentario.component';
 
 export const routes: Routes = [
   {
@@ -60,6 +62,14 @@ export const routes: Routes = [
     children: [
       { path: 'nuevo', component: InsertareditartestrealizadoComponent },
       { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent }
+    ]
+  },
+  {
+    path: 'comentarios',
+    component: ComentarioComponent,
+    children:[
+      { path: 'nuevo', component: InsertareditarcomentarioComponent },
+      { path: 'ediciones/:id', component: InsertareditarcomentarioComponent }
     ]
   }
 ];

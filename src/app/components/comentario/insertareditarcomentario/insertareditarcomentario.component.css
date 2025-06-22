@@ -1,0 +1,78 @@
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 25px 30px;
+  background-color: #f7f7f7;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #3f51b5;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-form-field input,
+mat-form-field .mat-select-trigger {
+  font-size: 15px;
+}
+
+button[matButton] {
+  align-self: center;
+  background-color: #3f51b5;
+  color: white;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  text-transform: none;
+  min-width: 120px;
+}
+
+button[matButton]:hover {
+  background-color: #303f9f;
+}
+
+mat-error {
+  font-size: 13px;
+  color: #d32f2f;
+  margin-top: 3px;
+}
+
+mat-hint {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 15px;
+  }
+  
+  h1 {
+    font-size: 22px;
+  }
+
+  button[matButton] {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
