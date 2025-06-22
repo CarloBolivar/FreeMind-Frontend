@@ -1,3 +1,4 @@
+import { Cita } from './cita';
 export class Pago{
     idPago:number=0
     numeroTarjeta:number=0
@@ -8,4 +9,5 @@ export class Pago{
     cvv:number=0
     correo:string=""
     monto:number=0
+    cita:Cita=new Cita()
 }

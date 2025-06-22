@@ -1,1 +1,39 @@
-<p>insertareditar works!</p>
+<div>
+  <h1>{{ edicion ? 'Editar Horario' : 'Registrar Horario' }}</h1>
+  <form [formGroup]="form" (ngSubmit)="aceptar()">
+
+    <mat-form-field *ngIf="edicion">
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="idHorario" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Fecha</mat-label>
+      <input matInput type="date" formControlName="fecha" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Hora</mat-label>
+      <input matInput type="time" formControlName="hora" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>ID Usuario (Psicólogo)</mat-label>
+      <input matInput formControlName="idUsuario" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>¿Disponible?</mat-label>
+      <input matInput type="text" formControlName="disponible" />
+    </mat-form-field>
+    <br />
+
+    <button mat-raised-button color="primary" type="submit">
+      {{ edicion ? 'Actualizar' : 'Registrar' }}
+    </button>
+  </form>
+</div>

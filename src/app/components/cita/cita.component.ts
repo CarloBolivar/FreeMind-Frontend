@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-cita',
-  imports: [],
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: './cita.component.html',
-  styleUrl: './cita.component.css'
+  styleUrls: ['./cita.component.css']
 })
 export class CitaComponent {
-
+  constructor(public route: ActivatedRoute) {}
 }

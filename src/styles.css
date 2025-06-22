@@ -1,0 +1,17 @@
+.mat-elevation-z8 {
+  border-radius: 12px;
+}
+.mat-select-panel {
+  background-color: #f0f4ff !important;
+  color: #000 !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.mat-option {
+  padding: 10px 20px !important;
+}
+
+.mat-option:hover {
+  background-color: #d8e3ff !important;
+}

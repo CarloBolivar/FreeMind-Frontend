@@ -1,1 +1,73 @@
-<p>insertareditar works!</p>
+<div class="container">
+  <h1>Registro de Cita</h1>
+  <form [formGroup]="form" (ngSubmit)="aceptar()">
+    <div class="form-grid">
+      <div class="left-column">
+        <mat-form-field *ngIf="edicion" class="example-full-width">
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="codigo" />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Estado</mat-label>
+          <input matInput formControlName="estado" />
+          <mat-error *ngIf="form.get('estado')?.invalid && form.get('estado')?.touched">
+            Estado es obligatorio.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Paciente</mat-label>
+          <mat-select formControlName="idPaciente">
+            <mat-option *ngFor="let paciente of pacientes" [value]="paciente.idUsuario">
+              {{ paciente.nombre }} {{ paciente.apellido }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('idPaciente')?.invalid && form.get('idPaciente')?.touched">
+            Selecciona un paciente.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="right-column">
+        <mat-form-field class="example-full-width">
+          <mat-label>Psicólogo</mat-label>
+          <mat-select formControlName="idPsicologo">
+            <mat-option *ngFor="let psicologo of psicologos" [value]="psicologo.idUsuario">
+              {{ psicologo.nombre }} {{ psicologo.apellido }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('idPsicologo')?.invalid && form.get('idPsicologo')?.touched">
+            Selecciona un psicólogo.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Horario</mat-label>
+          <mat-select formControlName="idHorario">
+            <mat-option *ngFor="let horario of horarios" [value]="horario.idHorario">
+              {{ horario.fecha }} - {{ horario.hora }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('idHorario')?.invalid && form.get('idHorario')?.touched">
+            Selecciona un horario.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Terapia</mat-label>
+          <mat-select formControlName="idTerapia">
+            <mat-option [value]="null">Sin terapia</mat-option>
+            <mat-option *ngFor="let terapia of terapias" [value]="terapia.idTerapia">
+              {{ terapia.titulo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button mat-raised-button class="btn-accion" type="submit" [disabled]="isSubmitting">
+      {{ edicion ? 'Actualizar' : 'Registrar' }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,39 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Horario } from '../models/horario';
+import { Subject } from 'rxjs';
+import { environment } from '../../environment/environment';
+
+const base_url = environment.base;
+@Injectable({
+  providedIn: 'root'
+})
+export class HorarioService {
+  private url: string = `${environment.base}/horarios`;
+
+  constructor(private http: HttpClient) {}
+
+  list() {
+    return this.http.get<Horario[]>(this.url);
+  }
+
+  insert(horario: Horario) {
+    return this.http.post(this.url, horario);
+  }
+
+  update(horario: Horario) {
+    return this.http.put(this.url, horario);
+  }
+
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
+
+  listId(id: number) {
+    return this.http.get<Horario>(`${this.url}/${id}`);
+  }
+
+  listAvailableByPsicologo(id: number) {
+    return this.http.get<Horario[]>(`${this.url}/disponibles/${id}`);
+  }
+}

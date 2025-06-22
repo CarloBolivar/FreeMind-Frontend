@@ -1,0 +1,71 @@
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f7f7f7;
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #3f51b5;
+}
+
+button.mat-button {
+  background-color: #3f51b5;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 25px;
+  white-space: normal;
+}
+
+button.mat-button:hover {
+  background-color: #303f9f;
+}
+
+table {
+  width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: center;
+  padding: 12px 8px;
+  font-size: 15px;
+  word-wrap: break-word;
+}
+
+th {
+  font-weight: bold;
+  color: #333;
+}
+
+button.btn-accion {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: normal;
+  max-width: 100%;
+}
+
+button.btn-accion:hover {
+  background-color: #303f9f;
+}
+
+/* Ajustes más razonables para columnas */
+.mat-column-c5,
+.mat-column-c6,
+.mat-column-c7 {
+  width: 120px;
+}
