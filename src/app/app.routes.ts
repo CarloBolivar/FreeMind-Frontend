@@ -11,10 +11,13 @@ import { RecursoComponent } from './components/recurso/recurso.component';
 import { InsertareditarrecursoComponent } from './components/recurso/insertareditarrecurso/insertareditarrecurso.component';
 import { TestrealizadoComponent } from './components/testrealizado/testrealizado.component';
 import { InsertareditartestrealizadoComponent } from './components/testrealizado/insertareditartestrealizado/insertareditartestrealizado.component';
-
+import { ComentarioComponent } from './components/comentario/comentario.component';
+import { InsertareditarcomentarioComponent } from './components/comentario/insertareditarcomentario/insertareditarcomentario.component';
 import { CitaComponent } from './components/cita/cita.component';
 import { ListarcitaComponent } from './components/cita/listarcita/listarcita.component';
 import { InsertareditarcitaComponent } from './components/cita/insertareditar/insertareditar.component';
+import { PagoComponent } from './components/pago/pago.component';
+import { InsertareditarpagoComponent } from './components/pago/insertareditarpago/insertareditarpago.component';
 
 export const routes: Routes = [
   {
@@ -95,7 +98,20 @@ export const routes: Routes = [
         import('./components/horario/insertareditar/insertareditar.component').then(m => m.InsertareditarhorarioComponent)
     }
   ]
-}
-
-
+},
+  {
+    path: 'comentarios',
+    component: ComentarioComponent,
+    children:[
+      { path: 'nuevo', component: InsertareditarcomentarioComponent },
+      { path: 'ediciones/:id', component: InsertareditarcomentarioComponent }
+    ]
+  },
+  {
+    path: 'pagos', component: PagoComponent,
+    children:[
+      { path: 'nuevo', component: InsertareditarpagoComponent },
+      { path: 'ediciones/:id', component: InsertareditarpagoComponent}
+    ]
+  }
 ];
