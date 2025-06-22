@@ -26,51 +26,16 @@ export class ListarcitaComponent implements OnInit {
 
   constructor(private CitaService: CitaService) {}
 
-  ngOnInit(): void {/*
-    this.CitaService.list().subscribe(data => {
-      this.dataSource = data;*/
-
-  this.dataSource = [
-    {
-      idCita: 906,
-      estado: 1,
-      idHorario: 9013,
-      idPaciente: 903,
-      idPsicologo: 901,
-      idTerapia: 990
-    },
-    {
-      idCita: 907,
-      estado: 2,
-      idHorario: 9014,
-      idPaciente: 904,
-      idPsicologo: 902,
-      idTerapia: 991
-    },
-    {
-      idCita: 908,
-      estado: 1,
-      idHorario: 9015,  
-      idPaciente: 903,
-      idPsicologo: 901,
-      idTerapia: 992
-    },
-    {
-      idCita: 909,
-      estado: 2,
-      idHorario: 9016,
-      idPaciente: 904,
-      idPsicologo: 902,
-      idTerapia: 990
-    }
-  ];
+  ngOnInit(): void {
+    this.CitaService.list().subscribe((data: Cita[]) => {
+      this.dataSource = data;
+    });
   }
 
-  eliminar(id: number) {
+  eliminar(id: number): void {
     this.CitaService.delete(id).subscribe(() => {
-      this.CitaService.list().subscribe(data => {
+      this.CitaService.list().subscribe((data: Cita[]) => {
         this.dataSource = data;
-        this.CitaService.setList(data);
       });
     });
   }

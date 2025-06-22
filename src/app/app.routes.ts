@@ -34,14 +34,14 @@ export const routes: Routes = [
     ]
   },
   {
-<<<<<<< HEAD
     path: 'citas',
     component: CitaComponent,
     children: [
       { path: '', component: ListarcitaComponent },
       { path: 'nuevo', component: InsertareditarcitaComponent },
       { path: 'ediciones/:id', component: InsertareditarcitaComponent }
-=======
+]},
+  {
     path: 'terapias',
     component: TerapiaComponent,
     children: [
@@ -72,7 +72,30 @@ export const routes: Routes = [
     children: [
       { path: 'nuevo', component: InsertareditartestrealizadoComponent },
       { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent }
->>>>>>> e2600b76fb96701c0850070a7c092f2fb61feb82
     ]
-  }
+  },
+{
+  path: 'horarios',
+  loadComponent: () =>
+    import('./components/horario/horario.component').then(m => m.HorarioComponent),
+  children: [
+    {
+      path: '',
+      loadComponent: () =>
+        import('./components/horario/listarhorario/listarhorario.component').then(m => m.ListarhorarioComponent)
+    },
+    {
+      path: 'nuevo',
+      loadComponent: () =>
+        import('./components/horario/insertareditar/insertareditar.component').then(m => m.InsertareditarhorarioComponent)
+    },
+    {
+      path: 'edicion/:id',
+      loadComponent: () =>
+        import('./components/horario/insertareditar/insertareditar.component').then(m => m.InsertareditarhorarioComponent)
+    }
+  ]
+}
+
+
 ];

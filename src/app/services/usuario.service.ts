@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
 import { Subject } from 'rxjs';
 import { environment } from '../../environment/environment';
+import { map } from 'rxjs/operators';
 
 const base_url = environment.base;
 
@@ -42,4 +43,17 @@ export class UsuarioService {
   setList(lista: Usuario[]) {
     this.listaCambio.next(lista);
   }
+
+listarPacientes() {
+  return this.list().pipe(
+    map((usuarios: Usuario[]) => usuarios.filter(u => u.idRol === 2)) // ID del rol PACIENTE
+  );
+}
+
+listarPsicologos() {
+  return this.list().pipe(
+    map((usuarios: Usuario[]) => usuarios.filter(u => u.idRol === 3)) // ID del rol PSICÓLOGO
+  );
+}
+
 }
