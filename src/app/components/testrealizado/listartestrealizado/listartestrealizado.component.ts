@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TestRealizado } from '../../../models/testrealizado';
 import { TestrealizadoService } from '../../../services/testrealizado.service';
@@ -7,42 +7,49 @@ import { RouterLink } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-listartestrealizado',
-  providers: [provideNativeDateAdapter()],
-  imports: [MatTableModule,
+  standalone: true,
+  imports: [
+    MatTableModule,
     MatButtonModule,
     RouterLink,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ],
   templateUrl: './listartestrealizado.component.html',
-  styleUrl: './listartestrealizado.component.css'
+  styleUrls: ['./listartestrealizado.component.css']
 })
-export class ListartestrealizadoComponent {
-displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4','c5','c6','c7'];
-  
-  dataSource:MatTableDataSource<TestRealizado>=new MatTableDataSource()
-  constructor(private trS:TestrealizadoService){}
+export class ListartestrealizadoComponent implements OnInit {
+  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7'];
+  dataSource = new MatTableDataSource<TestRealizado>();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private testRealizadoService: TestrealizadoService) {}
 
   ngOnInit(): void {
-      this.trS.list().subscribe(data=>{
-        this.dataSource=new MatTableDataSource(data)
-      })
+    this.testRealizadoService.getList().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+    });
 
-      this.trS.getList().subscribe(data=>{
-        this.dataSource=new MatTableDataSource(data)
-      })
+    this.testRealizadoService.list().subscribe(data => {
+      this.testRealizadoService.setList(data);
+    });
   }
 
-  eliminar(id:number){
-    this.trS.delete(id).subscribe(data=>{
-      this.trS.list().subscribe(data=>{
-        this.trS.setList(data)
-      })
-    })
+  eliminar(id: number): void {
+    this.testRealizadoService.delete(id).subscribe(() => {
+      this.testRealizadoService.list().subscribe(data => {
+        this.testRealizadoService.setList(data);
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+      });
+    });
   }
 }

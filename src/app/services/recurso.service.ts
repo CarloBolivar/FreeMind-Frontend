@@ -10,25 +10,17 @@ const base_url = environment.base;
   providedIn: 'root'
 })
 export class RecursoService {
-
   private url = `${base_url}/recursos`;
   private listaCambio = new Subject<Recurso[]>();
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {}
 
   list() {
     return this.http.get<Recurso[]>(this.url);
   }
 
   insert(recurso: Recurso) {
-    return this.http.post(`${this.url}`, recurso);
-  }
-
-  setList(listaNueva: Recurso[]) {
-    this.listaCambio.next(listaNueva);
-  }
-
-  getList() {
-    return this.listaCambio.asObservable();
+    return this.http.post(this.url, recurso);
   }
 
   update(recurso: Recurso) {
@@ -41,5 +33,13 @@ export class RecursoService {
 
   listId(id: number) {
     return this.http.get<Recurso>(`${this.url}/${id}`);
+  }
+
+  setList(listaNueva: Recurso[]) {
+    this.listaCambio.next(listaNueva);
+  }
+
+  getList() {
+    return this.listaCambio.asObservable();
   }
 }

@@ -1,39 +1,51 @@
-import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { RouterLink } from '@angular/router';
-import { RecursoService } from '../../../services/recurso.service';
-import { Recurso } from '../../../models/recurso';
+import { Component, OnInit, ViewChild } from '@angular/core'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
+import { MatTableDataSource, MatTableModule } from '@angular/material/table'
+import { RouterLink } from '@angular/router'
+import { RecursoService } from '../../../services/recurso.service'
+import { Recurso } from '../../../models/recurso'
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator'
 
 @Component({
   selector: 'app-listarrecurso',
-  imports: [MatTableModule,MatButtonModule,RouterLink,MatIconModule],
+  standalone: true,
+  imports: [
+    MatTableModule,
+    MatButtonModule,
+    RouterLink,
+    MatIconModule,
+    MatPaginatorModule
+  ],
   templateUrl: './listarrecurso.component.html',
-  styleUrl: './listarrecurso.component.css'
+  styleUrls: ['./listarrecurso.component.css']
 })
-export class ListarrecursoComponent {
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4','c5','c6'];
-  
-  dataSource:MatTableDataSource<Recurso>=new MatTableDataSource()
-  constructor(private rS:RecursoService){}
+export class ListarrecursoComponent implements OnInit {
+  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6']
+  dataSource: MatTableDataSource<Recurso> = new MatTableDataSource()
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator
+
+  constructor(private recursoService: RecursoService) {}
 
   ngOnInit(): void {
-      this.rS.list().subscribe(data=>{
-        this.dataSource=new MatTableDataSource(data)
-      })
+    this.recursoService.list().subscribe(data => {
+      this.recursoService.setList(data)
+    })
 
-      this.rS.getList().subscribe(data=>{
-        this.dataSource=new MatTableDataSource(data)
-      })
-  }
-
-  eliminar(id:number){
-    this.rS.delete(id).subscribe(data=>{
-      this.rS.list().subscribe(data=>{
-        this.rS.setList(data)
-      })
+    this.recursoService.getList().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data)
+      this.dataSource.paginator = this.paginator
     })
   }
 
+  eliminar(id: number): void {
+    this.recursoService.delete(id).subscribe(() => {
+      this.recursoService.list().subscribe(data => {
+        this.recursoService.setList(data)
+        this.dataSource = new MatTableDataSource(data)
+        this.dataSource.paginator = this.paginator
+      })
+    })
+  }
 }

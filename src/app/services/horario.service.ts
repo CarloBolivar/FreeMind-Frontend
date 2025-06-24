@@ -5,11 +5,13 @@ import { Subject } from 'rxjs';
 import { environment } from '../../environment/environment';
 
 const base_url = environment.base;
+
 @Injectable({
   providedIn: 'root'
 })
 export class HorarioService {
-  private url: string = `${environment.base}/horarios`;
+  private url = `${base_url}/horarios`;
+  private listaCambio = new Subject<Horario[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -31,6 +33,14 @@ export class HorarioService {
 
   listId(id: number) {
     return this.http.get<Horario>(`${this.url}/${id}`);
+  }
+
+  getList() {
+    return this.listaCambio.asObservable();
+  }
+
+  setList(listaNueva: Horario[]) {
+    this.listaCambio.next(listaNueva);
   }
 
   listAvailableByPsicologo(id: number) {

@@ -1,11 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PreguntaTest } from '../../../models/preguntatest';
+import { PreguntaTestService } from '../../../services/preguntatest.service';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router'; 
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarpreguntatest',
-  imports: [],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    RouterLink 
+  ],
   templateUrl: './listarpreguntatest.component.html',
-  styleUrl: './listarpreguntatest.component.css'
+  styleUrls: ['./listarpreguntatest.component.css']
 })
-export class ListarpreguntatestComponent {
+export class ListarpreguntatestComponent implements OnInit {
+  dataSource: MatTableDataSource<PreguntaTest> = new MatTableDataSource();
+  displayedColumns: string[] = ['id', 'pregunta', 'test', 'acciones'];
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private preguntaTestService: PreguntaTestService) {}
+
+  ngOnInit(): void {
+    this.preguntaTestService.list().subscribe(data => {
+      this.preguntaTestService.setList(data);
+    });
+
+    this.preguntaTestService.getList().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  eliminar(id: number): void {
+    this.preguntaTestService.delete(id).subscribe(() => {
+      this.preguntaTestService.list().subscribe(data => {
+        this.preguntaTestService.setList(data);
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+      });
+    });
+  }
 }

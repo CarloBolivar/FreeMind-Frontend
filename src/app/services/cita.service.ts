@@ -1,33 +1,45 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Cita } from '../models/cita';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { Cita } from '../models/cita'
+import { environment } from '../../environment/environment'
+import { BehaviorSubject } from 'rxjs'
+
+const base_url = environment.base
 
 @Injectable({
   providedIn: 'root'
 })
 export class CitaService {
-  private baseUrl = 'http://localhost:8081/citas';
+  private url = `${base_url}/citas`
+  private listaCambio = new BehaviorSubject<Cita[]>([])
 
   constructor(private http: HttpClient) {}
 
-  list(): Observable<Cita[]> {
-    return this.http.get<Cita[]>(this.baseUrl);
+  list() {
+    return this.http.get<Cita[]>(this.url)
   }
 
-  insert(cita: Cita): Observable<void> {
-    return this.http.post<void>(this.baseUrl, cita);
+  insert(cita: Cita) {
+    return this.http.post(this.url, cita)
   }
 
-  update(cita: Cita): Observable<void> {
-    return this.http.put<void>(this.baseUrl, cita);
+  update(cita: Cita) {
+    return this.http.put(this.url, cita)
   }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`)
   }
 
-  listId(id: number): Observable<Cita> {
-    return this.http.get<Cita>(`${this.baseUrl}/${id}`);
+  listId(id: number) {
+    return this.http.get<Cita>(`${this.url}/${id}`)
+  }
+
+  getList() {
+    return this.listaCambio.asObservable()
+  }
+
+  setList(lista: Cita[]) {
+    this.listaCambio.next(lista)
   }
 }

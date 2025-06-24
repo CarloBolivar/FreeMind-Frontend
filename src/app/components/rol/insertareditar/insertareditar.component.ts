@@ -1,12 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { RolService } from '../../../services/rol.service';
-import { Rol } from '../../../models/rol';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { CommonModule } from '@angular/common'
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
+import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatButtonModule } from '@angular/material/button'
+import { ActivatedRoute, Params, Router } from '@angular/router'
+
+import { Rol } from '../../../models/rol'
+import { RolService } from '../../../services/rol.service'
 
 @Component({
   selector: 'app-insertareditarrol',
@@ -19,18 +20,18 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
     MatButtonModule
   ],
   templateUrl: './insertareditar.component.html',
-  styleUrl: './insertareditar.component.css'
+  styleUrls: ['./insertareditar.component.css']
 })
 export class InsertareditarrolComponent implements OnInit {
-  form: FormGroup = new FormGroup({});
-  rol: Rol = new Rol();
+  form: FormGroup = new FormGroup({})
+  rol: Rol = new Rol()
 
-  id: number = 0;
-  edicion: boolean = false;
+  id: number = 0
+  edicion: boolean = false
 
   constructor(
     private formBuilder: FormBuilder,
-    private rS: RolService,
+    private rolService: RolService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -38,8 +39,8 @@ export class InsertareditarrolComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id']
-      this.edicion = data['id']!= null
-      this.init();
+      this.edicion = this.id != null
+      this.init()
     })
 
     this.form = this.formBuilder.group({
@@ -48,32 +49,32 @@ export class InsertareditarrolComponent implements OnInit {
     })
   }
 
-  aceptar(){
+  aceptar() {
     if (this.form.valid) {
       this.rol.idRol = this.form.value.codigo
       this.rol.nombre = this.form.value.nombre
 
       if (this.edicion) {
-        this.rS.update(this.rol).subscribe(() => {
-          this.rS.list().subscribe(data => {
-            this.rS.setList(data);
+        this.rolService.update(this.rol).subscribe(() => {
+          this.rolService.list().subscribe(data => {
+            this.rolService.setList(data)
           })
         })
       } else {
-        this.rS.insert(this.rol).subscribe(() => {
-          this.rS.list().subscribe(data => {
-            this.rS.setList(data)
+        this.rolService.insert(this.rol).subscribe(() => {
+          this.rolService.list().subscribe(data => {
+            this.rolService.setList(data)
           })
         })
       }
 
-      this.router.navigate(['roles']);
+      this.router.navigate(['roles'])
     }
   }
 
-  init(){
+  init() {
     if (this.edicion) {
-      this.rS.listId(this.id).subscribe(data => {
+      this.rolService.listId(this.id).subscribe(data => {
         this.form = new FormGroup({
           codigo: new FormControl(data.idRol),
           nombre: new FormControl(data.nombre, Validators.required)

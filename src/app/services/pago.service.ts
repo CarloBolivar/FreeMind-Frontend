@@ -3,42 +3,43 @@ import { environment } from '../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Pago } from '../models/pago';
 import { Subject } from 'rxjs';
-const base_url=environment.base
+
+const base_url = environment.base;
+
 @Injectable({
   providedIn: 'root'
 })
 export class PagoService {
-  private url=`${base_url}/pagos`
+  private url = `${base_url}/pagos`;
+  private listaCambio = new Subject<Pago[]>();
 
-  private listaCambio=new Subject<Pago[]>()
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
-  
-  list(){
-    return this.http.get<Pago[]>(this.url)
+  list() {
+    return this.http.get<Pago[]>(this.url);
   }
 
-  insert(p:Pago){
-    return this.http.post(`${this.url}`,p)
+  insert(pago: Pago) {
+    return this.http.post(this.url, pago);
   }
 
-  getList(){
-    return this.listaCambio.asObservable()
+  update(pago: Pago) {
+    return this.http.put(this.url, pago);
   }
 
-  setList(listaNueva:Pago[]){
-    this.listaCambio.next(listaNueva)
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
   }
 
-  listId(id:number){
-    return this.http.get<Pago>(`${this.url}/${id}`)
+  listId(id: number) {
+    return this.http.get<Pago>(`${this.url}/${id}`);
   }
 
-  update(p:Pago){
-    return this.http.put(this.url,p)
+  setList(listaNueva: Pago[]) {
+    this.listaCambio.next(listaNueva);
   }
 
-  deleteP(id:number){
-    return this.http.delete(`${this.url}/${id}`)
+  getList() {
+    return this.listaCambio.asObservable();
   }
 }

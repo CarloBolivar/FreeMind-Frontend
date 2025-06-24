@@ -1,2 +1,4 @@
-<!-- cita.component.html -->
 <router-outlet></router-outlet>
+<div [hidden]="route.children.length!==0">
+    <app-listarcita></app-listarcita>
+</div>

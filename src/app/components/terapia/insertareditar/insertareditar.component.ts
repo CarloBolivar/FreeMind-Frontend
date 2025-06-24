@@ -1,67 +1,82 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { TerapiaService } from '../../../services/terapia.service';
-import { Terapia } from '../../../models/terapia';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common'
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
+import { ActivatedRoute, Params, Router } from '@angular/router'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatButtonModule } from '@angular/material/button'
+
+import { Terapia } from '../../../models/terapia'
+import { TerapiaService } from '../../../services/terapia.service'
 
 @Component({
   selector: 'app-insertareditarterapia',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './insertareditar.component.html',
-  styleUrl: './insertareditar.component.css'
+  styleUrls: ['./insertareditar.component.css']
 })
 export class InsertareditarterapiaComponent implements OnInit {
-  form: FormGroup;
-  terapia: Terapia = new Terapia();
-  edicion: boolean = false;
+  form: FormGroup = new FormGroup({})
+  terapia: Terapia = new Terapia()
+
+  id: number = 0
+  edicion: boolean = false
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private terapiaService: TerapiaService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    this.form = this.fb.group({
-      codigo: [{ value: '', disabled: true }],
-      titulo: ['', Validators.required],
-      descripcion: ['']
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      const id = params['id'];
-      this.edicion = !!id;
-      if (this.edicion) {
-        this.terapiaService.listarPorId(id).subscribe(data => {
-          this.form.patchValue({
-            codigo: data.idTerapia,
-            titulo: data.titulo,
-            descripcion: data.descripcion
-          });
-        });
-      }
-    });
+      this.id = params['id']
+      this.edicion = this.id != null
+      this.init()
+    })
+
+    this.form = this.formBuilder.group({
+      codigo: [''],
+      titulo: ['', Validators.required],
+      descripcion: ['']
+    })
   }
 
-  aceptar(): void {
-    this.terapia.titulo = this.form.value['titulo'];
-    this.terapia.descripcion = this.form.value['descripcion'];
+  aceptar() {
+    if (this.form.valid) {
+      this.terapia.idTerapia = this.form.value.codigo
+      this.terapia.titulo = this.form.value.titulo
+      this.terapia.descripcion = this.form.value.descripcion
 
+      if (this.edicion) {
+        this.terapiaService.update(this.terapia).subscribe(() => {
+          this.terapiaService.list().subscribe(data => {
+            this.terapiaService.setList(data)
+          })
+        })
+      } else {
+        this.terapiaService.insert(this.terapia).subscribe(() => {
+          this.terapiaService.list().subscribe(data => {
+            this.terapiaService.setList(data)
+          })
+        })
+      }
+
+      this.router.navigate(['terapias'])
+    }
+  }
+
+  init() {
     if (this.edicion) {
-      this.terapia.idTerapia = this.form.getRawValue()['codigo'];
-      this.terapiaService.modificar(this.terapia).subscribe(() => {
-        this.router.navigate(['terapias']);
-      });
-    } else {
-      this.terapiaService.insertar(this.terapia).subscribe(() => {
-        this.router.navigate(['terapias']);
-      });
+      this.terapiaService.listId(this.id).subscribe(data => {
+        this.form = new FormGroup({
+          codigo: new FormControl(data.idTerapia),
+          titulo: new FormControl(data.titulo, Validators.required),
+          descripcion: new FormControl(data.descripcion)
+        })
+      })
     }
   }
 }

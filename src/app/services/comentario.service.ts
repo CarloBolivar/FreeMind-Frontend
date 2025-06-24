@@ -12,35 +12,35 @@ const base_url = environment.base;
 export class ComentarioService {
 
   private url = `${base_url}/comentarios`;
-  private listaCambio=new Subject<Comentario[]>
+  private listaCambio = new Subject<Comentario[]>();
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  list(){
-    return this.http.get<Comentario[]>(`${this.url}`)
+  list() {
+    return this.http.get<Comentario[]>(this.url);
   }
 
-  insert(c:Comentario){
-    return this.http.post(this.url, c)
-  }
-
-  setList(listaNueva:Comentario[]){
-    this.listaCambio.next(listaNueva)
-  }
-
-  getList(){
-    return this.listaCambio.asObservable()
+  insert(c: Comentario) {
+    return this.http.post(this.url, c);
   }
 
   update(comentario: Comentario) {
-      return this.http.put(this.url, comentario);
-    }
-  
-  deleteC(id: number) {
-      return this.http.delete(`${this.url}/${id}`);
-    }
+    return this.http.put(this.url, comentario);
+  }
 
-  listId(id:number){
-    return this.http.get<Comentario>(`${this.url}/${id}`)
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
+
+  listId(id: number) {
+    return this.http.get<Comentario>(`${this.url}/${id}`);
+  }
+
+  setList(listaNueva: Comentario[]) {
+    this.listaCambio.next(listaNueva);
+  }
+
+  getList() {
+    return this.listaCambio.asObservable();
   }
 }

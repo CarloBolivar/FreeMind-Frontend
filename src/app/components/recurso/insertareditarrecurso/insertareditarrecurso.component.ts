@@ -1,116 +1,113 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Recurso } from '../../../models/recurso';
-import { RecursoService } from '../../../services/recurso.service';
-import { Router, Params, ActivatedRoute } from '@angular/router';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { Terapia } from '../../../models/terapia';
-import { TerapiaService } from '../../../services/terapia.service';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { CommonModule } from '@angular/common'
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
+import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatRadioModule } from '@angular/material/radio'
+import { MatSelectModule } from '@angular/material/select'
+import { MatGridListModule } from '@angular/material/grid-list'
+import { ActivatedRoute, Params, Router } from '@angular/router'
+import { provideNativeDateAdapter } from '@angular/material/core'
+
+import { Recurso } from '../../../models/recurso'
+import { Terapia } from '../../../models/terapia'
+import { RecursoService } from '../../../services/recurso.service'
+import { TerapiaService } from '../../../services/terapia.service'
 
 @Component({
   selector: 'app-insertareditarrecurso',
+  standalone: true,
   providers: [provideNativeDateAdapter()],
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
-    CommonModule,
     MatRadioModule,
     MatSelectModule,
     MatGridListModule
   ],
   templateUrl: './insertareditarrecurso.component.html',
-  styleUrl: './insertareditarrecurso.component.css'
+  styleUrls: ['./insertareditarrecurso.component.css']
 })
-export class InsertareditarrecursoComponent {
-form: FormGroup=new FormGroup({})
-recurso:Recurso=new Recurso()
+export class InsertareditarrecursoComponent implements OnInit {
+  form: FormGroup = new FormGroup({})
+  recurso: Recurso = new Recurso()
 
-id:number=0
-edicion:boolean=false
-listaTerapias:Terapia[]=[]
+  id: number = 0
+  edicion: boolean = false
 
-tipos:{value:string;viewValue:string}[]=[
-  {value:'Imagen',viewValue:'Imagen'},
-  {value:'Audio',viewValue:'Audio'},
-  {value:'Video',viewValue:'Video'}
-]
+  listaTerapias: Terapia[] = []
+
+  tipos: { value: string; viewValue: string }[] = [
+    { value: 'Imagen', viewValue: 'Imagen' },
+    { value: 'Audio', viewValue: 'Audio' },
+    { value: 'Video', viewValue: 'Video' }
+  ]
 
   constructor(
-    private formBuilder:FormBuilder,
-    private rS:RecursoService,
-    private router:Router,
-    private tS:TerapiaService,
-    private route:ActivatedRoute
+    private formBuilder: FormBuilder,
+    private recursoService: RecursoService,
+    private terapiaService: TerapiaService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    
-      this.form=this.formBuilder.group({
-        codigo:[{ value: '', disabled: true }],
-        tipo:['',Validators.required],
-        url:['',Validators.required],
-        terapia:['',Validators.required],
-      
-      })
-      this.tS.listar().subscribe(data=>{
-        this.listaTerapias=data
-      })
-      this.route.params.subscribe((data:Params)=>{
-        this.id=data['id']
-        this.edicion=data['id']!=null
-        if (this.edicion) {
-        this.init();
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id']
+      this.edicion = this.id != null
+      this.init()
+    })
+
+    this.form = this.formBuilder.group({
+      codigo: [{ value: '', disabled: true }],
+      tipo: ['', Validators.required],
+      url: ['', Validators.required],
+      terapia: ['', Validators.required]
+    })
+
+    this.terapiaService.list().subscribe(data => {
+      this.listaTerapias = data
+    })
+  }
+
+  aceptar() {
+    if (this.form.valid) {
+      const formData = this.form.getRawValue()
+      this.recurso.idRecurso = this.edicion ? formData.codigo : 0
+      this.recurso.tipo = formData.tipo
+      this.recurso.url = formData.url
+      this.recurso.terapia.idTerapia = formData.terapia
+
+      if (this.edicion) {
+        this.recursoService.update(this.recurso).subscribe(() => {
+          this.recursoService.list().subscribe(data => {
+            this.recursoService.setList(data)
+          })
+        })
+      } else {
+        this.recursoService.insert(this.recurso).subscribe(() => {
+          this.recursoService.list().subscribe(data => {
+            this.recursoService.setList(data)
+          })
+        })
       }
-      })
-  }
-  aceptar(){
-  if(this.form.valid){
-    const formData = this.form.getRawValue();
 
-    this.recurso.idRecurso = this.edicion ? formData.codigo : 0;
-    this.recurso.tipo=this.form.value.tipo
-    this.recurso.url=this.form.value.url
-    this.recurso.terapia.idTerapia=this.form.value.terapia
+      this.router.navigate(['recursos'])
+    }
+  }
+
+  init() {
     if (this.edicion) {
-
-      this.rS.update(this.recurso).subscribe(() => {
-        this.rS.list().subscribe(data => {
-          this.rS.setList(data);
-        })
-        
-      })
-    } else {
-      this.rS.insert(this.recurso).subscribe(() => {
-        this.rS.list().subscribe(data => {
-          this.rS.setList(data);
-        })
-        
-      })
-    }this.router.navigate(['recursos'])
-    
-  }
-  }
-
-   init(){
-    if(this.edicion){
-
-      this.rS.listId(this.id).subscribe(data=>{
-        this.form=new FormGroup({
-          codigo:new FormControl({ value: data.idRecurso, disabled: true }),
-          tipo:new FormControl(data.tipo),
-          url:new FormControl(data.url),
-          terapia: new FormControl(data.terapia.idTerapia),
+      this.recursoService.listId(this.id).subscribe(data => {
+        this.form = new FormGroup({
+          codigo: new FormControl({ value: data.idRecurso, disabled: true }),
+          tipo: new FormControl(data.tipo),
+          url: new FormControl(data.url),
+          terapia: new FormControl(data.terapia.idTerapia)
         })
       })
     }
-    
   }
-  
 }

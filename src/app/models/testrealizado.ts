@@ -7,5 +7,4 @@ export class TestRealizado {
   resultado: string = ''
   usuario:Usuario=new Usuario()
   test:Test=new Test()
-  
 }

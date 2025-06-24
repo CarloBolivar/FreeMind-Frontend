@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Terapia } from '../models/terapia';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { environment } from '../../environment/environment';
 
 const base_url = environment.base;
@@ -15,36 +15,31 @@ export class TerapiaService {
 
   constructor(private http: HttpClient) {}
 
-  // Alias para compatibilidad con el componente de cita
-  list(): Observable<Terapia[]> {
+  list() {
     return this.http.get<Terapia[]>(this.url);
   }
 
-  listar(): Observable<Terapia[]> {
-    return this.http.get<Terapia[]>(this.url);
+  insert(terapia: Terapia) {
+    return this.http.post(this.url, terapia);
   }
 
-  insertar(terapia: Terapia): Observable<void> {
-    return this.http.post<void>(this.url, terapia);
+  update(terapia: Terapia) {
+    return this.http.put(this.url, terapia);
   }
 
-  modificar(terapia: Terapia): Observable<void> {
-    return this.http.put<void>(this.url, terapia);
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
   }
 
-  eliminar(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
-  }
-
-  listarPorId(id: number): Observable<Terapia> {
+  listId(id: number) {
     return this.http.get<Terapia>(`${this.url}/${id}`);
   }
 
-  getLista(): Observable<Terapia[]> {
+  getList() {
     return this.listaCambio.asObservable();
   }
 
-  setLista(listaNueva: Terapia[]): void {
+  setList(listaNueva: Terapia[]) {
     this.listaCambio.next(listaNueva);
   }
 }

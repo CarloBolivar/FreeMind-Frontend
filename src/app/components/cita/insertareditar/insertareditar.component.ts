@@ -74,8 +74,8 @@ export class InsertareditarcitaComponent implements OnInit {
     });
 
     // Cargar pacientes y psicólogos
-    this.usuarioService.listarPacientes().subscribe(data => this.pacientes = data);
-    this.usuarioService.listarPsicologos().subscribe(data => this.psicologos = data);
+    this.usuarioService.listPacientes().subscribe(data => this.pacientes = data);
+    this.usuarioService.listPsicologos().subscribe(data => this.psicologos = data);
     this.terapiaService.list().subscribe(data => this.terapias = data);
 
     // Escuchar cambios en el psicólogo y filtrar horarios disponibles

@@ -44,16 +44,17 @@ export class UsuarioService {
     this.listaCambio.next(lista);
   }
 
-listarPacientes() {
+  listPacientes() {
   return this.list().pipe(
-    map((usuarios: Usuario[]) => usuarios.filter(u => u.idRol === 2)) // ID del rol PACIENTE
+    map((usuarios: Usuario[]) => usuarios.filter(u => u.idRol === 2)) // ID del rol PACIENTE // Citas
   );
 }
 
-listarPsicologos() {
+  listPsicologos() {
   return this.list().pipe(
-    map((usuarios: Usuario[]) => usuarios.filter(u => u.idRol === 3)) // ID del rol PSICÓLOGO
+    map((usuarios: Usuario[]) => usuarios.filter(u => u.idRol === 3)) // ID del rol PSICÓLOGO // Citas
   );
 }
+
 
 }
