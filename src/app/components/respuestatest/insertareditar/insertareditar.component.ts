@@ -1,40 +1,41 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 import { RespuestaTest } from '../../../models/respuestatest';
+import { PreguntaTest } from '../../../models/preguntatest';
+import { Usuario } from '../../../models/usuario';
 import { RespuestaTestService } from '../../../services/respuestatest.service';
 import { PreguntaTestService } from '../../../services/preguntatest.service';
 import { UsuarioService } from '../../../services/usuario.service';
-import { PreguntaTest } from '../../../models/preguntatest';
-import { Usuario } from '../../../models/usuario';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-insertareditarrespuestatest',
+  selector: 'app-insertareditarespuestatest',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
     MatInputModule,
-    MatSelectModule,
-    MatButtonModule
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatSelectModule
   ],
   templateUrl: './insertareditar.component.html',
-  styleUrl: './insertareditar.component.css'
+  styleUrls: ['./insertareditar.component.css']
 })
 export class InsertareditarrespuestatestComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-  respuestaTest: RespuestaTest = new RespuestaTest();
+  respuestaTest: RespuestaTest = { idRespuesta: 0, respuesta: '', idPregunta: 0, idUsuario: 0 };
+
   id: number = 0;
   edicion: boolean = false;
 
-  preguntas: PreguntaTest[] = [];
-  usuarios: Usuario[] = [];
+  listaPreguntas: PreguntaTest[] = [];
+  listaUsuarios: Usuario[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,51 +47,57 @@ export class InsertareditarrespuestatestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.preguntaTestService.list().subscribe(data => this.preguntas = data);
-    this.usuarioService.list().subscribe(data => this.usuarios = data);
-
-    this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      this.edicion = !!this.id;
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = this.id != null;
       this.init();
     });
 
     this.form = this.formBuilder.group({
-      codigo: [''],
+      idRespuesta: [{ value: '', disabled: true }],
       respuesta: ['', Validators.required],
       idPregunta: ['', Validators.required],
       idUsuario: ['', Validators.required]
     });
+
+    this.preguntaTestService.list().subscribe(data => {
+      this.listaPreguntas = data;
+    });
+
+    this.usuarioService.list().subscribe(data => {
+      this.listaUsuarios = data;
+    });
   }
 
-  aceptar(): void {
+  aceptar() {
     if (this.form.valid) {
-      this.respuestaTest.idRespuesta = this.form.value.codigo;
-      this.respuestaTest.respuesta = this.form.value.respuesta;
-      this.respuestaTest.preguntaTest.idPregunta = this.form.value.idPregunta;
-      this.respuestaTest.usuario.idUsuario = this.form.value.idUsuario;
+      this.respuestaTest.idRespuesta = this.form.get('idRespuesta')?.value;
+      this.respuestaTest.respuesta = this.form.get('respuesta')?.value;
+      this.respuestaTest.idPregunta = this.form.get('idPregunta')?.value;
+      this.respuestaTest.idUsuario = this.form.get('idUsuario')?.value;
 
-      const operacion = this.edicion
-        ? this.respuestaTestService.update(this.respuestaTest)
-        : this.respuestaTestService.insert(this.respuestaTest);
-
-      operacion.subscribe(() => {
-        this.respuestaTestService.list().subscribe(data => {
-          this.respuestaTestService.setList(data);
+      if (this.edicion) {
+        this.respuestaTestService.update(this.respuestaTest).subscribe(() => {
+          this.respuestaTestService.list().subscribe();
         });
-        this.router.navigate(['respuestatest']);
-      });
+      } else {
+        this.respuestaTestService.insert(this.respuestaTest).subscribe(() => {
+          this.respuestaTestService.list().subscribe();
+        });
+      }
+
+      this.router.navigate(['respuestas']);
     }
   }
 
-  init(): void {
+  init() {
     if (this.edicion) {
       this.respuestaTestService.listId(this.id).subscribe(data => {
-        this.form = this.formBuilder.group({
-          codigo: new FormControl(data.idRespuesta),
+        this.form = new FormGroup({
+          idRespuesta: new FormControl({ value: data.idRespuesta, disabled: true }),
           respuesta: new FormControl(data.respuesta, Validators.required),
-          idPregunta: new FormControl(data.preguntaTest.idPregunta, Validators.required),
-          idUsuario: new FormControl(data.usuario.idUsuario, Validators.required)
+          idPregunta: new FormControl(data.idPregunta, Validators.required),
+          idUsuario: new FormControl(data.idUsuario, Validators.required)
         });
       });
     }

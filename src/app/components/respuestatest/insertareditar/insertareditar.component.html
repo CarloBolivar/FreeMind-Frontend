@@ -1,1 +1,44 @@
-<p>insertareditar works!</p>
+<div class="container">
+  <h1>Registro de Respuesta de Test</h1>
+  <form [formGroup]="form" (ngSubmit)="aceptar()">
+
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="idRespuesta" readonly />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Respuesta</mat-label>
+      <input matInput formControlName="respuesta" />
+      <mat-error *ngIf="form.get('respuesta')?.hasError('required')">
+        La respuesta es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Pregunta</mat-label>
+      <mat-select formControlName="idPregunta">
+        <mat-option *ngFor="let p of listaPreguntas" [value]="p.idPregunta">
+          {{ p.pregunta }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('idPregunta')?.hasError('required')">
+        La pregunta es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Usuario</mat-label>
+      <mat-select formControlName="idUsuario">
+        <mat-option *ngFor="let u of listaUsuarios" [value]="u.idUsuario">
+          {{ u.nombre }} {{ u.apellido }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('idUsuario')?.hasError('required')">
+        El usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" class="btn-accion">Guardar</button>
+  </form>
+</div>

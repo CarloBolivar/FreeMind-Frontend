@@ -1,1 +1,32 @@
-<p>insertareditar works!</p>
+<div class="container">
+  <h1>Registro de Pregunta de Test</h1>
+  <form [formGroup]="form" (ngSubmit)="aceptar()">
+
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="idPregunta" readonly />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Pregunta</mat-label>
+      <input matInput formControlName="pregunta" />
+      <mat-error *ngIf="form.get('pregunta')?.hasError('required')">
+        La pregunta es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Test</mat-label>
+      <mat-select formControlName="idTest">
+        <mat-option *ngFor="let t of listaTests" [value]="t.idTest">
+          {{ t.titulo }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('idTest')?.hasError('required')">
+        El test es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" class="btn-accion">Guardar</button>
+  </form>
+</div>

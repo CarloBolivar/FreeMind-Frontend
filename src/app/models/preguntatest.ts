@@ -1,7 +1,5 @@
-import { Test } from './test'
-
-export class PreguntaTest {
-  idPregunta: number = 0
-  pregunta: string = ''
-  test: Test = new Test()
+export interface PreguntaTest {
+  idPregunta: number;
+  pregunta: string;
+  idTest: number;
 }

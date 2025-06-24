@@ -1,23 +1,37 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 import { PreguntaTest } from '../../../models/preguntatest';
+import { Test } from '../../../models/test';
 import { PreguntaTestService } from '../../../services/preguntatest.service';
 import { TestService } from '../../../services/test.service';
-import { Test } from '../../../models/test';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-insertareditarpreguntatest',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatSelectModule
+  ],
   templateUrl: './insertareditar.component.html',
   styleUrls: ['./insertareditar.component.css']
 })
 export class InsertareditarpreguntatestComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-  preguntaTest: PreguntaTest = new PreguntaTest();
-  listaTests: Test[] = [];
+  preguntaTest: PreguntaTest = { idPregunta: 0, pregunta: '', idTest: 0 };
 
   id: number = 0;
   edicion: boolean = false;
+  listaTests: Test[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,52 +42,50 @@ export class InsertareditarpreguntatestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = this.id != null;
+      this.init();
+    });
+
     this.form = this.formBuilder.group({
-      codigo: new FormControl({ value: '', disabled: true }),
+      idPregunta: [{ value: '', disabled: true }],
       pregunta: ['', Validators.required],
-      test: ['', Validators.required]
+      idTest: ['', Validators.required]
     });
 
     this.testService.list().subscribe(data => {
       this.listaTests = data;
     });
-
-    this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      this.edicion = !!this.id;
-      if (this.edicion) {
-        this.init();
-      }
-    });
   }
 
-  aceptar(): void {
+  aceptar() {
     if (this.form.valid) {
-      const formData = this.form.getRawValue();
-      this.preguntaTest.pregunta = formData.pregunta;
-      this.preguntaTest.test = new Test();
-      this.preguntaTest.test.idTest = formData.test;
+      this.preguntaTest.idPregunta = this.form.get('idPregunta')?.value;
+      this.preguntaTest.pregunta = this.form.get('pregunta')?.value;
+      this.preguntaTest.idTest = this.form.get('idTest')?.value;
 
       if (this.edicion) {
-        this.preguntaTest.idPregunta = formData.codigo;
         this.preguntaTestService.update(this.preguntaTest).subscribe(() => {
-          this.router.navigate(['preguntastest']);
+          this.preguntaTestService.list().subscribe();
         });
       } else {
         this.preguntaTestService.insert(this.preguntaTest).subscribe(() => {
-          this.router.navigate(['preguntastest']);
+          this.preguntaTestService.list().subscribe();
         });
       }
+
+      this.router.navigate(['preguntas']);
     }
   }
 
-  init(): void {
+  init() {
     if (this.edicion) {
       this.preguntaTestService.listId(this.id).subscribe(data => {
-        this.form.setValue({
-          codigo: data.idPregunta,
-          pregunta: data.pregunta,
-          test: data.test.idTest
+        this.form = new FormGroup({
+          idPregunta: new FormControl({ value: data.idPregunta, disabled: true }),
+          pregunta: new FormControl(data.pregunta, Validators.required),
+          idTest: new FormControl(data.idTest, Validators.required)
         });
       });
     }
