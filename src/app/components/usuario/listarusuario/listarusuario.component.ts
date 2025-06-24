@@ -23,7 +23,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
   styleUrls: ['./listarusuario.component.css']
 })
 export class ListarusuarioComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7'];
+  displayedColumns: string[] = ['idUsuario', 'nombre', 'apellido', 'correo', 'rol', 'editar', 'eliminar'];
+
   dataSource: MatTableDataSource<Usuario> = new MatTableDataSource();
   listaRoles: Rol[] = [];
 

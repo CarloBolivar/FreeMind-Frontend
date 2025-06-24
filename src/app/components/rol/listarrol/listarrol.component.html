@@ -1,42 +1,40 @@
 <div class="container">
-  <div><h1>Lista de roles</h1></div>
-  <div>
-    <button mat-flat-button color="primary" [routerLink]="['nuevo']">+ Nuevo Rol</button>
+  <h1>Lista de Roles</h1>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <button mat-flat-button color="primary" class="btn-accion-nuevo" [routerLink]="['nuevo']">+ Nuevo Rol</button>
 
-      <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let element">{{ element.idRol }}</td>
-      </ng-container>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-      <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef>Rol</th>
-        <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
-      </ng-container>
+    <ng-container matColumnDef="idRol">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.idRol }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-flat-button color="accent" class="btn-accion" [routerLink]="['ediciones', element.idRol]">
-            Editar
-          </button>
-        </td>
-      </ng-container>
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Rol</th>
+      <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+    </ng-container>
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef>Editar</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-flat-button color="accent" class="btn-accion" [routerLink]="['ediciones', element.idRol]">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
 
-      <ng-container matColumnDef="c4">
-        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-flat-button color="warn" class="btn-accion" (click)="eliminar(element.idRol)">
-            Eliminar
-          </button>
-        </td>
-      </ng-container>
+    <ng-container matColumnDef="eliminar">
+      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-flat-button color="warn" class="btn-accion" (click)="eliminar(element.idRol)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Cita } from '../../../models/cita';
 import { CitaService } from '../../../services/cita.service';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MatTableModule,
+    MatPaginatorModule,
     MatButtonModule,
     MatIconModule,
     RouterModule
@@ -21,21 +23,25 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./listarcita.component.css']
 })
 export class ListarcitaComponent implements OnInit {
-  dataSource: Cita[] = [];
+  dataSource: MatTableDataSource<Cita> = new MatTableDataSource();
   displayedColumns: string[] = ['id', 'paciente', 'psicologo', 'horario', 'estado', 'terapia', 'editar', 'eliminar'];
 
-  constructor(private CitaService: CitaService) {}
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private citaService: CitaService) {}
 
   ngOnInit(): void {
-    this.CitaService.list().subscribe((data: Cita[]) => {
-      this.dataSource = data;
+    this.citaService.list().subscribe((data: Cita[]) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
   eliminar(id: number): void {
-    this.CitaService.delete(id).subscribe(() => {
-      this.CitaService.list().subscribe((data: Cita[]) => {
-        this.dataSource = data;
+    this.citaService.delete(id).subscribe(() => {
+      this.citaService.list().subscribe((data: Cita[]) => {
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
       });
     });
   }
