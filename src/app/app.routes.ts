@@ -29,6 +29,8 @@ import { BuscarrecursoComponent } from './components/recurso/buscarrecurso/busca
 import { BuscartestrealizadoComponent } from './components/testrealizado/buscartestrealizado/buscartestrealizado.component'
 import { ReportesComponent } from './components/reportes/reportes.component'
 import { ReportetotaingresospsicologosComponent } from './components/reportes/reportetotaingresospsicologos/reportetotaingresospsicologos.component'
+import { UsuariorollistarComponent } from './components/usuario/usuariorollistar/usuariorollistar.component'
+import { UsuariomontolistarComponent } from './components/usuario/usuariomontolistar/usuariomontolistar.component'
 
 export const routes: Routes = [
   {
@@ -43,7 +45,9 @@ export const routes: Routes = [
     component: UsuarioComponent,
     children: [
       { path: 'nuevo', component: InsertareditarusuarioComponent },
-      { path: 'ediciones/:id', component: InsertareditarusuarioComponent }
+      { path: 'ediciones/:id', component: InsertareditarusuarioComponent },
+      { path: 'roles_usuario', component: UsuariorollistarComponent },
+      { path: 'montos_usuario', component:UsuariomontolistarComponent}
     ]
   },
   {

@@ -4,6 +4,8 @@ import { Usuario } from '../models/usuario';
 import { Subject } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { map } from 'rxjs/operators';
+import { CantidadUsuariosPorRolDTO } from '../models/CantidadUsuariosPorRolDTO';
+import { CantidadSumaPagoDTO } from '../models/cantidadSumaPagoDTO';
 
 const base_url = environment.base;
 
@@ -55,6 +57,12 @@ export class UsuarioService {
     map((usuarios: Usuario[]) => usuarios.filter(u => u.idRol === 3)) // ID del rol PSICÓLOGO // Citas
   );
 }
+  listRoles() {
+  return this.http.get<CantidadUsuariosPorRolDTO[]>(`${this.url}/roles`);
+}
 
+listMontoTotalPorUsuario() {
+  return this.http.get<CantidadSumaPagoDTO[]>(`${this.url}/montos`);
+}
 
 }
