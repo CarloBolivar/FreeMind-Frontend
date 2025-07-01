@@ -22,6 +22,9 @@ import { PreguntatestComponent } from './components/preguntatest/preguntatest.co
 import { InsertareditarpreguntatestComponent } from './components/preguntatest/insertareditar/insertareditar.component'
 import { RespuestatestComponent } from './components/respuestatest/respuestatest.component'
 import { InsertareditarrespuestatestComponent } from './components/respuestatest/insertareditar/insertareditar.component'
+import { ApimusicaComponent } from './components/api/apimusica/apimusica.component'
+import { ApiimagenesComponent } from './components/api/apiimagenes/apiimagenes.component'
+import { ApichatbotComponent } from './components/api/apichatbot/apichatbot.component'
 
 export const routes: Routes = [
   {
@@ -143,7 +146,19 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./components/horario/insertareditar/insertareditar.component')
             .then(m => m.InsertareditarhorarioComponent)
-      }
+      },
     ]
+  },
+  {
+  path: 'musica',
+  component: ApimusicaComponent
+  },
+  {
+  path: 'imagenes',
+  component: ApiimagenesComponent
+  },
+  {
+  path: 'chatbot',
+  component: ApichatbotComponent
   }
 ]

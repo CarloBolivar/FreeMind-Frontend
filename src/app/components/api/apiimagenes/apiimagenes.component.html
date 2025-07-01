@@ -1,0 +1,31 @@
+<div class="container">
+  <mat-card class="mat-elevation-z4 contenido-card" *ngIf="!cargando; else cargandoTemplate">
+    <mat-card-header>
+      <mat-card-title>Imagen Relajante</mat-card-title>
+      <mat-card-subtitle>Pixabay API</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <img [src]="imagen.largeImageURL" class="imagen-relajante" alt="Imagen relajante" />
+
+      <div class="etiquetas" *ngIf="imagen.tags">
+        <mat-icon>sell</mat-icon>
+        <span *ngFor="let tag of imagen.tags.split(',')" class="tag-chip">{{ tag.trim() }}</span>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="cargarImagen()">
+        <mat-icon>navigate_next</mat-icon>
+        Siguiente imagen
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <ng-template #cargandoTemplate>
+    <div class="spinner-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Cargando imagen...</p>
+    </div>
+  </ng-template>
+</div>

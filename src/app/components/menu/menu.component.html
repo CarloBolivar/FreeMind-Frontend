@@ -83,6 +83,27 @@
   </button>
 </div>
 
+<!-- Música -->
+<div>
+  <button mat-button [matMenuTriggerFor]="menuMusica" class="btn-test">
+    <mat-icon>audiotrack</mat-icon> Música
+  </button>
+</div>
+
+<!-- Imágenes Relajantes -->
+<div>
+  <button mat-button [matMenuTriggerFor]="menuImagenes" class="btn-test">
+    <mat-icon>image</mat-icon> Imágenes
+  </button>
+</div>
+
+<!-- Chatbot -->
+<div>
+  <button mat-button [matMenuTriggerFor]="menuChatbot" class="btn-test">
+    <mat-icon>chat</mat-icon> Chatbot
+  </button>
+</div>
+
 </mat-toolbar>
 
 
@@ -147,3 +168,14 @@
   <button mat-menu-item routerLink="/respuestas/nuevo">Registrar</button>
 </mat-menu>
 
+<mat-menu #menuMusica="matMenu">
+  <button mat-menu-item routerLink="/musica">Reproducir</button>
+</mat-menu>
+
+<mat-menu #menuImagenes="matMenu">
+  <button mat-menu-item routerLink="/imagenes">Relajante</button>
+</mat-menu>
+
+<mat-menu #menuChatbot="matMenu">
+  <button mat-menu-item routerLink="/chatbot">Salud</button>
+</mat-menu>

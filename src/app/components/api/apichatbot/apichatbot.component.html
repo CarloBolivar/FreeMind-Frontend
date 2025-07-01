@@ -1,0 +1,19 @@
+<div class="chat-container">
+  <h2 class="title">Chat de Salud Mental</h2>
+
+  <div class="chat-window">
+    <div *ngFor="let msg of chat" [ngClass]="msg.from" class="message">
+      <span>{{ msg.text }}</span>
+    </div>
+  </div>
+
+  <div class="input-container" *ngIf="!done">
+    <input
+      type="text"
+      [(ngModel)]="input"
+      placeholder='Escribe "Sí" o "No"...'
+      (keyup.enter)="reply()"
+    />
+    <button (click)="reply()">Enviar</button>
+  </div>
+</div>

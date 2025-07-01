@@ -1,0 +1,143 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 1rem;
+}
+
+.chat-card, .contenido-card {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  background-color: #f2f2f2;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.title, .mat-card-title {
+  text-align: center;
+  margin-bottom: 15px;
+  font-family: Arial, sans-serif;
+}
+
+.chat-window {
+  height: 400px;
+  overflow-y: auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.message {
+  display: flex;
+  margin: 10px 0;
+}
+
+.bot span {
+  background-color: #d1e7dd;
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 80%;
+  align-self: flex-start;
+}
+
+.user {
+  justify-content: flex-end;
+}
+
+.user span {
+  background-color: #cfe2ff;
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 80%;
+  align-self: flex-end;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+input[type='text'] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+}
+
+button, .mat-raised-button {
+  padding: 10px 16px;
+  border: none;
+  background-color: #0d6efd;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+}
+
+button:hover {
+  background-color: #0b5ed7;
+}
+
+.imagen-relajante {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.tag-chip {
+  background-color: #e0e0e0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 13px;
+}
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.texto-musica {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 16px;
+  margin-bottom: 1rem;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.slider-volumen {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}

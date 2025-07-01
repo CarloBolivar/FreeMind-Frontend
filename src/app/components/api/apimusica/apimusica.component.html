@@ -1,0 +1,41 @@
+<div class="container">
+  <mat-card class="mat-elevation-z4">
+    <mat-card-header>
+      <mat-card-title>Música Relajante</mat-card-title>
+      <mat-card-subtitle>Freesound API</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p *ngIf="actual" class="texto-musica">
+        <mat-icon>graphic_eq</mat-icon>
+        Reproduciendo: <strong>{{ actual }}</strong>
+      </p>
+
+      <div class="btn-group">
+        <button mat-raised-button color="primary" (click)="toggle()">
+          <mat-icon>{{ reproduciendo ? 'pause' : 'play_arrow' }}</mat-icon>
+          {{ reproduciendo ? 'Pausar' : 'Reproducir' }}
+        </button>
+
+        <button mat-raised-button color="accent" (click)="getAnother()">
+          <mat-icon>shuffle</mat-icon>
+          Otra canción
+        </button>
+      </div>
+
+      <div class="slider-volumen">
+        <mat-icon>volume_up</mat-icon>
+        <mat-slider
+          min="0"
+          max="1"
+          step="0.01"
+          discrete
+          showTickMarks
+          (input)="cambiarVolumen($any($event.target).value)"
+        >
+          <input matSliderThumb [value]="volumen" />
+        </mat-slider>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
