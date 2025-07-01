@@ -6,10 +6,8 @@
         <div class="left-column">
           <mat-form-field *ngIf="edicion">
             <mat-label>ID</mat-label>
-            <input matInput formControlName="codigo" />
-            <mat-error *ngIf="form.get('codigo')?.hasError('required')">
-              El código es obligatorio para actualizar!!
-            </mat-error>
+            <input matInput formControlName="codigo" readonly/>
+            
           </mat-form-field>
 
           <mat-form-field>
@@ -31,14 +29,14 @@
 
         <div class="right-column">
           <mat-form-field>
-            <mat-label>Terapias</mat-label>
+            <mat-label>Paciente</mat-label>
               <mat-select formControlName="usuario">
                 <mat-option *ngFor="let t of listaUsuarios" [value]="t.idUsuario">
                   {{ t.nombre }}
                 </mat-option>
               </mat-select>
               <mat-error *ngIf="form.get('usuario')?.hasError('required')">
-                El nombre del usuario es obligatorio.
+                El nombre del paciente es obligatorio.
               </mat-error>
           </mat-form-field>
 
@@ -60,3 +58,4 @@
     </form>
   </div>
 </div>
+ 

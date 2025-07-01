@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Cita } from '../models/cita'
 import { environment } from '../../environment/environment'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
+import { CantidadCitasPorTerapiaDTO } from '../models/cantidadcitasporterapiaDTO'
+import { cantidadtotalingresosporpsicologoDTO } from '../models/cantidadtotalingresosporpsicologoDTO'
 
 const base_url = environment.base
 
@@ -41,5 +43,13 @@ export class CitaService {
 
   setList(lista: Cita[]) {
     this.listaCambio.next(lista)
+  }
+
+   getQuantity():Observable<CantidadCitasPorTerapiaDTO[]>{
+    return this.http.get<CantidadCitasPorTerapiaDTO[]>(`${this.url}/cantidadCitasPorTerapia`)
+  }
+
+  getingresos():Observable<cantidadtotalingresosporpsicologoDTO[]>{
+    return this.http.get<cantidadtotalingresosporpsicologoDTO[]>(`${this.url}/totalIngresosPsicologos`)
   }
 }

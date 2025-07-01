@@ -82,7 +82,13 @@
     <mat-icon>check_circle</mat-icon> Respuestas Test
   </button>
 </div>
-
+<!-- Reportes -->
+ <div>
+  <button mat-button [matMenuTriggerFor]="menuReportes" class="btn-rojo">
+   <mat-icon>file_copy</mat-icon>
+   Reportes
+  </button>
+ </div>
 </mat-toolbar>
 
 
@@ -115,11 +121,13 @@
 <mat-menu #menuRecursos="matMenu">
   <button mat-menu-item routerLink="/recursos">Listar</button>
   <button mat-menu-item routerLink="/recursos/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/recursos/busquedas">Buscar recurso</button>
 </mat-menu>
 
 <mat-menu #menuTestsRealizados="matMenu">
   <button mat-menu-item routerLink="/testsrealizados">Listar</button>
   <button mat-menu-item routerLink="/testsrealizados/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/testsrealizados/busquedas">Buscar test realizado</button>
 </mat-menu>
 
 <mat-menu #menuComentarios="matMenu">
@@ -145,5 +153,11 @@
 <mat-menu #menuRespuestasTest="matMenu">
   <button mat-menu-item routerLink="/respuestas">Listar</button>
   <button mat-menu-item routerLink="/respuestas/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuReportes="matMenu">
+ <button mat-menu-item routerLink="/reports">Cantidad citas por terapia</button> 
+ <button mat-menu-item routerLink="/reports/ingresos">Ingresos totales por psicologo</button> 
+
 </mat-menu>
 

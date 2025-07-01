@@ -40,4 +40,7 @@ export class TestrealizadoService {
   listId(id: number) {
     return this.http.get<TestRealizado>(`${this.url}/${id}`);
   }
+
+  
+ 
 }

@@ -61,7 +61,7 @@ export class InsertareditarrecursoComponent implements OnInit {
     })
 
     this.form = this.formBuilder.group({
-      codigo: [{ value: '', disabled: true }],
+      codigo: [''],
       tipo: ['', Validators.required],
       url: ['', Validators.required],
       terapia: ['', Validators.required]
@@ -74,11 +74,10 @@ export class InsertareditarrecursoComponent implements OnInit {
 
   aceptar() {
     if (this.form.valid) {
-      const formData = this.form.getRawValue()
-      this.recurso.idRecurso = this.edicion ? formData.codigo : 0
-      this.recurso.tipo = formData.tipo
-      this.recurso.url = formData.url
-      this.recurso.terapia.idTerapia = formData.terapia
+      this.recurso.idRecurso = this.form.value.codigo
+      this.recurso.tipo = this.form.value.tipo
+      this.recurso.url = this.form.value.url
+      this.recurso.terapia.idTerapia = this.form.value.terapia
 
       if (this.edicion) {
         this.recursoService.update(this.recurso).subscribe(() => {
@@ -102,10 +101,10 @@ export class InsertareditarrecursoComponent implements OnInit {
     if (this.edicion) {
       this.recursoService.listId(this.id).subscribe(data => {
         this.form = new FormGroup({
-          codigo: new FormControl({ value: data.idRecurso, disabled: true }),
-          tipo: new FormControl(data.tipo),
-          url: new FormControl(data.url),
-          terapia: new FormControl(data.terapia.idTerapia)
+          codigo: new FormControl(data.idRecurso),
+          tipo: new FormControl(data.tipo,Validators.required),
+          url: new FormControl(data.url,Validators.required),
+          terapia: new FormControl(data.terapia.idTerapia,Validators.required)
         })
       })
     }

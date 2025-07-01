@@ -22,6 +22,10 @@ import { PreguntatestComponent } from './components/preguntatest/preguntatest.co
 import { InsertareditarpreguntatestComponent } from './components/preguntatest/insertareditar/insertareditar.component'
 import { RespuestatestComponent } from './components/respuestatest/respuestatest.component'
 import { InsertareditarrespuestatestComponent } from './components/respuestatest/insertareditar/insertareditar.component'
+import { BuscarrecursoComponent } from './components/recurso/buscarrecurso/buscarrecurso.component'
+import { BuscartestrealizadoComponent } from './components/testrealizado/buscartestrealizado/buscartestrealizado.component'
+import { ReportesComponent } from './components/reportes/reportes.component'
+import { ReportetotaingresospsicologosComponent } from './components/reportes/reportetotaingresospsicologos/reportetotaingresospsicologos.component'
 
 export const routes: Routes = [
   {
@@ -77,7 +81,8 @@ export const routes: Routes = [
     component: RecursoComponent,
     children: [
       { path: 'nuevo', component: InsertareditarrecursoComponent },
-      { path: 'ediciones/:id', component: InsertareditarrecursoComponent }
+      { path: 'ediciones/:id', component: InsertareditarrecursoComponent },
+      { path:'busquedas',component:BuscarrecursoComponent }
     ]
   },
   {
@@ -85,7 +90,8 @@ export const routes: Routes = [
     component: TestrealizadoComponent,
     children: [
       { path: 'nuevo', component: InsertareditartestrealizadoComponent },
-      { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent }
+      { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent },
+      { path:'busquedas',component:BuscartestrealizadoComponent }
     ]
   },
   {
@@ -145,5 +151,13 @@ export const routes: Routes = [
             .then(m => m.InsertareditarhorarioComponent)
       }
     ]
-  }
+  },
+        {
+        path:'reports',component:ReportesComponent,
+        children:[
+            {
+                path:'ingresos', component:ReportetotaingresospsicologosComponent
+            }
+        ]
+    }
 ]
