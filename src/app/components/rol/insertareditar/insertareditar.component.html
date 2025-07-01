@@ -2,12 +2,10 @@
   <div><h1>{{ edicion ? 'Editar rol' : 'Registro de rol' }}</h1></div>
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
+      
       <mat-form-field *ngIf="edicion">
         <mat-label>ID</mat-label>
-        <input matInput formControlName="codigo" />
-        <mat-error *ngIf="form.get('codigo')?.hasError('required')">
-          El ID es obligatorio para actualizar.
-        </mat-error>
+        <input matInput formControlName="codigo" readonly />
       </mat-form-field>
 
       <mat-form-field>

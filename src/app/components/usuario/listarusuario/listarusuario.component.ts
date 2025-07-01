@@ -17,7 +17,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatButtonModule,
     RouterLink,
     MatIconModule,
-    MatPaginatorModule // ✅ IMPORT NECESARIO
+    MatPaginatorModule 
   ],
   templateUrl: './listarusuario.component.html',
   styleUrls: ['./listarusuario.component.css']

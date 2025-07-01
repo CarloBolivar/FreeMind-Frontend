@@ -22,6 +22,9 @@ import { PreguntatestComponent } from './components/preguntatest/preguntatest.co
 import { InsertareditarpreguntatestComponent } from './components/preguntatest/insertareditar/insertareditar.component'
 import { RespuestatestComponent } from './components/respuestatest/respuestatest.component'
 import { InsertareditarrespuestatestComponent } from './components/respuestatest/insertareditar/insertareditar.component'
+import { ApimusicaComponent } from './components/api/apimusica/apimusica.component'
+import { ApiimagenesComponent } from './components/api/apiimagenes/apiimagenes.component'
+import { ApichatbotComponent } from './components/api/apichatbot/apichatbot.component'
 import { BuscarrecursoComponent } from './components/recurso/buscarrecurso/buscarrecurso.component'
 import { BuscartestrealizadoComponent } from './components/testrealizado/buscartestrealizado/buscartestrealizado.component'
 import { ReportesComponent } from './components/reportes/reportes.component'
@@ -161,7 +164,19 @@ export const routes: Routes = [
         children:[
             {
                 path:'ingresos', component:ReportetotaingresospsicologosComponent
-            }
+            },
         ]
-    }
+    },
+  {
+  path: 'musica',
+  component: ApimusicaComponent
+  },
+  {
+  path: 'imagenes',
+  component: ApiimagenesComponent
+  },
+  {
+  path: 'chatbot',
+  component: ApichatbotComponent
+  }
 ]
