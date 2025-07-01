@@ -17,10 +17,10 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatButtonModule,
     MatPaginator,
     MatPaginatorModule],
-  templateUrl: './usuariorollistar.component.html',
-  styleUrl: './usuariorollistar.component.css'
+  templateUrl: './reporteusuariorollistar.component.html',
+  styleUrl: './reporteusuariorollistar.component.css'
 })
-export class UsuariorollistarComponent implements OnInit{
+export class ReporteusuariorollistarComponent implements OnInit{
 
   displayedColumns: string[] = ['rol', 'cantidad'];
   dataSource: MatTableDataSource<CantidadUsuariosPorRolDTO> = new MatTableDataSource();

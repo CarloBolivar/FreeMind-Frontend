@@ -29,8 +29,9 @@ import { BuscarrecursoComponent } from './components/recurso/buscarrecurso/busca
 import { BuscartestrealizadoComponent } from './components/testrealizado/buscartestrealizado/buscartestrealizado.component'
 import { ReportesComponent } from './components/reportes/reportes.component'
 import { ReportetotaingresospsicologosComponent } from './components/reportes/reportetotaingresospsicologos/reportetotaingresospsicologos.component'
-import { UsuariorollistarComponent } from './components/usuario/usuariorollistar/usuariorollistar.component'
-import { UsuariomontolistarComponent } from './components/usuario/usuariomontolistar/usuariomontolistar.component'
+import { ReporteusuariorollistarComponent } from './components/reportes/reporteusuariorollistar/reporteusuariorollistar.component'
+import { ReporteusuariomontolistarComponent } from './components/reportes/reporteusuariomontolistar/reporteusuariomontolistar.component'
+import { ReportecantidadcitasporterapiaComponent } from './components/reportes/reportecantidadcitasporterapia/reportecantidadcitasporterapia.component'
 
 export const routes: Routes = [
   {
@@ -45,9 +46,7 @@ export const routes: Routes = [
     component: UsuarioComponent,
     children: [
       { path: 'nuevo', component: InsertareditarusuarioComponent },
-      { path: 'ediciones/:id', component: InsertareditarusuarioComponent },
-      { path: 'roles_usuario', component: UsuariorollistarComponent },
-      { path: 'montos_usuario', component:UsuariomontolistarComponent}
+      { path: 'ediciones/:id', component: InsertareditarusuarioComponent }
     ]
   },
   {
@@ -165,8 +164,17 @@ export const routes: Routes = [
             {
                 path:'ingresos', component:ReportetotaingresospsicologosComponent
             },
+            {
+                path: 'cantidad-citas', component:ReportecantidadcitasporterapiaComponent
+            },
+            { 
+                path: 'roles_usuario', component: ReporteusuariorollistarComponent 
+            },
+            {   path: 'montos_usuario', component: ReporteusuariomontolistarComponent
+
+            }
         ]
-    },
+        },
   {
   path: 'musica',
   component: ApimusicaComponent

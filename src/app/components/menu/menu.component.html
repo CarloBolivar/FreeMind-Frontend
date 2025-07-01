@@ -86,10 +86,7 @@
 
 <mat-menu #menuUsuarios="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
-  <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
-  <button mat-menu-item routerLink="/usuarios/roles_usuario">Ver roles</button>
-  <button mat-menu-item routerLink="/usuarios/montos_usuario">Ver montos</button>
-  
+  <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>  
 </mat-menu>
 
 <mat-menu #menuRoles="matMenu">
@@ -150,8 +147,10 @@
 </mat-menu>
 
 <mat-menu #menuReportes="matMenu">
-  <button mat-menu-item routerLink="/reports">Cantidad citas por terapia</button> 
+  <button mat-menu-item routerLink="/reports/cantidad-citas">Cantidad citas por terapia</button> 
   <button mat-menu-item routerLink="/reports/ingresos">Ingresos totales por psicólogo</button> 
+  <button mat-menu-item routerLink="/reports/roles_usuario">Ver roles</button>
+  <button mat-menu-item routerLink="/reports/montos_usuario">Ver montos</button>
 </mat-menu>
 
 <mat-menu #menuMusica="matMenu">

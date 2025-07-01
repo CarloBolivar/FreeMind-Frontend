@@ -8,7 +8,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-usuariomontolistar',
+  selector: 'app-reporteusuariomontolistar',
   standalone: true,
   imports: [
     MatTableModule,
@@ -17,10 +17,10 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     CommonModule
   ],
-  templateUrl: './usuariomontolistar.component.html',
-  styleUrls: ['./usuariomontolistar.component.css']
+  templateUrl: './reporteusuariomontolistar.component.html',
+  styleUrls: ['./reporteusuariomontolistar.component.css']
 })
-export class UsuariomontolistarComponent implements OnInit {
+export class ReporteusuariomontolistarComponent implements OnInit {
   displayedColumns: string[] = ['nombre', 'monto'];
   dataSource: MatTableDataSource<CantidadSumaPagoDTO> = new MatTableDataSource();
 
