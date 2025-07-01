@@ -9,8 +9,8 @@
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
+  margin-bottom: 22px;
+  font-size: 26px;
   font-weight: 600;
   color: #3f51b5;
 }
@@ -25,6 +25,7 @@ button.mat-button {
   white-space: nowrap;
 }
 
+
 button.mat-button:hover {
   background-color: #303f9f;
 }
@@ -38,9 +39,11 @@ table {
 th, td {
   text-align: center;
   padding: 10px 5px;
-  word-wrap: break-word;
+  word-break: break-word; /* más compatible que word-wrap */
   font-size: 14px;
+  vertical-align: middle;
 }
+
 
 th {
   font-weight: bold;
