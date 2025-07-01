@@ -42,7 +42,7 @@ export class InsertareditarrecursoComponent implements OnInit {
   tipos: { value: string; viewValue: string }[] = [
     { value: 'Imagen', viewValue: 'Imagen' },
     { value: 'Audio', viewValue: 'Audio' },
-    { value: 'Video', viewValue: 'Video' }
+    { value: 'IA', viewValue: 'IA' }
   ]
 
   constructor(

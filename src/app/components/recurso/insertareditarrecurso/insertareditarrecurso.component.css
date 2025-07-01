@@ -30,13 +30,13 @@
   min-width: 0;
 }
 
-/* Ajustar el ancho de los mat-form-field */
+
 .example-full-width {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0;
   box-sizing: border-box;
-  text-align: left; /* Labels alineados a la izquierda */
+  text-align: left; 
 }
 
 
@@ -64,3 +64,4 @@ mat-form-field mat-select {
 .btn-accion:hover {
   background-color: #817dce;
 }
+

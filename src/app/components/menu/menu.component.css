@@ -16,16 +16,35 @@
 }
 
 .btn-test {
-  background-color: rgb(0, 0, 0); 
+  background-color: black;
   border-radius: 4px;
-  border: none;
   padding: 6px 12px;
 }
 
+/* Si no usas la clase btn-rojo, puedes eliminar esto completamente */
 .btn-rojo:hover {
   background-color: rgb(31, 45, 61);
 }
 
 .btn-rojo mat-icon {
   color: white;
+}
+
+
+::ng-deep .mat-mdc-menu-panel {
+  background-color: rgb(31, 45, 61) !important;
+  color: white !important;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 1 !important;
+}
+
+::ng-deep .mat-mdc-menu-item {
+  color: white !important;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+}
+
+::ng-deep .mat-mdc-menu-item:hover {
+  background-color: #3949ab !important;
 }
