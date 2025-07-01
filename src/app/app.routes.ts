@@ -60,7 +60,7 @@ export const routes: Routes = [
       { path: 'ediciones/:id', component: InsertareditarcitaComponent }
     ]
   },
-  {
+ {
     path: 'terapias',
     component: TerapiaComponent,
     children: [
@@ -75,7 +75,8 @@ export const routes: Routes = [
       { path: 'nuevo', component: InsertareditartestComponent },
       { path: 'ediciones/:id', component: InsertareditartestComponent }
     ]
-  },
+  }
+];
   {
     path: 'recursos',
     component: RecursoComponent,
