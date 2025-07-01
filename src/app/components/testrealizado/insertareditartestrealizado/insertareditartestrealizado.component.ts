@@ -51,11 +51,11 @@ export class InsertareditartestrealizadoComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {}
-
+ 
   ngOnInit(): void {
-    this.route.params.subscribe((data: Params) => {
-      this.id = data['id']
-      this.edicion = data['id'] != null
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id']
+      this.edicion = params['id'] != null
       this.init()
     })
 
@@ -68,7 +68,7 @@ export class InsertareditartestrealizadoComponent implements OnInit {
     })
 
     this.usuarioService.list().subscribe(data => {
-      this.listaUsuarios = data
+      this.listaUsuarios = data.filter(u => u.idRol === 2);
     })
 
     this.testService.list().subscribe(data => {
@@ -107,10 +107,10 @@ export class InsertareditartestrealizadoComponent implements OnInit {
       this.testrealizadoService.listId(this.id).subscribe(data => {
         this.form = new FormGroup({
           codigo: new FormControl(data.idTestRealizado),
-          fecha: new FormControl(data.fecha),
-          resultado: new FormControl(data.resultado),
-          usuario: new FormControl(data.usuario.idUsuario),
-          test: new FormControl(data.test.idTest)
+          fecha: new FormControl(data.fecha,Validators.required),
+          resultado: new FormControl(data.resultado,Validators.required),
+          usuario: new FormControl(data.usuario.idUsuario,Validators.required),
+          test: new FormControl(data.test.idTest,Validators.required)
         })
       })
     }

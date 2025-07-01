@@ -25,6 +25,10 @@ import { InsertareditarrespuestatestComponent } from './components/respuestatest
 import { ApimusicaComponent } from './components/api/apimusica/apimusica.component'
 import { ApiimagenesComponent } from './components/api/apiimagenes/apiimagenes.component'
 import { ApichatbotComponent } from './components/api/apichatbot/apichatbot.component'
+import { BuscarrecursoComponent } from './components/recurso/buscarrecurso/buscarrecurso.component'
+import { BuscartestrealizadoComponent } from './components/testrealizado/buscartestrealizado/buscartestrealizado.component'
+import { ReportesComponent } from './components/reportes/reportes.component'
+import { ReportetotaingresospsicologosComponent } from './components/reportes/reportetotaingresospsicologos/reportetotaingresospsicologos.component'
 
 export const routes: Routes = [
   {
@@ -80,7 +84,8 @@ export const routes: Routes = [
     component: RecursoComponent,
     children: [
       { path: 'nuevo', component: InsertareditarrecursoComponent },
-      { path: 'ediciones/:id', component: InsertareditarrecursoComponent }
+      { path: 'ediciones/:id', component: InsertareditarrecursoComponent },
+      { path:'busquedas',component:BuscarrecursoComponent }
     ]
   },
   {
@@ -88,7 +93,8 @@ export const routes: Routes = [
     component: TestrealizadoComponent,
     children: [
       { path: 'nuevo', component: InsertareditartestrealizadoComponent },
-      { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent }
+      { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent },
+      { path:'busquedas',component:BuscartestrealizadoComponent }
     ]
   },
   {
@@ -146,9 +152,17 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./components/horario/insertareditar/insertareditar.component')
             .then(m => m.InsertareditarhorarioComponent)
-      },
+      }
     ]
   },
+        {
+        path:'reports',component:ReportesComponent,
+        children:[
+            {
+                path:'ingresos', component:ReportetotaingresospsicologosComponent
+            },
+        ]
+    },
   {
   path: 'musica',
   component: ApimusicaComponent
