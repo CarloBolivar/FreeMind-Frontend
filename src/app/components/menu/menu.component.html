@@ -1,279 +1,88 @@
 <mat-toolbar class="custom-toolbar">
-  <!-- Usuarios -->
+  <!-- Menús -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuUsuarios" class="btn-test">
       <mat-icon>people</mat-icon> Usuarios
     </button>
   </div>
-
-  <!-- Roles -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuRoles" class="btn-test">
       <mat-icon>verified_user</mat-icon> Roles
     </button>
   </div>
-
-  <!-- Citas -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuCitas" class="btn-test">
       <mat-icon>event</mat-icon> Citas
     </button>
   </div>
-
-  <!-- Terapias -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuTerapias" class="btn-test">
       <mat-icon>psychology</mat-icon> Terapias
     </button>
   </div>
-
-  <!-- Tests -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuTests" class="btn-test">
       <mat-icon>quiz</mat-icon> Tests
     </button>
   </div>
-
-  <!-- Recursos -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuRecursos" class="btn-test">
       <mat-icon>menu_book</mat-icon> Recursos
     </button>
   </div>
-
-  <!-- Tests Realizados -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuTestsRealizados" class="btn-test">
       <mat-icon>fact_check</mat-icon> Tests Realizados
     </button>
   </div>
-
-  <!-- Comentarios -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuComentarios" class="btn-test">
       <mat-icon>comment</mat-icon> Comentarios
     </button>
   </div>
-
-  <!-- Pagos -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuPagos" class="btn-test">
       <mat-icon>payment</mat-icon> Pagos
     </button>
   </div>
-
-  <!-- Horarios -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuHorarios" class="btn-test">
       <mat-icon>schedule</mat-icon> Horarios
     </button>
   </div>
-
-  <!-- Preguntas Test -->
-<div>
-  <button mat-button [matMenuTriggerFor]="menuPreguntasTest" class="btn-test">
-    <mat-icon>help</mat-icon> Preguntas Test
-  </button>
-</div>
-
-<!-- Respuestas Test -->
-<div>
-  <button mat-button [matMenuTriggerFor]="menuRespuestasTest" class="btn-test">
-    <mat-icon>check_circle</mat-icon> Respuestas Test
-  </button>
-</div>
-
-<!-- Música -->
-<div>
-  <button mat-button [matMenuTriggerFor]="menuMusica" class="btn-test">
-    <mat-icon>audiotrack</mat-icon> Música
-  </button>
-</div>
-
-<!-- Imágenes Relajantes -->
-<div>
-  <button mat-button [matMenuTriggerFor]="menuImagenes" class="btn-test">
-    <mat-icon>image</mat-icon> Imágenes
-  </button>
-</div>
-
-<!-- Chatbot -->
-<div>
-  <button mat-button [matMenuTriggerFor]="menuChatbot" class="btn-test">
-    <mat-icon>chat</mat-icon> Chatbot
-  </button>
-</div>
-
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuPreguntasTest" class="btn-test">
+      <mat-icon>help</mat-icon> Preguntas Test
+    </button>
+  </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuRespuestasTest" class="btn-test">
+      <mat-icon>check_circle</mat-icon> Respuestas Test
+    </button>
+  </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuReportes" class="btn-test">
+      <mat-icon>file_copy</mat-icon> Reportes
+    </button>
+  </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuMusica" class="btn-test">
+      <mat-icon>audiotrack</mat-icon> Música
+    </button>
+  </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuImagenes" class="btn-test">
+      <mat-icon>image</mat-icon> Imágenes
+    </button>
+  </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuChatbot" class="btn-test">
+      <mat-icon>chat</mat-icon> Chatbot
+    </button>
+  </div>
 </mat-toolbar>
 
-
-
-<mat-menu #menuUsuarios="matMenu">
-  <button mat-menu-item routerLink="/usuarios">Listar</button>
-  <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuRoles="matMenu">
-  <button mat-menu-item routerLink="/roles">Listar</button>
-  <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuCitas="matMenu">
-  <button mat-menu-item routerLink="/citas">Listar</button>
-  <button mat-menu-item routerLink="/citas/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuTerapias="matMenu">
-  <button mat-menu-item routerLink="/terapias">Listar</button>
-  <button mat-menu-item routerLink="/terapias/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuTests="matMenu">
-  <button mat-menu-item routerLink="/tests">Listar</button>
-  <button mat-menu-item routerLink="/tests/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuRecursos="matMenu">
-  <button mat-menu-item routerLink="/recursos">Listar</button>
-  <button mat-menu-item routerLink="/recursos/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuTestsRealizados="matMenu">
-  <button mat-menu-item routerLink="/testsrealizados">Listar</button>
-  <button mat-menu-item routerLink="/testsrealizados/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuComentarios="matMenu">
-  <button mat-menu-item routerLink="/comentarios">Listar</button>
-  <button mat-menu-item routerLink="/comentarios/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuPagos="matMenu">
-  <button mat-menu-item routerLink="/pagos">Listar</button>
-  <button mat-menu-item routerLink="/pagos/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuHorarios="matMenu">
-  <button mat-menu-item routerLink="/horarios">Listar</button>
-  <button mat-menu-item routerLink="/horarios/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuPreguntasTest="matMenu">
-  <button mat-menu-item routerLink="/preguntas">Listar</button>
-  <button mat-menu-item routerLink="/preguntas/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuRespuestasTest="matMenu">
-  <button mat-menu-item routerLink="/respuestas">Listar</button>
-  <button mat-menu-item routerLink="/respuestas/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuMusica="matMenu">
-  <button mat-menu-item routerLink="/musica">Reproducir</button>
-</mat-menu>
-
-<mat-menu #menuImagenes="matMenu">
-  <button mat-menu-item routerLink="/imagenes">Relajante</button>
-</mat-menu>
-
-<mat-menu #menuChatbot="matMenu">
-  <button mat-menu-item routerLink="/chatbot">Salud</button>
-</mat-menu>
-
-<mat-toolbar class="custom-toolbar">
-  <!-- Usuarios -->
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuUsuarios" class="btn-test">
-      <mat-icon>people</mat-icon> Usuarios
-    </button>
-  </div>
-
-  <!-- Roles -->
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuRoles" class="btn-test">
-      <mat-icon>verified_user</mat-icon> Roles
-    </button>
-  </div>
-
-  <!-- Citas -->
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuCitas" class="btn-test">
-      <mat-icon>event</mat-icon> Citas
-    </button>
-  </div>
-
-  <!-- Terapias -->
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuTerapias" class="btn-test">
-      <mat-icon>psychology</mat-icon> Terapias
-    </button>
-  </div>
-
-  <!-- Tests -->
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuTests" class="btn-test">
-      <mat-icon>quiz</mat-icon> Tests
-    </button>
-  </div>
-
-  <!-- Recursos -->
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuRecursos" class="btn-test">
-      <mat-icon>menu_book</mat-icon> Recursos
-    </button>
-  </div>
-
-  <!-- Tests Realizados -->
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuTestsRealizados" class="btn-test">
-      <mat-icon>fact_check</mat-icon> Tests Realizados
-    </button>
-  </div>
-
-  <!-- Comentarios -->
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuComentarios" class="btn-test">
-      <mat-icon>comment</mat-icon> Comentarios
-    </button>
-  </div>
-
-  <!-- Pagos -->
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuPagos" class="btn-test">
-      <mat-icon>payment</mat-icon> Pagos
-    </button>
-  </div>
-
-  <!-- Horarios -->
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuHorarios" class="btn-test">
-      <mat-icon>schedule</mat-icon> Horarios
-    </button>
-  </div>
-
-  <!-- Preguntas Test -->
-<div>
-  <button mat-button [matMenuTriggerFor]="menuPreguntasTest" class="btn-test">
-    <mat-icon>help</mat-icon> Preguntas Test
-  </button>
-</div>
-
-<!-- Respuestas Test -->
-<div>
-  <button mat-button [matMenuTriggerFor]="menuRespuestasTest" class="btn-test">
-    <mat-icon>check_circle</mat-icon> Respuestas Test
-  </button>
-</div>
-<!-- Reportes -->
- <div>
-  <button mat-button [matMenuTriggerFor]="menuReportes" class="btn-test">
-   <mat-icon>file_copy</mat-icon>
-   Reportes
-  </button>
- </div>
-</mat-toolbar>
-
-
+<!-- Menús desplegables -->
 
 <mat-menu #menuUsuarios="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
@@ -338,9 +147,8 @@
 </mat-menu>
 
 <mat-menu #menuReportes="matMenu">
- <button mat-menu-item routerLink="/reports">Cantidad citas por terapia</button> 
- <button mat-menu-item routerLink="/reports/ingresos">Ingresos totales por psicologo</button> 
-
+  <button mat-menu-item routerLink="/reports">Cantidad citas por terapia</button> 
+  <button mat-menu-item routerLink="/reports/ingresos">Ingresos totales por psicólogo</button> 
 </mat-menu>
 
 <mat-menu #menuMusica="matMenu">
@@ -354,4 +162,3 @@
 <mat-menu #menuChatbot="matMenu">
   <button mat-menu-item routerLink="/chatbot">Salud</button>
 </mat-menu>
-
