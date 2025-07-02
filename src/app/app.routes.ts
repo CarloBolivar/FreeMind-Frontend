@@ -32,6 +32,15 @@ import { ReportetotaingresospsicologosComponent } from './components/reportes/re
 import { ReporteusuariorollistarComponent } from './components/reportes/reporteusuariorollistar/reporteusuariorollistar.component'
 import { ReporteusuariomontolistarComponent } from './components/reportes/reporteusuariomontolistar/reporteusuariomontolistar.component'
 import { ReportecantidadcitasporterapiaComponent } from './components/reportes/reportecantidadcitasporterapia/reportecantidadcitasporterapia.component'
+import { BuscarusuarioComponent } from './components/usuario/buscarusuario/buscarusuario.component'
+import { BuscarrolComponent } from './components/rol/buscarrol/buscarrol.component'
+import { BuscarterapiaComponent } from './components/terapia/buscarterapia/buscarterapia.component'
+import { BuscartestComponent } from './components/test/buscartest/buscartest.component'
+import { BuscarcomentarioComponent } from './components/comentario/buscarcomentario/buscarcomentario.component'
+import { BuscarcitaComponent } from './components/cita/buscarcita/buscarcita.component'
+import { BuscarpagoComponent } from './components/pago/buscarpago/buscarpago.component'
+import { BuscarpreguntatestComponent } from './components/preguntatest/buscarpreguntatest/buscarpreguntatest.component'
+import { BuscarrespuestatestComponent } from './components/respuestatest/buscarrespuestatest/buscarrespuestatest.component'
 
 export const routes: Routes = [
   {
@@ -46,7 +55,8 @@ export const routes: Routes = [
     component: UsuarioComponent,
     children: [
       { path: 'nuevo', component: InsertareditarusuarioComponent },
-      { path: 'ediciones/:id', component: InsertareditarusuarioComponent }
+      { path: 'ediciones/:id', component: InsertareditarusuarioComponent },
+      { path: 'busquedas', component: BuscarusuarioComponent }
     ]
   },
   {
@@ -54,7 +64,8 @@ export const routes: Routes = [
     component: RolComponent,
     children: [
       { path: 'nuevo', component: InsertareditarrolComponent },
-      { path: 'ediciones/:id', component: InsertareditarrolComponent }
+      { path: 'ediciones/:id', component: InsertareditarrolComponent },
+      { path: 'busquedas', component: BuscarrolComponent }
     ]
   },
   {
@@ -63,7 +74,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: ListarcitaComponent },
       { path: 'nuevo', component: InsertareditarcitaComponent },
-      { path: 'ediciones/:id', component: InsertareditarcitaComponent }
+      { path: 'ediciones/:id', component: InsertareditarcitaComponent },
+      { path: 'busquedas', component: BuscarcitaComponent }
     ]
   },
   {
@@ -71,7 +83,8 @@ export const routes: Routes = [
     component: TerapiaComponent,
     children: [
       { path: 'nuevo', component: InsertareditarterapiaComponent },
-      { path: 'ediciones/:id', component: InsertareditarterapiaComponent }
+      { path: 'ediciones/:id', component: InsertareditarterapiaComponent },
+      { path: 'busquedas', component: BuscarterapiaComponent }
     ]
   },
   {
@@ -79,7 +92,8 @@ export const routes: Routes = [
     component: TestComponent,
     children: [
       { path: 'nuevo', component: InsertareditartestComponent },
-      { path: 'ediciones/:id', component: InsertareditartestComponent }
+      { path: 'ediciones/:id', component: InsertareditartestComponent },
+      { path: 'busquedas', component: BuscartestComponent }
     ]
   },
   {
@@ -88,7 +102,7 @@ export const routes: Routes = [
     children: [
       { path: 'nuevo', component: InsertareditarrecursoComponent },
       { path: 'ediciones/:id', component: InsertareditarrecursoComponent },
-      { path:'busquedas',component:BuscarrecursoComponent }
+      { path: 'busquedas', component: BuscarrecursoComponent }
     ]
   },
   {
@@ -97,7 +111,7 @@ export const routes: Routes = [
     children: [
       { path: 'nuevo', component: InsertareditartestrealizadoComponent },
       { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent },
-      { path:'busquedas',component:BuscartestrealizadoComponent }
+      { path: 'busquedas', component: BuscartestrealizadoComponent }
     ]
   },
   {
@@ -105,7 +119,8 @@ export const routes: Routes = [
     component: ComentarioComponent,
     children: [
       { path: 'nuevo', component: InsertareditarcomentarioComponent },
-      { path: 'ediciones/:id', component: InsertareditarcomentarioComponent }
+      { path: 'ediciones/:id', component: InsertareditarcomentarioComponent },
+      { path: 'busquedas', component: BuscarcomentarioComponent }
     ]
   },
   {
@@ -113,7 +128,8 @@ export const routes: Routes = [
     component: PagoComponent,
     children: [
       { path: 'nuevo', component: InsertareditarpagoComponent },
-      { path: 'ediciones/:id', component: InsertareditarpagoComponent }
+      { path: 'ediciones/:id', component: InsertareditarpagoComponent },
+      { path: 'busquedas', component: BuscarpagoComponent }
     ]
   },
   {
@@ -121,7 +137,8 @@ export const routes: Routes = [
     component: PreguntatestComponent,
     children: [
       { path: 'nuevo', component: InsertareditarpreguntatestComponent },
-      { path: 'ediciones/:id', component: InsertareditarpreguntatestComponent }
+      { path: 'ediciones/:id', component: InsertareditarpreguntatestComponent },
+      { path: 'busquedas', component: BuscarpreguntatestComponent }
     ]
   },
   {
@@ -129,7 +146,8 @@ export const routes: Routes = [
     component: RespuestatestComponent,
     children: [
       { path: 'nuevo', component: InsertareditarrespuestatestComponent },
-      { path: 'ediciones/:id', component: InsertareditarrespuestatestComponent }
+      { path: 'ediciones/:id', component: InsertareditarrespuestatestComponent },
+      { path: 'busquedas', component: BuscarrespuestatestComponent }
     ]
   },
   {
@@ -158,33 +176,17 @@ export const routes: Routes = [
       }
     ]
   },
-        {
-        path:'reports',component:ReportesComponent,
-        children:[
-            {
-                path:'ingresos', component:ReportetotaingresospsicologosComponent
-            },
-            {
-                path: 'cantidad-citas', component:ReportecantidadcitasporterapiaComponent
-            },
-            { 
-                path: 'roles_usuario', component: ReporteusuariorollistarComponent 
-            },
-            {   path: 'montos_usuario', component: ReporteusuariomontolistarComponent
-
-            }
-        ]
-        },
   {
-  path: 'musica',
-  component: ApimusicaComponent
+    path: 'reports',
+    component: ReportesComponent,
+    children: [
+      { path: 'ingresos', component: ReportetotaingresospsicologosComponent },
+      { path: 'cantidad-citas', component: ReportecantidadcitasporterapiaComponent },
+      { path: 'roles_usuario', component: ReporteusuariorollistarComponent },
+      { path: 'montos_usuario', component: ReporteusuariomontolistarComponent }
+    ]
   },
-  {
-  path: 'imagenes',
-  component: ApiimagenesComponent
-  },
-  {
-  path: 'chatbot',
-  component: ApichatbotComponent
-  }
+  { path: 'musica', component: ApimusicaComponent },
+  { path: 'imagenes', component: ApiimagenesComponent },
+  { path: 'chatbot', component: ApichatbotComponent }
 ]

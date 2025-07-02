@@ -84,68 +84,91 @@
 
 <!-- Menús desplegables -->
 
+<!-- USUARIOS -->
 <mat-menu #menuUsuarios="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
-  <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>  
+  <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/usuarios/busquedas">Buscar usuario</button>
 </mat-menu>
 
+<!-- ROLES -->
 <mat-menu #menuRoles="matMenu">
   <button mat-menu-item routerLink="/roles">Listar</button>
   <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/roles/busquedas">Buscar rol</button>
 </mat-menu>
 
+<!-- CITAS -->
 <mat-menu #menuCitas="matMenu">
   <button mat-menu-item routerLink="/citas">Listar</button>
   <button mat-menu-item routerLink="/citas/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/citas/busquedas">Buscar cita</button>
 </mat-menu>
 
+<!-- TERAPIAS -->
 <mat-menu #menuTerapias="matMenu">
   <button mat-menu-item routerLink="/terapias">Listar</button>
   <button mat-menu-item routerLink="/terapias/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/terapias/busquedas">Buscar terapia</button>
 </mat-menu>
 
+<!-- TESTS -->
 <mat-menu #menuTests="matMenu">
   <button mat-menu-item routerLink="/tests">Listar</button>
   <button mat-menu-item routerLink="/tests/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/tests/busquedas">Buscar test</button>
 </mat-menu>
 
+<!-- PREGUNTAS TEST -->
+<mat-menu #menuPreguntasTest="matMenu">
+  <button mat-menu-item routerLink="/preguntas">Listar</button>
+  <button mat-menu-item routerLink="/preguntas/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/preguntas/busquedas">Buscar pregunta</button>
+</mat-menu>
+
+<!-- RESPUESTAS TEST -->
+<mat-menu #menuRespuestasTest="matMenu">
+  <button mat-menu-item routerLink="/respuestas">Listar</button>
+  <button mat-menu-item routerLink="/respuestas/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/respuestas/busquedas">Buscar respuesta</button>
+</mat-menu>
+
+<!-- RECURSOS -->
 <mat-menu #menuRecursos="matMenu">
   <button mat-menu-item routerLink="/recursos">Listar</button>
   <button mat-menu-item routerLink="/recursos/nuevo">Registrar</button>
   <button mat-menu-item routerLink="/recursos/busquedas">Buscar recurso</button>
 </mat-menu>
 
+<!-- TESTS REALIZADOS -->
 <mat-menu #menuTestsRealizados="matMenu">
   <button mat-menu-item routerLink="/testsrealizados">Listar</button>
   <button mat-menu-item routerLink="/testsrealizados/nuevo">Registrar</button>
   <button mat-menu-item routerLink="/testsrealizados/busquedas">Buscar test realizado</button>
 </mat-menu>
 
+<!-- COMENTARIOS -->
 <mat-menu #menuComentarios="matMenu">
   <button mat-menu-item routerLink="/comentarios">Listar</button>
   <button mat-menu-item routerLink="/comentarios/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/comentarios/busquedas">Buscar comentario</button>
 </mat-menu>
 
+<!-- PAGOS -->
 <mat-menu #menuPagos="matMenu">
   <button mat-menu-item routerLink="/pagos">Listar</button>
   <button mat-menu-item routerLink="/pagos/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/pagos/busquedas">Buscar pago</button>
 </mat-menu>
 
+<!-- HORARIOS -->
 <mat-menu #menuHorarios="matMenu">
   <button mat-menu-item routerLink="/horarios">Listar</button>
   <button mat-menu-item routerLink="/horarios/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/horarios/busquedas">Buscar horario</button>
 </mat-menu>
 
-<mat-menu #menuPreguntasTest="matMenu">
-  <button mat-menu-item routerLink="/preguntas">Listar</button>
-  <button mat-menu-item routerLink="/preguntas/nuevo">Registrar</button>
-</mat-menu>
-
-<mat-menu #menuRespuestasTest="matMenu">
-  <button mat-menu-item routerLink="/respuestas">Listar</button>
-  <button mat-menu-item routerLink="/respuestas/nuevo">Registrar</button>
-</mat-menu>
-
+<!-- REPORTES -->
 <mat-menu #menuReportes="matMenu">
   <button mat-menu-item routerLink="/reports/cantidad-citas">Cantidad citas por terapia</button> 
   <button mat-menu-item routerLink="/reports/ingresos">Ingresos totales por psicólogo</button> 
@@ -153,14 +176,17 @@
   <button mat-menu-item routerLink="/reports/montos_usuario">Ver montos</button>
 </mat-menu>
 
+<!-- MÚSICA -->
 <mat-menu #menuMusica="matMenu">
   <button mat-menu-item routerLink="/musica">Reproducir</button>
 </mat-menu>
 
+<!-- IMÁGENES -->
 <mat-menu #menuImagenes="matMenu">
   <button mat-menu-item routerLink="/imagenes">Relajante</button>
 </mat-menu>
 
+<!-- CHATBOT -->
 <mat-menu #menuChatbot="matMenu">
   <button mat-menu-item routerLink="/chatbot">Salud</button>
 </mat-menu>
