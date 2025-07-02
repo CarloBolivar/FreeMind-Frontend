@@ -1,56 +1,85 @@
+/* Reset y base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body, html {
+html, body {
   font-family: 'Arial', sans-serif;
-  background-color: rgb(31, 45, 61);
+  font-size: 16px;
+  scroll-behavior: smooth;
+  width: 100%;
+  background-color: #1f2d3d;
   color: white;
   height: 100vh;
+  padding-top: 100px; 
 }
 
 .navbar {
-  background-color: rgb(31, 45, 61);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #1f2d3d !important;
   padding: 1rem 2rem;
+  position: fixed; 
+  top: 0;
+  width: 100%;
+  z-index: 1050;
 }
 
-.logo img {
-  height: 40px;
+
+.navbar-nav .nav-link {
+  color: white !important;
+  font-size: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  margin: 0 12px;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-}
-
-.nav-links li a {
-  color: white;
-  text-decoration: none;
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  color: #cce6ff !important;
   font-weight: bold;
-  transition: color 0.2s ease-in-out;
 }
 
-.nav-links li a:hover {
-  color: rgb(194, 206, 219);
+/* Secciones generales */
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 1rem;
+  transition: all 0.4s ease-in-out;
 }
 
+.section-dark {
+  background-color: #1f2d3d;
+  color: white;
+}
+
+.section-light {
+  background-color: white;
+  color: black;
+}
+
+/* HOME - animación inicial */
 .landing-content {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 80px); 
+  height: calc(100vh - 80px);
   padding: 2rem;
   gap: 5rem;
   text-align: left;
+  animation: scaleUp 1s ease-in-out forwards;
+  transform: scale(0.9);
+  opacity: 0;
 }
 
+@keyframes scaleUp {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
 .logo-main {
   flex: 1;
@@ -60,11 +89,9 @@ body, html {
 }
 
 .logo-main img {
-  width: 100x; 
   max-width: 100%;
   margin-bottom: 1.5rem;
 }
-
 
 .logo-main h1 {
   font-size: 2.5rem;
@@ -76,11 +103,9 @@ body, html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
-  color: white;
-  text-align: center;  
+  align-items: center;
+  text-align: center;
 }
-
 
 .description p {
   max-width: 500px;
@@ -94,6 +119,129 @@ body, html {
   font-size: 0.9rem;
 }
 
+/* Imágenes */
+.main-image-xl,
+.main-image-lg {
+  max-width: 100%;
+  height: auto;
+}
+
+.main-image {
+  max-height: 140px;
+  margin: 1rem auto;
+}
+
+/* Títulos */
+.title-caption {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  margin-bottom: 2rem;
+}
+
+.benefit-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Registro */
+.memberships {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1f2d3d;
+  color: white;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.border-box-light {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Contacto */
+.contact-us {
+  background-color: #ffffff;
+  color: #000;
+  padding: 4rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.contact-us h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  margin-bottom: 1rem;
+}
+
+.main-image-lg {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.contact-form {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.quote {
+  font-size: 18px;
+  font-style: italic;
+  color: #333;
+}
+
+/* Footer */
+.footer-section {
+  background-color: #1f2d3d;
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.social-icons i {
+  color: white;
+  transition: 0.3s ease;
+}
+
+.social-icons i:hover {
+  transform: scale(1.2);
+  color: #ccc;
+}
+
+.footer-logo {
+  height: 60px;
+  margin-top: 1rem;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .landing-content {
     flex-direction: column;
@@ -103,5 +251,17 @@ body, html {
 
   .description {
     align-items: center;
+  }
+
+  .title-caption {
+    font-size: 36px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 18px;
+  }
+
+  .main-image-xl {
+    max-width: 300px;
   }
 }

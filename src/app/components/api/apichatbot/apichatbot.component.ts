@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Chatbot } from '../../../models/chatbot';
 import { ChatbotService } from '../../../services/chatbot.service';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-apichatbot',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,MatCardModule,MatButtonModule],
   templateUrl: './apichatbot.component.html',
   styleUrls: ['./apichatbot.component.css']
 })

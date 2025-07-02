@@ -1,4 +1,4 @@
-<mat-toolbar class="custom-toolbar">
+<mat-toolbar class="custom-toolbar" *ngIf="verificar()">
   <!-- Menús -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuUsuarios" class="btn-test">
@@ -80,10 +80,29 @@
       <mat-icon>chat</mat-icon> Chatbot
     </button>
   </div>
+
+  <!-- BOTÓN USUARIO / CERRAR SESIÓN -->
+  <span class="toolbar-spacer"></span>
+  <div class="right-menu">
+    <button mat-button [matMenuTriggerFor]="menuSalir" class="btn-test">
+      <mat-icon>person</mat-icon> Usuario
+    </button>
+  </div>
 </mat-toolbar>
 
-<!-- Menús desplegables -->
+<!-- Submenú Usuario -->
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+  <button mat-menu-item>
+    Rol: <span>{{ role }}</span>
+  </button>
+</mat-menu>
 
+<!-- Menús desplegables -->
+ 
 <!-- USUARIOS -->
 <mat-menu #menuUsuarios="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
@@ -189,4 +208,16 @@
 <!-- CHATBOT -->
 <mat-menu #menuChatbot="matMenu">
   <button mat-menu-item routerLink="/chatbot">Salud</button>
+</mat-menu>
+
+
+<!-- Cierre de sesión -->
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+  <button mat-menu-item>
+    Rol: <span>{{ role }}</span>
+  </button>
 </mat-menu>

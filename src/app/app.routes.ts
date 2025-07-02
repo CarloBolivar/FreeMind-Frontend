@@ -41,6 +41,7 @@ import { BuscarcitaComponent } from './components/cita/buscarcita/buscarcita.com
 import { BuscarpagoComponent } from './components/pago/buscarpago/buscarpago.component'
 import { BuscarpreguntatestComponent } from './components/preguntatest/buscarpreguntatest/buscarpreguntatest.component'
 import { BuscarrespuestatestComponent } from './components/respuestatest/buscarrespuestatest/buscarrespuestatest.component'
+import { LoginComponent } from './components/login/login.component'
 
 export const routes: Routes = [
   {
@@ -49,6 +50,10 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/landingpage/landingpage.component')
         .then(mod => mod.LandingpageComponent)
+  },
+  { 
+    path: 'login', 
+    component: LoginComponent
   },
   {
     path: 'usuarios',
@@ -173,6 +178,12 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./components/horario/insertareditar/insertareditar.component')
             .then(m => m.InsertareditarhorarioComponent)
+      },
+      {
+      path: 'busquedas',
+      loadComponent: () =>
+        import('./components/horario/buscarhorario/buscarhorario.component')
+          .then(m => m.BuscarhorarioComponent)
       }
     ]
   },

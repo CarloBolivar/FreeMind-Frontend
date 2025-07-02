@@ -1,19 +1,24 @@
-<div class="chat-container">
-  <h2 class="title">Chat de Salud Mental</h2>
+<div class="container">
+  <mat-card class="mat-elevation-z4 chat-card">
+    <mat-card-header>
+      <mat-card-title class="title">Chat de Salud Mental</mat-card-title>
+      <mat-card-subtitle>Responde con "Sí" o "No"</mat-card-subtitle>
+    </mat-card-header>
 
-  <div class="chat-window">
-    <div *ngFor="let msg of chat" [ngClass]="msg.from" class="message">
-      <span>{{ msg.text }}</span>
-    </div>
-  </div>
+    <mat-card-content class="chat-window">
+      <div *ngFor="let msg of chat" [ngClass]="msg.from" class="message">
+        <span>{{ msg.text }}</span>
+      </div>
+    </mat-card-content>
 
-  <div class="input-container" *ngIf="!done">
-    <input
-      type="text"
-      [(ngModel)]="input"
-      placeholder='Escribe "Sí" o "No"...'
-      (keyup.enter)="reply()"
-    />
-    <button (click)="reply()">Enviar</button>
-  </div>
+    <mat-card-actions *ngIf="!done" class="input-container">
+      <input
+        type="text"
+        [(ngModel)]="input"
+        placeholder='Escribe "Sí" o "No"...'
+        (keyup.enter)="reply()"
+      />
+      <button mat-raised-button color="primary" (click)="reply()">Enviar</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

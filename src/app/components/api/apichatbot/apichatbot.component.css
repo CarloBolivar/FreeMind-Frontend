@@ -6,7 +6,7 @@
   padding: 1rem;
 }
 
-.chat-card, .contenido-card {
+.chat-card {
   width: 100%;
   max-width: 600px;
   text-align: center;
@@ -16,10 +16,17 @@
   padding: 20px;
 }
 
-.title, .mat-card-title {
+.title {
   text-align: center;
   margin-bottom: 15px;
   font-family: Arial, sans-serif;
+  font-size: 24px; /* Aumentar el tamaño de letra */
+}
+
+.mat-card-subtitle {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 1rem;
 }
 
 .chat-window {
@@ -33,6 +40,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  font-size: 16px; /* Tamaño de texto del chat */
 }
 
 .message {
@@ -41,7 +49,7 @@
 }
 
 .bot span {
-  background-color: #d1e7dd;
+  background-color: #74b9dc;
   padding: 10px 15px;
   border-radius: 15px;
   max-width: 80%;
@@ -73,6 +81,7 @@ input[type='text'] {
   border-radius: 8px;
   border: 1px solid #ccc;
   font-family: Arial, sans-serif;
+  font-size: 16px;
 }
 
 button, .mat-raised-button {
@@ -83,61 +92,9 @@ button, .mat-raised-button {
   border-radius: 8px;
   cursor: pointer;
   font-family: Arial, sans-serif;
+  font-size: 16px;
 }
 
 button:hover {
   background-color: #0b5ed7;
-}
-
-.imagen-relajante {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
-
-.etiquetas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 1rem 0;
-}
-
-.tag-chip {
-  background-color: #e0e0e0;
-  padding: 0.25rem 0.75rem;
-  border-radius: 16px;
-  font-size: 13px;
-}
-
-.spinner-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.texto-musica {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 16px;
-  margin-bottom: 1rem;
-}
-
-.btn-group {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.slider-volumen {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
 }

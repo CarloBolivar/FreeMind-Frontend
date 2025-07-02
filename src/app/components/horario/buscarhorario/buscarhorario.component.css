@@ -1,0 +1,47 @@
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card-terapia {
+  width: 300px;
+  padding: 20px;
+  background-color: #f0f4ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  position: relative;
+  text-align: center;
+}
+
+.icon-terapia {
+  font-size: 48px;
+  color: #3f51b5;
+  margin-bottom: 10px;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.card-buttons button {
+  background-color: white;
+  border-radius: 50%;
+}
+
+.paginator-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
