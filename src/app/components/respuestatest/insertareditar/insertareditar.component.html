@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Registro de Respuesta de Test</h1>
+  <h1>{{ edicion ? 'Editar respuesta de test' : 'Registro de respuesta de test' }}</h1>
   <form [formGroup]="form" (ngSubmit)="aceptar()">
 
     <mat-form-field>
@@ -39,6 +39,6 @@
       </mat-error>
     </mat-form-field>
 
-    <button mat-flat-button color="primary" class="btn-accion">Guardar</button>
+    <button mat-flat-button color="primary" class="btn-accion">{{ edicion ? 'Guardar' : 'Registrar' }}</button>
   </form>
 </div>

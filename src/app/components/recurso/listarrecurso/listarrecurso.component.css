@@ -59,6 +59,8 @@ button.btn-accion {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  display: flex;
+  padding-left: 25px;
 }
 
 button.btn-accion:hover {

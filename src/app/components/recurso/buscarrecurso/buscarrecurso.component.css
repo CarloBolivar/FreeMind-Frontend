@@ -4,6 +4,14 @@
   padding: 20px;
 }
 
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #3f51b5;
+}
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -38,10 +46,4 @@
 .card-buttons button {
   background-color: white;
   border-radius: 50%;
-}
-
-.paginator-container {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
 }

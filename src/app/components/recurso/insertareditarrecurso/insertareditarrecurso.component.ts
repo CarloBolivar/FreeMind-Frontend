@@ -25,7 +25,7 @@ import { TerapiaService } from '../../../services/terapia.service'
     MatFormFieldModule,
     MatRadioModule,
     MatSelectModule,
-    MatGridListModule
+  
   ],
   templateUrl: './insertareditarrecurso.component.html',
   styleUrls: ['./insertareditarrecurso.component.css']

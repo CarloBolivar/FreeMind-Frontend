@@ -6,6 +6,8 @@
 
   <div style="text-align: center" class="chart-container">
         <canvas
+        *ngIf="!noData"
+   
         baseChart
         [datasets]="barChartData"
         [labels]="barChartLabels"
@@ -13,7 +15,11 @@
         [legend]="barChartLegend"
         [type]="barChartType"       
         >
-        </canvas>
+        </canvas>  
+        
+        <div *ngIf="noData" class="no-data-message">
+          <p>No hay datos para mostrar.</p>
+        </div>
   </div>
 </div>
 

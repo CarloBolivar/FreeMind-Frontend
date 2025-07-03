@@ -1,7 +1,7 @@
 <div class="container">
   <div><h1>Lista de tests realizados</h1></div>
   <div>
-    <button mat-flat-button color="primary" [routerLink]="['nuevo']">+ Nuevo test realizado</button>
+    <button mat-flat-button color="primary" [routerLink]="['nuevo']">+ Nuevo test realizado</button> 
     
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -33,8 +33,8 @@
       <ng-container matColumnDef="c6">
         <th mat-header-cell *matHeaderCellDef>Actualizar</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-flat-button color="accent" class="btn-accion" [routerLink]="['ediciones', element.idTestRealizado]">
-            Editar
+          <button mat-button class="btn-accion" [routerLink]="['ediciones', element.idTestRealizado]">
+            <mat-icon>edit</mat-icon>
           </button>
         </td>
       </ng-container>
@@ -42,8 +42,8 @@
       <ng-container matColumnDef="c7">
         <th mat-header-cell *matHeaderCellDef>Eliminar</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-flat-button color="warn" class="btn-accion" (click)="eliminar(element.idTestRealizado)">
-            Eliminar
+          <button mat-button class="btn-accion" (click)="eliminar(element.idTestRealizado)">
+            <mat-icon>delete</mat-icon>
           </button>
         </td>
       </ng-container>

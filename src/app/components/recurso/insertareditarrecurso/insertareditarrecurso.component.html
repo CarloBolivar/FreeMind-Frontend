@@ -1,5 +1,5 @@
 <div class="container">
-  <div style="text-align: center; margin:5%"><h1>Registro de recursos</h1></div>
+  <div style="text-align: center; margin:5%"><h1>{{ edicion ? 'Editar recurso' : 'Registro de recurso' }}</h1></div>
   <div style="text-align: center; margin:5%">
     <form [formGroup]="form" (submit)="aceptar()">
       <div class="form-grid">
@@ -42,12 +42,12 @@
               </mat-select>
               <mat-error *ngIf="form.get('terapia')?.hasError('required')">
                 La terapia es obligatoria.
-              </mat-error>
+              </mat-error> 
           </mat-form-field>
         </div>
       </div>
 
-      <button mat-flat-button color="primary" class="btn-accion">Registrar</button>
+      <button mat-flat-button color="primary" class="btn-accion">{{ edicion ? 'Guardar' : 'Registrar' }}</button>
     </form>
   </div>
 </div>

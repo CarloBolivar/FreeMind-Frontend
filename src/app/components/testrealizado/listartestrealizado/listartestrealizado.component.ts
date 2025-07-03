@@ -8,6 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-listartestrealizado',
@@ -19,7 +20,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule,
   ],
   templateUrl: './listartestrealizado.component.html',
   styleUrls: ['./listartestrealizado.component.css']
