@@ -28,7 +28,7 @@ import { TestService } from '../../../services/test.service'
     MatDatepickerModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule 
   ],
   templateUrl: './insertareditartestrealizado.component.html',
   styleUrls: ['./insertareditartestrealizado.component.css']

@@ -1,21 +1,21 @@
 <div class="container">
-  <div style="text-align: center; margin:5%"><h1>Registro de tests realizados</h1></div>
+  <div style="text-align: center; margin:5%"><h1>{{ edicion ? 'Editar Test Realizado' : 'Registro de Test Realizado' }}</h1></div>
   <div style="text-align: center; margin:5%">
     <form [formGroup]="form" (submit)="aceptar()">
       <div class="form-grid">
-        <div class="left-column">
+        <div class="left-column"> 
           <mat-form-field *ngIf="edicion">
             <mat-label>ID</mat-label>
             <input matInput formControlName="codigo" readonly/>
             
           </mat-form-field>
-
+ 
           <mat-form-field>
                 <mat-label>Fecha</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="fecha">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <input matInput type="date" formControlName="fecha" />
+                <mat-error *ngIf="form.get('fecha')?.invalid && form.get('fecha')?.touched">
+                  Selecciona una fecha válida.
+                </mat-error>
             </mat-form-field>
 
           <mat-form-field>
@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <button mat-flat-button color="primary" class="btn-accion">Registrar</button>
+      <button mat-flat-button color="primary" class="btn-accion">{{ edicion ? 'Guardar' : 'Registrar' }}</button>
     </form>
   </div>
 </div>

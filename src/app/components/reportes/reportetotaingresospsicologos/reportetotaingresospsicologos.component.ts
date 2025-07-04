@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 import { CitaService } from '../../../services/cita.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reportetotaingresospsicologos',
-  imports: [NgChartsModule],
+  imports: [NgChartsModule,CommonModule],
   templateUrl: './reportetotaingresospsicologos.component.html',
   styleUrl: './reportetotaingresospsicologos.component.css'
 })
@@ -18,11 +19,18 @@ export class ReportetotaingresospsicologosComponent implements OnInit{
   barChartLegend=true
   barChartData:ChartDataset[]=[]
 
+  noData: boolean = false;
+
   constructor(private cS:CitaService){}
 
  ngOnInit(): void {
 
    this.cS.getingresos().subscribe(data=>{
+    //verifica si no hay data
+    if (!data || data.length === 0) {
+        this.noData = true;
+        return;
+      }
 
     this.barChartLabels=data.map(item=>item.nombre)
 
@@ -31,11 +39,12 @@ export class ReportetotaingresospsicologosComponent implements OnInit{
       data:data.map(item=>item.totalIngresos),
       label:'Total de ingresos por psicologo',
       backgroundColor:[
-        '#468284',
-        '#62B6CB',
-        '#1B4965',
-        '#CAE9FF',
-        '#5FA8D3'
+        '#050504',
+        '#C2CEDB',
+        '#3F51B5',
+        '#E5E9F2',
+        '#1F2D3D',
+        '#D3DCE6',
       ],
    
       borderWidth:1
@@ -44,7 +53,6 @@ export class ReportetotaingresospsicologosComponent implements OnInit{
     ]
 
    })
-
  }
 }
 
