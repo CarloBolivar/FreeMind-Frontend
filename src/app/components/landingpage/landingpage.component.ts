@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-landingpage',
-  standalone: true,
   imports: [
     CommonModule,
     MatToolbarModule,
