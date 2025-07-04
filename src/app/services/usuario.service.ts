@@ -4,8 +4,8 @@ import { Usuario } from '../models/usuario';
 import { Subject } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { map } from 'rxjs/operators';
-import { CantidadUsuariosPorRolDTO } from '../models/CantidadUsuariosPorRolDTO';
-import { CantidadSumaPagoDTO } from '../models/cantidadSumaPagoDTO';
+import { CantidadUsuariosPorRolDTO } from '../models/cantidadusuariosporrolDTO';
+import { CantidadSumaPagoDTO } from '../models/cantidadsumapagoDTO';
 
 const base_url = environment.base;
 
@@ -64,5 +64,14 @@ export class UsuarioService {
 listMontoTotalPorUsuario() {
   return this.http.get<CantidadSumaPagoDTO[]>(`${this.url}/montos`);
 }
+
+filtrarUsuarios(queryParams: string) {
+  return this.http.get<Usuario[]>(`${this.url}/filtro${queryParams}`);
+}
+
+obtenerPorCorreo(correo: string) {
+  return this.http.get<Usuario>(`${this.url}/correo/${correo}`);
+}
+
 
 }

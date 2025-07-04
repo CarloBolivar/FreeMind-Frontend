@@ -1,30 +1,31 @@
-/* Reset y base */
+/* Reset general */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Estilo base */
 html, body {
-  font-family: 'Arial', sans-serif;
+  width: 100%;
+  height: 100vh;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   scroll-behavior: smooth;
-  width: 100%;
-  background-color: #1f2d3d;
+  background-color: #1F2D3D;
   color: white;
-  height: 100vh;
-  padding-top: 100px; 
+  padding-top: 100px;
 }
 
+/* Navbar */
 .navbar {
-  background-color: #1f2d3d !important;
+  background-color: #1F2D3D !important;
   padding: 1rem 2rem;
-  position: fixed; 
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 1050;
 }
-
 
 .navbar-nav .nav-link {
   color: white !important;
@@ -35,7 +36,7 @@ html, body {
 
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
-  color: #cce6ff !important;
+  color: #3F51B5 !important;
   font-weight: bold;
 }
 
@@ -50,16 +51,16 @@ section {
 }
 
 .section-dark {
-  background-color: #1f2d3d;
+  background-color: #1F2D3D;
   color: white;
 }
 
 .section-light {
-  background-color: white;
-  color: black;
+  background-color: #F9FAFC;
+  color: #050504;
 }
 
-/* HOME - animación inicial */
+/* HOME - Animación inicial */
 .landing-content {
   display: flex;
   flex-direction: row;
@@ -95,7 +96,8 @@ section {
 
 .logo-main h1 {
   font-size: 2.5rem;
-  color: white;
+  color: rgb(0, 0, 0);
+  font-family: 'Bebas Neue', sans-serif;
 }
 
 .description {
@@ -111,11 +113,11 @@ section {
   max-width: 500px;
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  color: black;
+  color: #050504;
 }
 
 .store-text {
-  color: #ccc;
+  color: #8492A6;
   font-size: 0.9rem;
 }
 
@@ -150,21 +152,21 @@ section {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #1f2d3d;
+  background-color: #1F2D3D;
   color: white;
   padding: 3rem 1rem;
   text-align: center;
 }
 
 .border-box-light {
-  border: 1px solid #ccc;
+  border: 1px solid #C2CEDB;
   border-radius: 8px;
 }
 
 /* Contacto */
 .contact-us {
-  background-color: #ffffff;
-  color: #000;
+  background-color: #F9FAFC;
+  color: #050504;
   padding: 4rem 1rem;
   display: flex;
   align-items: center;
@@ -195,7 +197,7 @@ section {
 .contact-form textarea {
   width: 100%;
   padding: 0.6rem;
-  border: 1px solid #ccc;
+  border: 1px solid #D3DCE6;
   border-radius: 4px;
   margin-bottom: 0.5rem;
 }
@@ -207,15 +209,22 @@ section {
 .quote {
   font-size: 18px;
   font-style: italic;
-  color: #333;
+  color: #3D526F;
 }
 
 /* Footer */
 .footer-section {
-  background-color: #1f2d3d;
+  background-color: #1F2D3D;
   color: white;
   padding: 2rem 1rem;
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-logo {
+  height: 60px;
+  margin-top: 1rem;
 }
 
 .social-icons {
@@ -233,13 +242,26 @@ section {
 
 .social-icons i:hover {
   transform: scale(1.2);
-  color: #ccc;
+  color: #C2CEDB;
 }
 
-.footer-logo {
-  height: 60px;
-  margin-top: 1rem;
+/* Snackbar */
+::ng-deep .snackbar-success {
+  color: #1F2D3D !important;
+  background-color: #E5E9F2 !important;
+  border-color: #D3DCE6 !important;
 }
+
+::ng-deep .snackbar-success button {
+  color: #1f2d3d !important; /
+}
+
+::ng-deep .snackbar-success button:hover,
+::ng-deep .snackbar-success button:focus {
+  background-color: rgba(31, 45, 61, 0.22) !important; 
+  color: #1f2d3d49 !important; 
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {

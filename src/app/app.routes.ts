@@ -1,3 +1,4 @@
+import { ReportecomentariousuarioComponent } from './components/reportes/reportecomentariousuario/reportecomentariousuario.component';
 import { Routes } from '@angular/router'
 import { UsuarioComponent } from './components/usuario/usuario.component'
 import { InsertareditarusuarioComponent } from './components/usuario/insertareditar/insertareditar.component'
@@ -42,6 +43,13 @@ import { BuscarpagoComponent } from './components/pago/buscarpago/buscarpago.com
 import { BuscarpreguntatestComponent } from './components/preguntatest/buscarpreguntatest/buscarpreguntatest.component'
 import { BuscarrespuestatestComponent } from './components/respuestatest/buscarrespuestatest/buscarrespuestatest.component'
 import { LoginComponent } from './components/login/login.component'
+import { RegisterComponent } from './components/register/register.component'
+import { ReporterecursoterapiaComponent } from './components/reportes/reporterecursoterapia/reporterecursoterapia.component';
+import { ReportemontoterapiaComponent } from './components/reportes/reportemontoterapia/reportemontoterapia.component';
+import { ReportetestmesComponent } from './components/reportes/reportetestpormes/reportetestpormes.component';
+import { ReportesumapagospormesComponent } from './components/reportes/reportesumapagospormes/reportesumapagospormes.component';
+import { ReportecantidadhorariosdisponiblesComponent } from './components/reportes/reportecantidadhorariosdisponibles/reportecantidadhorariosdisponibles.component';
+import { FiltrousuarioComponent } from './components/filtro/filtrousuario.component';
 
 export const routes: Routes = [
   {
@@ -54,6 +62,10 @@ export const routes: Routes = [
   { 
     path: 'login', 
     component: LoginComponent
+  },
+  { 
+    path: 'register', 
+    component: RegisterComponent
   },
   {
     path: 'usuarios',
@@ -194,9 +206,16 @@ export const routes: Routes = [
       { path: 'ingresos', component: ReportetotaingresospsicologosComponent },
       { path: 'cantidad-citas', component: ReportecantidadcitasporterapiaComponent },
       { path: 'roles_usuario', component: ReporteusuariorollistarComponent },
-      { path: 'montos_usuario', component: ReporteusuariomontolistarComponent }
+      { path: 'montos_usuario', component: ReporteusuariomontolistarComponent },
+      { path: 'comentarios_usuario', component: ReportecomentariousuarioComponent },
+      { path: 'recursos_terapia', component: ReporterecursoterapiaComponent },
+      { path: 'montos_terapia', component: ReportemontoterapiaComponent },
+      { path: 'testrealizados_mes', component: ReportetestmesComponent },
+      { path: 'sumapagos_mes', component: ReportesumapagospormesComponent },
+      { path: 'horariosdisponibles_psicologo', component: ReportecantidadhorariosdisponiblesComponent }    
     ]
   },
+  { path: 'filtro', component: FiltrousuarioComponent },
   { path: 'musica', component: ApimusicaComponent },
   { path: 'imagenes', component: ApiimagenesComponent },
   { path: 'chatbot', component: ApichatbotComponent }

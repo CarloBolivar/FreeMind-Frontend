@@ -1,4 +1,4 @@
-export interface CantidadUsuariosPorRolDTO {
-    rol: string;
-    cantidad: number;
+export class CantidadUsuariosPorRolDTO {
+  rol: string = '';
+  cantidad: number = 0;
 }

@@ -1,0 +1,31 @@
+<div class="container">
+  <div style="text-align: center; margin: 5%;">
+    <h1>Suma de Pagos por Mes</h1>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Columna Mes -->
+    <ng-container matColumnDef="mes">
+      <th mat-header-cell *matHeaderCellDef> Mes </th>
+      <td mat-cell *matCellDef="let element"> {{ element.mes }} </td>
+    </ng-container>
+
+    <!-- Columna Monto Total -->
+    <ng-container matColumnDef="montoTotal">
+      <th mat-header-cell *matHeaderCellDef> Monto Total (S/.) </th>
+      <td mat-cell *matCellDef="let element"> {{ element.montoTotal | number:'1.2-2' }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="no-data-row" *matNoDataRow>
+      <td colspan="2" style="text-align: center; padding: 20px;">
+        No hay pagos registrados por mes.
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

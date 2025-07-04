@@ -4,7 +4,7 @@ import { Cita } from '../models/cita'
 import { environment } from '../../environment/environment'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { CantidadCitasPorTerapiaDTO } from '../models/cantidadcitasporterapiaDTO'
-import { cantidadtotalingresosporpsicologoDTO } from '../models/cantidadtotalingresosporpsicologoDTO'
+import { CantidadTotalIngresosPorPsicologoDTO } from '../models/cantidadtotalingresosporpsicologoDTO'
 
 const base_url = environment.base
 
@@ -49,7 +49,7 @@ export class CitaService {
     return this.http.get<CantidadCitasPorTerapiaDTO[]>(`${this.url}/cantidadCitasPorTerapia`)
   }
 
-  getingresos():Observable<cantidadtotalingresosporpsicologoDTO[]>{
-    return this.http.get<cantidadtotalingresosporpsicologoDTO[]>(`${this.url}/totalIngresosPsicologos`)
+  getingresos():Observable<CantidadTotalIngresosPorPsicologoDTO[]>{
+    return this.http.get<CantidadTotalIngresosPorPsicologoDTO[]>(`${this.url}/totalIngresosPsicologos`)
   }
 }

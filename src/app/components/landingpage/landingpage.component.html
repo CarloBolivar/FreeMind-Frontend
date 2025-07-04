@@ -33,7 +33,6 @@
 </nav>
 
 
-
 <!-- HOME -->
 <section id="home" class="main-cover section-light">
   <main class="landing-content">
@@ -96,7 +95,7 @@
         <li>Acceso a recursos gratuitos</li>
         <li>Foros de apoyo emocional</li>
       </ul>
-      <button class="btn btn-dark mt-4" routerLink="/registro">IR A REGISTRO</button>
+      <button class="btn btn-dark mt-4" style="cursor: pointer;" (click)="router.navigate(['/register'])">Regístrate</button>
     </div>
   </div>
 </section>
@@ -113,10 +112,10 @@
         <p><em>- Marcus Tullius</em></p>
       </div>
 
-      <!-- Formulario -->
+     <!-- Formulario -->
       <div class="col-lg-6">
         <h2>Contáctanos</h2>
-        <form class="contact-form">
+        <form #contactForm="ngForm" (ngSubmit)="onSubmitForm($event)">
           <input type="text" class="form-control mb-2" placeholder="Nombre" />
           <input type="text" class="form-control mb-2" placeholder="Apellidos" />
           <input type="email" class="form-control mb-2" placeholder="Correo" />

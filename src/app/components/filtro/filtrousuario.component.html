@@ -1,0 +1,53 @@
+<div class="container">
+  <h2>Filtro de Usuarios</h2>
+
+  <div class="form-group">
+    <label>Especialidad:</label>
+    <input type="text" [(ngModel)]="especialidad" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label>ID Rol:</label>
+    <input type="number" [(ngModel)]="idRol" class="form-control" />
+  </div>
+
+  <button mat-flat-button color="primary" (click)="filtrar()">Buscar</button>
+
+  <div *ngIf="resultados.length > 0" style="margin-top: 20px;">
+    <h3>Resultados:</h3>
+    <table mat-table [dataSource]="resultados" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let u"> {{ u.nombre }} {{ u.apellido }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef> DNI </th>
+        <td mat-cell *matCellDef="let u"> {{ u.dni }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef> Correo </th>
+        <td mat-cell *matCellDef="let u"> {{ u.correo }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="especialidad">
+        <th mat-header-cell *matHeaderCellDef> Especialidad </th>
+        <td mat-cell *matCellDef="let u"> {{ u.especialidad }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="credencial">
+        <th mat-header-cell *matHeaderCellDef> Credencial </th>
+        <td mat-cell *matCellDef="let u"> {{ u.credencial }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['nombre', 'dni', 'correo', 'especialidad', 'credencial']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['nombre', 'dni', 'correo', 'especialidad', 'credencial'];"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="resultados.length === 0">
+    <p>No se encontraron resultados.</p>
+  </div>
+</div>

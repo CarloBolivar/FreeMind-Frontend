@@ -1,0 +1,41 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input.form-control {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.mat-header-cell,
+.mat-cell {
+  padding: 10px;
+  text-align: left;
+}
+
+.mat-header-row {
+  background-color: #eeeeee;
+  font-weight: bold;
+}

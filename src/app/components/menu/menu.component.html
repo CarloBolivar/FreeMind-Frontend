@@ -80,6 +80,12 @@
       <mat-icon>chat</mat-icon> Chatbot
     </button>
   </div>
+  <div>
+  <button mat-button [matMenuTriggerFor]="menuFiltro" class="btn-test">
+    <mat-icon>filter_alt</mat-icon> Filtrar Usuarios
+  </button>
+  </div>
+
 
   <!-- BOTÓN USUARIO / CERRAR SESIÓN -->
   <span class="toolbar-spacer"></span>
@@ -189,10 +195,16 @@
 
 <!-- REPORTES -->
 <mat-menu #menuReportes="matMenu">
-  <button mat-menu-item routerLink="/reports/cantidad-citas">Cantidad citas por terapia</button> 
-  <button mat-menu-item routerLink="/reports/ingresos">Ingresos totales por psicólogo</button> 
-  <button mat-menu-item routerLink="/reports/roles_usuario">Ver roles</button>
-  <button mat-menu-item routerLink="/reports/montos_usuario">Ver montos</button>
+  <button mat-menu-item routerLink="/reports/cantidad-citas">Ver citas por terapia</button> 
+  <button mat-menu-item routerLink="/reports/ingresos">Ver ingresos por psicólogo</button> 
+  <button mat-menu-item routerLink="/reports/roles_usuario">Ver roles por usuario</button>
+  <button mat-menu-item routerLink="/reports/montos_usuario">Ver montos por usuario</button>
+  <button mat-menu-item routerLink="/reports/comentarios_usuario">Ver comentarios por usuario</button>
+  <button mat-menu-item routerLink="/reports/recursos_terapia">Ver recursos por terapia</button>
+  <button mat-menu-item routerLink="/reports/montos_terapia">Ver montos por terapia</button>
+  <button mat-menu-item routerLink="/reports/testrealizados_mes">Ver tests por mes</button>
+  <button mat-menu-item routerLink="/reports/sumapagos_mes">Ver suma de pagos por mes</button>
+  <button mat-menu-item routerLink="/reports/horariosdisponibles_psicologo">Ver suma de pagos por mes</button>
 </mat-menu>
 
 <!-- MÚSICA -->
@@ -210,6 +222,10 @@
   <button mat-menu-item routerLink="/chatbot">Salud</button>
 </mat-menu>
 
+<!-- FILTRO -->
+<mat-menu #menuFiltro="matMenu">
+  <button mat-menu-item routerLink="/filtro">Filtro</button>
+</mat-menu>
 
 <!-- Cierre de sesión -->
 <mat-menu #menuSalir="matMenu">

@@ -3,6 +3,8 @@ import { environment } from '../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Pago } from '../models/pago';
 import { Subject } from 'rxjs';
+import { CantidadMontoPorTipoDeTerapiaDTO } from '../models/cantidadmontoportipodeterapiaDTO';
+import { CantidadSumaPagosPorMesDTO } from '../models/cantidadsumapagospormesDTO';
 
 const base_url = environment.base;
 
@@ -41,5 +43,13 @@ export class PagoService {
 
   getList() {
     return this.listaCambio.asObservable();
+  }
+
+  obtenerMontoPorTipoDeTerapia() {
+  return this.http.get<CantidadMontoPorTipoDeTerapiaDTO[]>(`${this.url}/monto-total-por-tipo-de-terapia`);
+}
+
+  obtenerSumaPagosPorMes() {
+  return this.http.get<CantidadSumaPagosPorMesDTO[]>(`${this.url}/suma-pagos-por-mes`);
   }
 }

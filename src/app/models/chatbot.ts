@@ -1,5 +1,5 @@
-export interface Chatbot {
-  id: string;
-  texto: string;
-  opciones: string[];
+export class Chatbot {
+  id: string = '';
+  texto: string = '';
+  opciones: string[] = [];
 }

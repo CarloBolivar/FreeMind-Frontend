@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Horario } from '../models/horario';
 import { Subject } from 'rxjs';
 import { environment } from '../../environment/environment';
+import { CantidadHorariosDisponiblesPorPsicologoDTO } from '../models/cantidadhorariosdisponiblesporpsicologoDTO';
 
 const base_url = environment.base;
 
@@ -46,4 +47,8 @@ export class HorarioService {
   listAvailableByPsicologo(id: number) {
     return this.http.get<Horario[]>(`${this.url}/disponibles/${id}`);
   }
+
+  obtenerDisponiblesPorPsicologo(idPsicologo: number) {
+  return this.http.get<CantidadHorariosDisponiblesPorPsicologoDTO[]>(`${this.url}/disponibles/${idPsicologo}`);
+}
 }

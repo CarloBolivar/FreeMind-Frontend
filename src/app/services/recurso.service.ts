@@ -3,6 +3,7 @@ import { environment } from '../../environment/environment';
 import { Recurso } from '../models/recurso';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { CantidadRecursosPorTerapiaDTO } from '../models/cantidadrecursosporterapiaDTO';
 
 const base_url = environment.base;
 
@@ -41,6 +42,10 @@ export class RecursoService {
 
   getList() {
     return this.listaCambio.asObservable();
+  }
+
+  cantidadRecursosPorTerapia() {
+  return this.http.get<CantidadRecursosPorTerapiaDTO[]>(`${this.url}/cantidad-recursos-por-terapia`);
   }
 
 

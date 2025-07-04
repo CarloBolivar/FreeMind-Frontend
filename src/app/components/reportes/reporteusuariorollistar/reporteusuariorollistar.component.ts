@@ -5,7 +5,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { CantidadUsuariosPorRolDTO } from '../../../models/CantidadUsuariosPorRolDTO';
+import { CantidadUsuariosPorRolDTO } from '../../../models/cantidadusuariosporrolDTO';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({

@@ -1,4 +1,4 @@
 export class CantidadSumaPagoDTO {
-    nombre: string = '';
-    amountByUsuario: number = 0;
+  nombre: string = '';
+  amountByUsuario: number = 0;
 }

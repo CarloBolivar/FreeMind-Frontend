@@ -3,6 +3,7 @@ import { environment } from '../../environment/environment';
 import { TestRealizado } from '../models/testrealizado';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { CantidadTestsPorMesDTO } from '../models/cantidadtestspormesDTO';
 
 const base_url = environment.base;
 @Injectable({
@@ -41,6 +42,9 @@ export class TestrealizadoService {
     return this.http.get<TestRealizado>(`${this.url}/${id}`);
   }
 
-  
+  obtenerCantidadTestsPorMes() {
+  return this.http.get<CantidadTestsPorMesDTO[]>(`${this.url}/cantidad-tests-por-mes`);
+  }
+
  
 }

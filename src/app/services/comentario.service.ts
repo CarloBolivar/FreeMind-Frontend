@@ -3,6 +3,7 @@ import { environment } from '../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Comentario } from '../models/comentario';
 import { Subject } from 'rxjs';
+import { CantidadComentariosPorUsuarioDTO } from '../models/cantidadcomentariosporusuarioDTO';
 
 const base_url = environment.base;
 
@@ -43,4 +44,9 @@ export class ComentarioService {
   getList() {
     return this.listaCambio.asObservable();
   }
+
+  cantidadComentariosPorUsuario() {
+  return this.http.get<CantidadComentariosPorUsuarioDTO[]>(`${this.url}/cantidad-comentarios-por-usuario`);
+}
+
 }

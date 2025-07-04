@@ -1,5 +1,5 @@
-export class cantidadtotalingresosporpsicologoDTO{
-    nombre:string=''
-    apellido:string=''
-    totalIngresos:number=0
+export class CantidadTotalIngresosPorPsicologoDTO {
+  nombre: string = '';
+  apellido: string = '';
+  totalIngresos: number = 0;
 }
