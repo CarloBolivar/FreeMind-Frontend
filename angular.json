@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/free-mind",
+            "outputPath": "dist/free-mind/browser",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
