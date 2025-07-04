@@ -253,7 +253,7 @@ section {
 }
 
 ::ng-deep .snackbar-success button {
-  color: #1f2d3d !important; /
+  color: #1f2d3d !important; 
 }
 
 ::ng-deep .snackbar-success button:hover,

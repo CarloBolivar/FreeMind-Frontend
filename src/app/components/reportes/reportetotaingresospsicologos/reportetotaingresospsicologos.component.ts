@@ -14,6 +14,7 @@ export class ReportetotaingresospsicologosComponent implements OnInit{
   barChartOptions :ChartOptions={
     responsive : true
   }
+  
   barChartLabels : string[]=[]
   barChartType :ChartType= 'doughnut'
   barChartLegend=true
@@ -26,7 +27,6 @@ export class ReportetotaingresospsicologosComponent implements OnInit{
  ngOnInit(): void {
 
    this.cS.getingresos().subscribe(data=>{
-    //verifica si no hay data
     if (!data || data.length === 0) {
         this.noData = true;
         return;
