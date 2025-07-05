@@ -5,7 +5,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { CantidadTestsPorMesDTO } from '../../../models/cantidadtestspormesDTO';
+import { CantidadTestsPorMesDTO } from '../../../models/CantidadTestsPorMesDTO';
 import { TestrealizadoService } from '../../../services/testrealizado.service';
 
 @Component({

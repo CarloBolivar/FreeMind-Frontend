@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { CantidadComentariosPorUsuarioDTO } from '../../../models/cantidadcomentariosporusuarioDTO';
+import { CantidadComentariosPorUsuarioDTO } from '../../../models/CantidadComentariosPorUsuarioDTO';
 
 @Component({
   selector: 'app-reportecomentariousuario',

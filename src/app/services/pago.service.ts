@@ -3,8 +3,8 @@ import { environment } from '../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Pago } from '../models/pago';
 import { Subject } from 'rxjs';
-import { CantidadMontoPorTipoDeTerapiaDTO } from '../models/cantidadmontoportipodeterapiaDTO';
-import { CantidadSumaPagosPorMesDTO } from '../models/cantidadsumapagospormesDTO';
+import { CantidadMontoPorTipoDeTerapiaDTO } from '../models/CantidadMontoPorTipoDeTerapiaDTO';
+import { CantidadSumaPagosPorMesDTO } from '../models/CantidadSumaPagosPorMesDTO';
 
 const base_url = environment.base;
 

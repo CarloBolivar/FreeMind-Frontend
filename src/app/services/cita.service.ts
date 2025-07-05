@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http'
 import { Cita } from '../models/cita'
 import { environment } from '../../environment/environment'
 import { BehaviorSubject, Observable } from 'rxjs'
-import { CantidadCitasPorTerapiaDTO } from '../models/cantidadcitasporterapiaDTO'
-import { CantidadTotalIngresosPorPsicologoDTO } from '../models/cantidadtotalingresosporpsicologoDTO'
+import { CantidadCitasPorTerapiaDTO } from '../models/CantidadCitasPorTerapiaDTO'
+import { CantidadTotalIngresosPorPsicologoDTO } from '../models/CantidadTotalIngresosPorPsicologoDTO'
 
 const base_url = environment.base
 

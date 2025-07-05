@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { PagoService } from '../../../services/pago.service';
-import { CantidadMontoPorTipoDeTerapiaDTO } from '../../../models/cantidadmontoportipodeterapiaDTO';
+import { CantidadMontoPorTipoDeTerapiaDTO } from '../../../models/CantidadMontoPorTipoDeTerapiaDTO';
 
 @Component({
   selector: 'app-reportemontoterapia',

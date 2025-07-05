@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Horario } from '../models/horario';
 import { Subject } from 'rxjs';
 import { environment } from '../../environment/environment';
-import { CantidadHorariosDisponiblesPorPsicologoDTO } from '../models/cantidadhorariosdisponiblesporpsicologoDTO';
+import { CantidadHorariosDisponiblesPorPsicologoDTO } from '../models/CantidadHorariosDisponiblesPorPsicologoDTO';
 
 const base_url = environment.base;
 

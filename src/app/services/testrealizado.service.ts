@@ -3,7 +3,7 @@ import { environment } from '../../environment/environment';
 import { TestRealizado } from '../models/testrealizado';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { CantidadTestsPorMesDTO } from '../models/cantidadtestspormesDTO';
+import { CantidadTestsPorMesDTO } from '../models/CantidadTestsPorMesDTO';
 
 const base_url = environment.base;
 @Injectable({

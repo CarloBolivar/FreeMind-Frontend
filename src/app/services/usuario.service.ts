@@ -4,8 +4,8 @@ import { Usuario } from '../models/usuario';
 import { Subject } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { map } from 'rxjs/operators';
-import { CantidadUsuariosPorRolDTO } from '../models/cantidadusuariosporrolDTO';
-import { CantidadSumaPagoDTO } from '../models/cantidadsumapagoDTO';
+import { CantidadUsuariosPorRolDTO } from '../models/CantidadUsuariosPorRolDTO';
+import { CantidadSumaPagoDTO } from '../models/CantidadSumaPagoDTO';
 
 const base_url = environment.base;
 

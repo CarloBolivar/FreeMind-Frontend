@@ -3,7 +3,7 @@ import { environment } from '../../environment/environment';
 import { Recurso } from '../models/recurso';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { CantidadRecursosPorTerapiaDTO } from '../models/cantidadrecursosporterapiaDTO';
+import { CantidadRecursosPorTerapiaDTO } from '../models/CantidadRecursosPorTerapiaDTO';
 
 const base_url = environment.base;
 
