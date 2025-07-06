@@ -86,15 +86,15 @@ export const routes: Routes = [
       { path:'busquedas',component:BuscarrecursoComponent }
     ]
   },
-  {
-    path: 'testsrealizados',
-    component: TestrealizadoComponent,
-    children: [
-      { path: 'nuevo', component: InsertareditartestrealizadoComponent },
-      { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent },
-      { path:'busquedas',component:BuscartestrealizadoComponent }
-    ]
-  },
+{
+  path: 'testsrealizados',
+  component: TestrealizadoComponent,
+  children: [
+    { path: 'nuevo', component: InsertareditartestrealizadoComponent },
+    { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent },
+    { path: 'busquedas', component: BuscartestrealizadoComponent }
+  ]
+},
   {
     path: 'comentarios',
     component: ComentarioComponent,
