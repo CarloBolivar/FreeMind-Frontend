@@ -1,1 +1,0 @@
-import{f as r}from"./chunk-K6XGXEEI.js";import{Eb as n,hb as t}from"./chunk-ZGQRFODO.js";var i=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=t({type:o,selectors:[["app-horario"]],decls:1,vars:0,template:function(e,p){e&1&&n(0,"router-outlet")},dependencies:[r],encapsulation:2})};export{i as HorarioComponent};
