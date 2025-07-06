@@ -1,4 +1,4 @@
 export class CantidadTestsPorMesDTO {
-  mes: number = 0;
-  cantidadTests: number = 0;
+   mes: number = 0;
+   cantidadTests: number = 0;
 }
