@@ -73,5 +73,8 @@ obtenerPorCorreo(correo: string) {
   return this.http.get<Usuario>(`${this.url}/correo/${correo}`);
 }
 
+insertPublic(usuario: Usuario) {
+  return this.http.post<Usuario>(`${base_url}/register`, usuario);
+}
 
 }

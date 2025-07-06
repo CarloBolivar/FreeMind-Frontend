@@ -42,4 +42,8 @@ export class RolService {
   setList(lista: Rol[]) {
     this.listaCambio.next(lista)
   }
+
+  listPublicos() {
+  return this.http.get<Rol[]>(`${base_url}/roles/publicos`);
+  }
 }

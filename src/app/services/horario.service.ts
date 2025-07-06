@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 import { Horario } from '../models/horario';
-import { Subject } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { CantidadHorariosDisponiblesPorPsicologoDTO } from '../models/CantidadHorariosDisponiblesPorPsicologoDTO';
 
@@ -44,11 +44,19 @@ export class HorarioService {
     this.listaCambio.next(listaNueva);
   }
 
-  listAvailableByPsicologo(id: number) {
-    return this.http.get<Horario[]>(`${this.url}/disponibles/${id}`);
+  listAvailableByPsicologo(id: number): Observable<Horario[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.get<Horario[]>(`${this.url}/disponibles/${id}`, { headers });
+  }
+
+  listAllDisponibles(): Observable<Horario[]> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+  return this.http.get<Horario[]>(`${this.url}/disponibles`, { headers });
   }
 
   obtenerDisponiblesPorPsicologo(idPsicologo: number) {
-  return this.http.get<CantidadHorariosDisponiblesPorPsicologoDTO[]>(`${this.url}/disponibles/${idPsicologo}`);
-}
+    return this.http.get<CantidadHorariosDisponiblesPorPsicologoDTO[]>(`${this.url}/disponibles/${idPsicologo}`);
+  }
 }

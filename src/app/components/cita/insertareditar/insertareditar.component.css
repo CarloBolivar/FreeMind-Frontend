@@ -49,3 +49,26 @@
   background-color: #817dce;
 }
 
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.left-column, .right-column {
+  flex: 1 1 300px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.btn-accion {
+  margin-top: 20px;
+}

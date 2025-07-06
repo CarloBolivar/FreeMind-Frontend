@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } 
 import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatDatepickerModule } from '@angular/material/datepicker'
-import { provideNativeDateAdapter } from '@angular/material/core'
+import { MatNativeDateModule } from '@angular/material/core'
 import { MatButtonModule } from '@angular/material/button'
 import { MatSelectModule } from '@angular/material/select'
 import { ActivatedRoute, Params, Router } from '@angular/router'
@@ -20,15 +20,15 @@ import { TestService } from '../../../services/test.service'
 @Component({
   selector: 'app-insertareditartestrealizado',
   standalone: true,
-  providers: [provideNativeDateAdapter()],
   imports: [
     CommonModule,
     MatInputModule,
     MatFormFieldModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatSelectModule 
+    MatSelectModule
   ],
   templateUrl: './insertareditartestrealizado.component.html',
   styleUrls: ['./insertareditartestrealizado.component.css']
@@ -51,11 +51,11 @@ export class InsertareditartestrealizadoComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {}
- 
+
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
-      this.edicion = params['id'] != null
+      this.edicion = this.id != null
       this.init()
     })
 
@@ -68,7 +68,7 @@ export class InsertareditartestrealizadoComponent implements OnInit {
     })
 
     this.usuarioService.list().subscribe(data => {
-      this.listaUsuarios = data.filter(u => u.idRol === 2);
+      this.listaUsuarios = data.filter(u => u.idRol === 2)
     })
 
     this.testService.list().subscribe(data => {
@@ -105,12 +105,12 @@ export class InsertareditartestrealizadoComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.testrealizadoService.listId(this.id).subscribe(data => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.idTestRealizado),
-          fecha: new FormControl(data.fecha,Validators.required),
-          resultado: new FormControl(data.resultado,Validators.required),
-          usuario: new FormControl(data.usuario.idUsuario,Validators.required),
-          test: new FormControl(data.test.idTest,Validators.required)
+        this.form = this.formBuilder.group({
+          codigo: [data.idTestRealizado],
+          fecha: [data.fecha, Validators.required],
+          resultado: [data.resultado, Validators.required],
+          usuario: [data.usuario.idUsuario, Validators.required],
+          test: [data.test.idTest, Validators.required]
         })
       })
     }

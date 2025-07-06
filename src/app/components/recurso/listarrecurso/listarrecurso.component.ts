@@ -26,6 +26,8 @@ export class ListarrecursoComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
+  baseUrl: string = window.location.origin; // ejemplo: http://localhost:4200 o https://miapp.onrender.com
+
   constructor(private recursoService: RecursoService) {}
 
   ngOnInit(): void {
@@ -47,5 +49,18 @@ export class ListarrecursoComponent implements OnInit {
         this.dataSource.paginator = this.paginator
       })
     })
+  }
+
+  obtenerURL(element: Recurso): string {
+    switch (element.tipo.toLowerCase()) {
+      case 'audio':
+        return `${this.baseUrl}/musica`;
+      case 'imagen':
+        return `${this.baseUrl}/imagenes`;
+      case 'ia':
+        return `${this.baseUrl}/chatbot`;
+      default:
+        return `${this.baseUrl}`;
+    }
   }
 }

@@ -1,19 +1,19 @@
 <div class="container">
   <div style="text-align: center; margin: 5%">
-    <h1>Búsqueda de Horario por ID de Usuario</h1>
+    <h1>Búsqueda de Horario por ID</h1>
   </div>
 
   <div>
     <form [formGroup]="form">
       <mat-form-field appearance="fill">
-        <mat-label>ID del Usuario</mat-label>
-        <input matInput type="number" formControlName="usuario" />
+        <mat-label>ID del Horario</mat-label>
+        <input matInput type="number" formControlName="horario" />
       </mat-form-field>
     </form>
   </div>
 
   <div *ngIf="notResults" style="text-align: center; margin-top: 2rem;">
-    <p>No se encontraron horarios para este usuario.</p>
+    <p>No se encontró el horario.</p>
   </div>
 
   <div>

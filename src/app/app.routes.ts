@@ -50,6 +50,9 @@ import { ReportetestmesComponent } from './components/reportes/reportetestpormes
 import { ReportesumapagospormesComponent } from './components/reportes/reportesumapagospormes/reportesumapagospormes.component';
 import { ReportecantidadhorariosdisponiblesComponent } from './components/reportes/reportecantidadhorariosdisponibles/reportecantidadhorariosdisponibles.component';
 import { FiltrousuarioComponent } from './components/filtro/filtrousuario.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { seguridadGuard } from './guard/seguridad.guard';
+import { seguridadrolGuard } from './guard/seguridadrol.guard';
 
 export const routes: Routes = [
   {
@@ -59,17 +62,20 @@ export const routes: Routes = [
       import('./components/landingpage/landingpage.component')
         .then(mod => mod.LandingpageComponent)
   },
-  { 
-    path: 'login', 
-    component: LoginComponent
-  },
-  { 
-    path: 'register', 
-    component: RegisterComponent
-  },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [seguridadGuard] },
+
+   { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [seguridadGuard] },
+
   {
     path: 'usuarios',
     component: UsuarioComponent,
+    canActivate: [seguridadGuard, seguridadrolGuard],
+    data: { roles: ['ADMIN'] },
     children: [
       { path: 'nuevo', component: InsertareditarusuarioComponent },
       { path: 'ediciones/:id', component: InsertareditarusuarioComponent },
@@ -79,6 +85,8 @@ export const routes: Routes = [
   {
     path: 'roles',
     component: RolComponent,
+    canActivate: [seguridadGuard, seguridadrolGuard],
+    data: { roles: ['ADMIN'] },
     children: [
       { path: 'nuevo', component: InsertareditarrolComponent },
       { path: 'ediciones/:id', component: InsertareditarrolComponent },
@@ -88,6 +96,7 @@ export const routes: Routes = [
   {
     path: 'citas',
     component: CitaComponent,
+    canActivate: [seguridadGuard],
     children: [
       { path: '', component: ListarcitaComponent },
       { path: 'nuevo', component: InsertareditarcitaComponent },
@@ -98,6 +107,7 @@ export const routes: Routes = [
   {
     path: 'terapias',
     component: TerapiaComponent,
+    canActivate: [seguridadGuard],
     children: [
       { path: 'nuevo', component: InsertareditarterapiaComponent },
       { path: 'ediciones/:id', component: InsertareditarterapiaComponent },
@@ -107,6 +117,7 @@ export const routes: Routes = [
   {
     path: 'tests',
     component: TestComponent,
+    canActivate: [seguridadGuard],
     children: [
       { path: 'nuevo', component: InsertareditartestComponent },
       { path: 'ediciones/:id', component: InsertareditartestComponent },
@@ -116,6 +127,8 @@ export const routes: Routes = [
   {
     path: 'recursos',
     component: RecursoComponent,
+    canActivate: [seguridadGuard, seguridadrolGuard],
+    data: { roles: ['ADMIN', 'PACIENTE'] },
     children: [
       { path: 'nuevo', component: InsertareditarrecursoComponent },
       { path: 'ediciones/:id', component: InsertareditarrecursoComponent },
@@ -125,6 +138,7 @@ export const routes: Routes = [
   {
     path: 'testsrealizados',
     component: TestrealizadoComponent,
+    canActivate: [seguridadGuard],
     children: [
       { path: 'nuevo', component: InsertareditartestrealizadoComponent },
       { path: 'ediciones/:id', component: InsertareditartestrealizadoComponent },
@@ -134,6 +148,7 @@ export const routes: Routes = [
   {
     path: 'comentarios',
     component: ComentarioComponent,
+    canActivate: [seguridadGuard],
     children: [
       { path: 'nuevo', component: InsertareditarcomentarioComponent },
       { path: 'ediciones/:id', component: InsertareditarcomentarioComponent },
@@ -143,6 +158,8 @@ export const routes: Routes = [
   {
     path: 'pagos',
     component: PagoComponent,
+    canActivate: [seguridadGuard, seguridadrolGuard],
+    data: { roles: ['ADMIN', 'PACIENTE'] },
     children: [
       { path: 'nuevo', component: InsertareditarpagoComponent },
       { path: 'ediciones/:id', component: InsertareditarpagoComponent },
@@ -152,6 +169,8 @@ export const routes: Routes = [
   {
     path: 'preguntas',
     component: PreguntatestComponent,
+    canActivate: [seguridadGuard, seguridadrolGuard],
+    data: { roles: ['ADMIN', 'PSICOLOGO'] },
     children: [
       { path: 'nuevo', component: InsertareditarpreguntatestComponent },
       { path: 'ediciones/:id', component: InsertareditarpreguntatestComponent },
@@ -161,6 +180,8 @@ export const routes: Routes = [
   {
     path: 'respuestas',
     component: RespuestatestComponent,
+    canActivate: [seguridadGuard, seguridadrolGuard],
+    data: { roles: ['ADMIN', 'PACIENTE'] },
     children: [
       { path: 'nuevo', component: InsertareditarrespuestatestComponent },
       { path: 'ediciones/:id', component: InsertareditarrespuestatestComponent },
@@ -169,42 +190,23 @@ export const routes: Routes = [
   },
   {
     path: 'horarios',
-    loadComponent: () =>
-      import('./components/horario/horario.component')
-        .then(m => m.HorarioComponent),
+    loadComponent: () => import('./components/horario/horario.component').then(m => m.HorarioComponent),
+    canActivate: [seguridadGuard, seguridadrolGuard],
+    data: { roles: ['ADMIN', 'PSICOLOGO'] },
     children: [
-      {
-        path: '',
-        loadComponent: () =>
-          import('./components/horario/listarhorario/listarhorario.component')
-            .then(m => m.ListarhorarioComponent)
-      },
-      {
-        path: 'nuevo',
-        loadComponent: () =>
-          import('./components/horario/insertareditar/insertareditar.component')
-            .then(m => m.InsertareditarhorarioComponent)
-      },
-      {
-        path: 'edicion/:id',
-        loadComponent: () =>
-          import('./components/horario/insertareditar/insertareditar.component')
-            .then(m => m.InsertareditarhorarioComponent)
-      },
-      {
-      path: 'busquedas',
-      loadComponent: () =>
-        import('./components/horario/buscarhorario/buscarhorario.component')
-          .then(m => m.BuscarhorarioComponent)
-      }
+      { path: '', loadComponent: () => import('./components/horario/listarhorario/listarhorario.component').then(m => m.ListarhorarioComponent) },
+      { path: 'nuevo', loadComponent: () => import('./components/horario/insertareditar/insertareditar.component').then(m => m.InsertareditarhorarioComponent) },
+      { path: 'edicion/:id', loadComponent: () => import('./components/horario/insertareditar/insertareditar.component').then(m => m.InsertareditarhorarioComponent) },
+      { path: 'busquedas', loadComponent: () => import('./components/horario/buscarhorario/buscarhorario.component').then(m => m.BuscarhorarioComponent) }
     ]
   },
   {
     path: 'reports',
     component: ReportesComponent,
+    canActivate: [seguridadGuard],
     children: [
       { path: 'ingresos', component: ReportetotaingresospsicologosComponent },
-      { path: 'cantidad-citas', component: ReportecantidadcitasporterapiaComponent },
+      { path: 'cantidad_citas', component: ReportecantidadcitasporterapiaComponent },
       { path: 'roles_usuario', component: ReporteusuariorollistarComponent },
       { path: 'montos_usuario', component: ReporteusuariomontolistarComponent },
       { path: 'comentarios_usuario', component: ReportecomentariousuarioComponent },
@@ -212,11 +214,12 @@ export const routes: Routes = [
       { path: 'montos_terapia', component: ReportemontoterapiaComponent },
       { path: 'testrealizados_mes', component: ReportetestmesComponent },
       { path: 'sumapagos_mes', component: ReportesumapagospormesComponent },
-      { path: 'horariosdisponibles_psicologo', component: ReportecantidadhorariosdisponiblesComponent }    
+      { path: 'horariosdisponibles_psicologo', component: ReportecantidadhorariosdisponiblesComponent }
     ]
   },
-  { path: 'filtro', component: FiltrousuarioComponent },
-  { path: 'musica', component: ApimusicaComponent },
-  { path: 'imagenes', component: ApiimagenesComponent },
-  { path: 'chatbot', component: ApichatbotComponent }
-]
+  { path: 'filtro', component: FiltrousuarioComponent, canActivate: [seguridadGuard, seguridadrolGuard], data: { roles: ['ADMIN'] } },
+  { path: 'musica', component: ApimusicaComponent, canActivate: [seguridadGuard] },
+  { path: 'imagenes', component: ApiimagenesComponent, canActivate: [seguridadGuard] },
+  { path: 'chatbot', component: ApichatbotComponent, canActivate: [seguridadGuard] },
+  { path: '**', redirectTo: 'login' }
+];

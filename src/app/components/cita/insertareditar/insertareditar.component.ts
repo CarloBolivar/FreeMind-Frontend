@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl
+  FormBuilder, FormGroup, Validators, ReactiveFormsModule
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,7 +16,6 @@ import { Usuario } from '../../../models/usuario';
 import { Horario } from '../../../models/horario';
 import { Terapia } from '../../../models/terapia';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-insertareditarcita',
@@ -42,7 +41,6 @@ export class InsertareditarcitaComponent implements OnInit {
   terapias: Terapia[] = [];
   isSubmitting: boolean = false;
 
-
   id: number = 0;
   edicion: boolean = false;
 
@@ -54,7 +52,6 @@ export class InsertareditarcitaComponent implements OnInit {
     private terapiaService: TerapiaService,
     private router: Router,
     private route: ActivatedRoute
-    
   ) {}
 
   ngOnInit(): void {
@@ -73,12 +70,10 @@ export class InsertareditarcitaComponent implements OnInit {
       this.init();
     });
 
-    // Cargar pacientes y psicólogos
     this.usuarioService.listPacientes().subscribe(data => this.pacientes = data);
     this.usuarioService.listPsicologos().subscribe(data => this.psicologos = data);
     this.terapiaService.list().subscribe(data => this.terapias = data);
 
-    // Escuchar cambios en el psicólogo y filtrar horarios disponibles
     this.form.get('idPsicologo')?.valueChanges.subscribe(id => {
       if (id) {
         this.horarioService.listAvailableByPsicologo(id).subscribe(data => {
@@ -90,53 +85,52 @@ export class InsertareditarcitaComponent implements OnInit {
   }
 
   aceptar(): void {
-  if (this.form.invalid) {
-    this.form.markAllAsTouched(); // Marca los campos en rojo si están vacíos
-    return;
-  }
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
 
-  this.isSubmitting = true; // Desactiva el botón mientras envía
+    this.isSubmitting = true;
 
-  this.cita.idCita = this.form.value.codigo;
-  this.cita.estado = this.form.value.estado;
-  this.cita.idHorario = this.form.value.idHorario;
-  this.cita.idPaciente = this.form.value.idPaciente;
-  this.cita.idPsicologo = this.form.value.idPsicologo;
-  this.cita.idTerapia = this.form.value.idTerapia;
+    this.cita.idCita = this.form.value.codigo;
+    this.cita.estado = this.form.value.estado;
+    this.cita.idHorario = this.form.value.idHorario;
+    this.cita.idPaciente = this.form.value.idPaciente;
+    this.cita.idPsicologo = this.form.value.idPsicologo;
+    this.cita.idTerapia = this.form.value.idTerapia;
 
-  const op = this.edicion ? this.cS.update(this.cita) : this.cS.insert(this.cita);
-  op.subscribe(() => {
-    this.router.navigate(['citas']);
-    this.isSubmitting = false;
-  }, () => {
-    this.isSubmitting = false; // Por si hay error
-  });
-}
-
-  init(): void {
-  if (this.edicion) {
-    this.cS.listId(this.id).subscribe((data: Cita) => {
-      this.form.setValue({
-        codigo: data.idCita,
-        estado: data.estado,
-        idHorario: data.idHorario,
-        idPaciente: data.idPaciente,
-        idPsicologo: data.idPsicologo,
-        idTerapia: data.idTerapia
-      });
-
-      // Obtener los horarios disponibles de ese psicólogo
-      this.horarioService.listAvailableByPsicologo(data.idPsicologo).subscribe(horariosDisponibles => {
-        // También agrega el horario actualmente asignado si no está disponible
-        this.horarioService.listId(data.idHorario).subscribe(horarioActual => {
-          const yaIncluido = horariosDisponibles.some(h => h.idHorario === horarioActual.idHorario);
-          if (!yaIncluido) {
-            horariosDisponibles.push(horarioActual);
-          }
-          this.horarios = horariosDisponibles;
-        });
-      });
+    const op = this.edicion ? this.cS.update(this.cita) : this.cS.insert(this.cita);
+    op.subscribe(() => {
+      this.router.navigate(['citas']);
+      this.isSubmitting = false;
+    }, () => {
+      this.isSubmitting = false;
     });
   }
-}
+
+  init(): void {
+    if (this.edicion) {
+      this.cS.listId(this.id).subscribe((data: Cita) => {
+        this.form.setValue({
+          codigo: data.idCita,
+          estado: data.estado,
+          idHorario: data.idHorario,
+          idPaciente: data.idPaciente,
+          idPsicologo: data.idPsicologo,
+          idTerapia: data.idTerapia
+        });
+
+        // Cargar horarios del psicólogo y agregar el actual si no está disponible
+        this.horarioService.listAvailableByPsicologo(data.idPsicologo).subscribe(horariosDisponibles => {
+          this.horarioService.listId(data.idHorario).subscribe(horarioActual => {
+            const yaIncluido = horariosDisponibles.some(h => h.idHorario === horarioActual.idHorario);
+            if (!yaIncluido) {
+              horariosDisponibles.push(horarioActual);
+            }
+            this.horarios = horariosDisponibles;
+          });
+        });
+      });
+    }
+  }
 }

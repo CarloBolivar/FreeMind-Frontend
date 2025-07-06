@@ -7,8 +7,6 @@ import { RouterLink, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { LoginService } from '../../services/login.service';
-import { RolService } from '../../services/rol.service';
-import { Rol } from '../../models/rol';
 
 @Component({
   selector: 'app-menu',
@@ -26,31 +24,14 @@ import { Rol } from '../../models/rol';
 })
 export class MenuComponent implements OnInit {
   role: string = '';
-  listaRoles: Rol[] = [];
 
   constructor(
     private loginService: LoginService,
-    private rolService: RolService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-  this.rolService.list().subscribe((roles: Rol[]) => {
-    this.listaRoles = roles;
-
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      const nombreRol = payload.roles; 
-
-      const rolEncontrado = this.listaRoles.find(r => r.nombre === nombreRol);
-      this.role = rolEncontrado ? rolEncontrado.nombre : 'Rol no encontrado';
-    }
-  });
-}
-  getNombreRolPorId(idRol: number): string {
-    const rolEncontrado = this.listaRoles.find(r => r.idRol === idRol);
-    return rolEncontrado ? rolEncontrado.nombre : 'Rol no encontrado';
+    this.role = localStorage.getItem('rol') || 'Rol no encontrado';
   }
 
   verificar() {
@@ -58,7 +39,7 @@ export class MenuComponent implements OnInit {
   }
 
   cerrar() {
-    sessionStorage.clear();
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 }

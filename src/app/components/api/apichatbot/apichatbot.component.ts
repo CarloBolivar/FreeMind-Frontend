@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-apichatbot',
   standalone: true,
-  imports: [CommonModule, FormsModule,MatCardModule,MatButtonModule],
+  imports: [CommonModule, FormsModule, MatCardModule, MatButtonModule],
   templateUrl: './apichatbot.component.html',
   styleUrls: ['./apichatbot.component.css']
 })
@@ -18,7 +18,7 @@ export class ApichatbotComponent implements OnInit {
   index = 0;
   chat: { from: 'bot' | 'user', text: string }[] = [];
   input = '';
-  noCount = 0;
+  symptomCount = 0;
   done = false;
   result = '';
 
@@ -50,8 +50,8 @@ export class ApichatbotComponent implements OnInit {
 
     this.chat.push({ from: 'user', text: this.input });
 
-    if (no.includes(val)) {
-      this.noCount++;
+    if (yes.includes(val)) {
+      this.symptomCount++; // contar respuestas afirmativas = síntomas
     }
 
     this.input = '';
@@ -65,11 +65,23 @@ export class ApichatbotComponent implements OnInit {
   }
 
   finish(): void {
-    if (this.noCount <= 1) this.result = 'Saludable';
-    else if (this.noCount <= 3) this.result = 'Moderado';
+    if (this.symptomCount <= 1) this.result = 'Saludable';
+    else if (this.symptomCount <= 3) this.result = 'Moderado';
     else this.result = 'Crítico';
 
     this.done = true;
     this.say(`Tu estado de salud mental es: ${this.result}`);
+  }
+
+  resetChat(): void {
+    this.index = 0;
+    this.chat = [];
+    this.input = '';
+    this.symptomCount = 0;
+    this.done = false;
+    this.result = '';
+    if (this.questions.length > 0) {
+      this.say(this.questions[this.index].texto);
+    }
   }
 }

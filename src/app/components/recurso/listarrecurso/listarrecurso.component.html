@@ -17,7 +17,7 @@
 
       <ng-container matColumnDef="c3">
         <th mat-header-cell *matHeaderCellDef>Url</th>
-        <td mat-cell *matCellDef="let element">{{ element.url }}</td>
+        <td mat-cell *matCellDef="let element">{{ obtenerURL(element) }}</td>
       </ng-container>
 
       <ng-container matColumnDef="c4">

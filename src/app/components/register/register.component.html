@@ -34,14 +34,14 @@
 
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Rol</mat-label>
-        <mat-select formControlName="idRol">
-          <mat-option *ngFor="let r of listaRoles" [value]="r.idRol">
+        <mat-select formControlName="rol">
+          <mat-option *ngFor="let r of listaRoles" [value]="r">
             {{ r.nombre }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button class="custom-button" type="submit">
+      <button mat-raised-button class="custom-button" type="submit" [disabled]="!form.valid">
         Registrar
       </button>
     </form>

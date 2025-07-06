@@ -22,38 +22,48 @@ export class BuscarhorarioComponent implements OnInit {
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
   dataSource: MatTableDataSource<Horario> = new MatTableDataSource();
   form: FormGroup;
-  usuarioBusqueda: number = 0;
+  horarioBusqueda: number = 0;
   notResults: boolean = false;
 
   constructor(private horarioService: HorarioService, private fb: FormBuilder) {
     this.form = fb.group({
-      usuario: ['']
+      horario: ['']
     });
   }
 
   ngOnInit(): void {
-    this.horarioService.list().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-    });
+    this.cargarTablaCompleta();
 
-    this.form.get('usuario')?.valueChanges.subscribe(value => {
-      this.usuarioBusqueda = value;
+    this.form.get('horario')?.valueChanges.subscribe(value => {
+      this.horarioBusqueda = Number(value);
       this.buscar();
     });
   }
 
   buscar() {
-    if (this.usuarioBusqueda != 0) {
-      this.horarioService.list().subscribe(data => {
-        const filtrados = data.filter(h => h.idUsuario === this.usuarioBusqueda);
-        this.dataSource = new MatTableDataSource(filtrados);
-        this.notResults = filtrados.length === 0;
-      });
-    } else {
-      this.horarioService.list().subscribe(data => {
-        this.dataSource = new MatTableDataSource(data);
-        this.notResults = false;
-      });
+    if (!this.horarioBusqueda || this.horarioBusqueda <= 0) {
+      this.cargarTablaCompleta();
+      return;
     }
+
+    this.horarioService.listId(this.horarioBusqueda).subscribe(data => {
+      if (data) {
+        this.dataSource = new MatTableDataSource([data]);
+        this.notResults = false;
+      } else {
+        this.dataSource = new MatTableDataSource();
+        this.notResults = true;
+      }
+    }, error => {
+      this.dataSource = new MatTableDataSource();
+      this.notResults = true;
+    });
+  }
+
+  cargarTablaCompleta() {
+    this.horarioService.list().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.notResults = false;
+    });
   }
 }

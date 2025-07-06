@@ -24,37 +24,31 @@ export class ReportecantidadcitasporterapiaComponent implements OnInit{
 
   constructor(private cS:CitaService){}
 
- ngOnInit(): void {
-
-   this.cS.getQuantity().subscribe(data=>{
-    //verifica si no hay data
-    if (!data || data.length === 0) {
+ngOnInit(): void {
+  if (localStorage.getItem("token")) {
+    this.cS.getQuantity().subscribe(data => {
+      if (!data || data.length === 0) {
         this.noData = true;
         return;
       } 
+      this.barChartLabels = data.map(item => item.nameTerapia);
+      this.barChartData = [{
+        data: data.map(item => item.quantityCitas),
+        label: 'Cantidad de citas por terapia',
+        backgroundColor: [
+          '#050504',
+          '#C2CEDB',
+          '#3F51B5',
+          '#E5E9F2',
+          '#1F2D3D',
+          '#D3DCE6',
+        ],
+        borderWidth: 1
+      }];
+    });
+  }
+}
 
-    this.barChartLabels=data.map(item=>item.nameTerapia)
 
-    this.barChartData=[
-     {
-      data:data.map(item=>item.quantityCitas),
-      label:'Cantidad de citas por terapia',
-      backgroundColor:[
-        '#050504',
-        '#C2CEDB',
-        '#3F51B5',
-        '#E5E9F2',
-        '#1F2D3D',
-        '#D3DCE6',
-      ],
-   
-      borderWidth:1
-     }    
-
-    ]
-
-   })  
- 
- }
 }
 

@@ -11,6 +11,7 @@
       </div>
     </mat-card-content>
 
+    <!-- Input mientras el test no termina -->
     <mat-card-actions *ngIf="!done" class="input-container">
       <input
         type="text"
@@ -19,6 +20,11 @@
         (keyup.enter)="reply()"
       />
       <button mat-raised-button color="primary" (click)="reply()">Enviar</button>
+    </mat-card-actions>
+
+    <!-- Botón para reiniciar cuando se termina el test -->
+    <mat-card-actions *ngIf="done" class="input-container">
+      <button mat-raised-button color="accent" (click)="resetChat()">Reiniciar</button>
     </mat-card-actions>
   </mat-card>
 </div>

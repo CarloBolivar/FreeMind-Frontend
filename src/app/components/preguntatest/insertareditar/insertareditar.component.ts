@@ -60,24 +60,29 @@ export class InsertareditarpreguntatestComponent implements OnInit {
   }
 
   aceptar() {
-    if (this.form.valid) {
-      this.preguntaTest.idPregunta = this.form.get('idPregunta')?.value;
-      this.preguntaTest.pregunta = this.form.get('pregunta')?.value;
-      this.preguntaTest.idTest = this.form.get('idTest')?.value;
+  if (this.form.valid) {
+    this.preguntaTest.idPregunta = this.form.get('idPregunta')?.value;
+    this.preguntaTest.pregunta = this.form.get('pregunta')?.value;
+    this.preguntaTest.idTest = this.form.get('idTest')?.value;
 
-      if (this.edicion) {
-        this.preguntaTestService.update(this.preguntaTest).subscribe(() => {
-          this.preguntaTestService.list().subscribe();
+    if (this.edicion) {
+      this.preguntaTestService.update(this.preguntaTest).subscribe(() => {
+        this.preguntaTestService.list().subscribe(data => {
+          this.preguntaTestService.setList(data);
         });
-      } else {
-        this.preguntaTestService.insert(this.preguntaTest).subscribe(() => {
-          this.preguntaTestService.list().subscribe();
+      });
+    } else {
+      this.preguntaTestService.insert(this.preguntaTest).subscribe(() => {
+        this.preguntaTestService.list().subscribe(data => {
+          this.preguntaTestService.setList(data); 
         });
-      }
-
-      this.router.navigate(['preguntas']);
+      });
     }
+
+    this.router.navigate(['preguntas']);
   }
+}
+
 
   init() {
     if (this.edicion) {

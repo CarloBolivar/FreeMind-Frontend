@@ -7,12 +7,22 @@
       <input matInput formControlName="idRespuesta" readonly />
     </mat-form-field>
 
+    <!-- Selector de respuesta -->
     <mat-form-field>
       <mat-label>Respuesta</mat-label>
-      <input matInput formControlName="respuesta" />
+      <mat-select formControlName="respuesta" (selectionChange)="onRespuestaSeleccionada($event.value)">
+        <mat-option *ngFor="let r of respuestasSugeridas" [value]="r">{{ r }}</mat-option>
+        <mat-option value="OTRO">Otro</mat-option>
+      </mat-select>
       <mat-error *ngIf="form.get('respuesta')?.hasError('required')">
         La respuesta es obligatoria.
       </mat-error>
+    </mat-form-field>
+
+    <!-- Campo adicional para respuesta personalizada -->
+    <mat-form-field *ngIf="respuestaEsOtro">
+      <mat-label>Escribe tu respuesta</mat-label>
+      <input matInput [(ngModel)]="respuestaPersonalizada" name="respuestaPersonalizada" />
     </mat-form-field>
 
     <mat-form-field>
@@ -39,6 +49,8 @@
       </mat-error>
     </mat-form-field>
 
-    <button mat-flat-button color="primary" class="btn-accion">{{ edicion ? 'Guardar' : 'Registrar' }}</button>
+    <button mat-flat-button color="primary" class="btn-accion">
+      {{ edicion ? 'Guardar' : 'Registrar' }}
+    </button>
   </form>
 </div>

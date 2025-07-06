@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -25,16 +24,20 @@ import { Horario } from '../../../models/horario';
 })
 export class ReportecantidadhorariosdisponiblesComponent implements OnInit {
   horariosDisponibles: Horario[] = [];
-  idPsicologo: number = 0;
 
-  constructor(private route: ActivatedRoute, private horarioService: HorarioService) {}
+  constructor(private horarioService: HorarioService) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.idPsicologo = +params['idPsicologo'];
-      this.horarioService.listAvailableByPsicologo(this.idPsicologo).subscribe(data => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return;
+    }
+
+    this.horarioService.listAllDisponibles().subscribe({
+      next: (data) => {
         this.horariosDisponibles = data;
-      });
+      }
     });
   }
 }

@@ -46,3 +46,31 @@ button[mat-raised-button].custom-button {
   cursor: pointer;
   text-decoration: underline;
 }
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-color: white;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.custom-button {
+  width: 100%;
+  background-color: #1976d2;
+  color: white;
+  margin-top: 10px;
+}

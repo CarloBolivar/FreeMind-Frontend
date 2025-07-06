@@ -33,6 +33,7 @@ import { environment } from '../../../environment/environment';
 export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   listaRoles: Rol[] = [];
+  registroFallido: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -42,30 +43,39 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['/dashboard']);
+    }
+
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
       contrasena: ['', Validators.required],
       dni: ['', Validators.required],
-      idRol: ['', Validators.required]
+      rol: [null, Validators.required]
     });
 
-    this.rolService.list().subscribe(data => {
-      this.listaRoles = data;
+    this.rolService.listPublicos().subscribe({
+      next: (data) => {
+        this.listaRoles = data;
+      },
+      error: () => {
+        this.registroFallido = true;
+      }
     });
   }
 
   registrar() {
     if (this.form.valid) {
-      const nuevoUsuario: Usuario = this.form.value;
-      nuevoUsuario.enabled = true;
+      const usuario: Usuario = this.form.value;
+      usuario.enabled = true;
 
-      this.usuarioService.insert(nuevoUsuario).subscribe(() => {
-        this.usuarioService.list().subscribe(data => {
-          this.usuarioService.setList(data);
-          this.router.navigate(['login']);
-        });
+      this.usuarioService.insertPublic(usuario).subscribe({
+        next: () => this.router.navigate(['login']),
+        error: () => {
+          this.registroFallido = true;
+        }
       });
     }
   }

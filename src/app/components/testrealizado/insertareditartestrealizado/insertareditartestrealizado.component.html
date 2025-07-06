@@ -1,61 +1,71 @@
 <div class="container">
-  <div style="text-align: center; margin:5%"><h1>{{ edicion ? 'Editar Test Realizado' : 'Registro de Test Realizado' }}</h1></div>
   <div style="text-align: center; margin:5%">
-    <form [formGroup]="form" (submit)="aceptar()">
+    <h1>{{ edicion ? 'Editar Test Realizado' : 'Registro de Test Realizado' }}</h1>
+  </div>
+  <div style="text-align: center; margin:5%">
+    <form [formGroup]="form" (ngSubmit)="aceptar()">
       <div class="form-grid">
-        <div class="left-column"> 
+        <div class="left-column">
           <mat-form-field *ngIf="edicion">
             <mat-label>ID</mat-label>
-            <input matInput formControlName="codigo" readonly/>
-            
+            <input matInput formControlName="codigo" readonly />
           </mat-form-field>
- 
+
           <mat-form-field>
-                <mat-label>Fecha</mat-label>
-                <input matInput type="date" formControlName="fecha" />
-                <mat-error *ngIf="form.get('fecha')?.invalid && form.get('fecha')?.touched">
-                  Selecciona una fecha válida.
-                </mat-error>
-            </mat-form-field>
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fecha">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.get('fecha')?.invalid && form.get('fecha')?.touched">
+              Selecciona una fecha válida.
+            </mat-error>
+          </mat-form-field>
 
           <mat-form-field>
             <mat-label>Resultado</mat-label>
-            <input matInput formControlName="resultado">
+            <mat-select formControlName="resultado">
+              <mat-option value="Aprobado">Aprobado</mat-option>
+              <mat-option value="Requiere seguimiento">Requiere seguimiento</mat-option>
+              <mat-option value="Pendiente">Pendiente</mat-option>
+              <mat-option value="Alto riesgo">Alto riesgo</mat-option>
+            </mat-select>
             <mat-error *ngIf="form.get('resultado')?.hasError('required')">
-              El resultado es obligatorio!!
+              El resultado es obligatorio.
             </mat-error>
           </mat-form-field>
+  
         </div>
 
         <div class="right-column">
           <mat-form-field>
             <mat-label>Paciente</mat-label>
-              <mat-select formControlName="usuario">
-                <mat-option *ngFor="let t of listaUsuarios" [value]="t.idUsuario">
-                  {{ t.nombre }}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="form.get('usuario')?.hasError('required')">
-                El nombre del paciente es obligatorio.
-              </mat-error>
+            <mat-select formControlName="usuario">
+              <mat-option *ngFor="let t of listaUsuarios" [value]="t.idUsuario">
+                {{ t.nombre }} {{ t.apellido }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('usuario')?.hasError('required')">
+              El paciente es obligatorio.
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Test</mat-label>
             <mat-select formControlName="test">
-                <mat-option *ngFor="let t of listaTests" [value]="t.idTest">
-                  {{ t.titulo }}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="form.get('test')?.hasError('required')">
-                El test es obligatorio.
-              </mat-error>
+              <mat-option *ngFor="let t of listaTests" [value]="t.idTest">
+                {{ t.titulo }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('test')?.hasError('required')">
+              El test es obligatorio.
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
 
-      <button mat-flat-button color="primary" class="btn-accion">{{ edicion ? 'Guardar' : 'Registrar' }}</button>
+      <button mat-flat-button color="primary" class="btn-accion">
+        {{ edicion ? 'Guardar' : 'Registrar' }}
+      </button>
     </form>
   </div>
 </div>
- 

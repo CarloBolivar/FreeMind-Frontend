@@ -30,6 +30,10 @@ export class ListarrespuestatestComponent implements OnInit {
 
   ngOnInit(): void {
     this.respuestaTestService.list().subscribe(data => {
+      this.respuestaTestService.setList(data);
+    });
+
+    this.respuestaTestService.getList().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
@@ -38,8 +42,7 @@ export class ListarrespuestatestComponent implements OnInit {
   eliminar(id: number): void {
     this.respuestaTestService.delete(id).subscribe(() => {
       this.respuestaTestService.list().subscribe(data => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator;
+        this.respuestaTestService.setList(data);
       });
     });
   }

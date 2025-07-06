@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,6 +21,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    FormsModule,
     MatButtonModule,
     MatSelectModule
   ],
@@ -36,6 +37,9 @@ export class InsertareditarrespuestatestComponent implements OnInit {
 
   listaPreguntas: PreguntaTest[] = [];
   listaUsuarios: Usuario[] = [];
+  respuestasSugeridas: string[] = ['Sí', 'No', 'A veces', 'Frecuentemente', 'Nunca', 'Rara vez', 'Casi siempre', 'Depende', 'OTRO'];
+  respuestaEsOtro: boolean = false;
+  respuestaPersonalizada: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -72,17 +76,24 @@ export class InsertareditarrespuestatestComponent implements OnInit {
   aceptar() {
     if (this.form.valid) {
       this.respuestaTest.idRespuesta = this.form.get('idRespuesta')?.value;
-      this.respuestaTest.respuesta = this.form.get('respuesta')?.value;
       this.respuestaTest.idPregunta = this.form.get('idPregunta')?.value;
       this.respuestaTest.idUsuario = this.form.get('idUsuario')?.value;
 
+      this.respuestaTest.respuesta = this.respuestaEsOtro
+        ? this.respuestaPersonalizada
+        : this.form.get('respuesta')?.value;
+
       if (this.edicion) {
         this.respuestaTestService.update(this.respuestaTest).subscribe(() => {
-          this.respuestaTestService.list().subscribe();
+          this.respuestaTestService.list().subscribe(data => {
+            this.respuestaTestService.setList(data);
+          });
         });
       } else {
         this.respuestaTestService.insert(this.respuestaTest).subscribe(() => {
-          this.respuestaTestService.list().subscribe();
+          this.respuestaTestService.list().subscribe(data => {
+            this.respuestaTestService.setList(data);
+          });
         });
       }
 
@@ -99,7 +110,17 @@ export class InsertareditarrespuestatestComponent implements OnInit {
           idPregunta: new FormControl(data.idPregunta, Validators.required),
           idUsuario: new FormControl(data.idUsuario, Validators.required)
         });
+
+        if (!this.respuestasSugeridas.includes(data.respuesta)) {
+          this.respuestaEsOtro = true;
+          this.respuestaPersonalizada = data.respuesta;
+          this.form.get('respuesta')?.setValue('OTRO');
+        }
       });
     }
+  }
+
+  onRespuestaSeleccionada(valor: string): void {
+    this.respuestaEsOtro = valor === 'OTRO';
   }
 }

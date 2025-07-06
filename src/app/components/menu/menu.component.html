@@ -1,93 +1,126 @@
 <mat-toolbar class="custom-toolbar" *ngIf="verificar()">
-  <!-- Menús -->
+  <!-- Inicio -->
   <div>
+    <button mat-button routerLink="/dashboard" class="btn-test">
+      <mat-icon>home</mat-icon> Inicio
+    </button>
+  </div>
+
+  <!-- Usuarios (solo ADMIN) -->
+  <div *ngIf="role === 'ADMIN'">
     <button mat-button [matMenuTriggerFor]="menuUsuarios" class="btn-test">
       <mat-icon>people</mat-icon> Usuarios
     </button>
   </div>
-  <div>
+
+  <!-- Roles (solo ADMIN) -->
+  <div *ngIf="role === 'ADMIN'">
     <button mat-button [matMenuTriggerFor]="menuRoles" class="btn-test">
       <mat-icon>verified_user</mat-icon> Roles
     </button>
   </div>
+
+  <!-- Citas (todos los roles) -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuCitas" class="btn-test">
       <mat-icon>event</mat-icon> Citas
     </button>
   </div>
+
+  <!-- Terapias, Tests, Comentarios, Tests Realizados (todos los roles) -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuTerapias" class="btn-test">
       <mat-icon>psychology</mat-icon> Terapias
     </button>
   </div>
+
   <div>
     <button mat-button [matMenuTriggerFor]="menuTests" class="btn-test">
       <mat-icon>quiz</mat-icon> Tests
     </button>
   </div>
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuRecursos" class="btn-test">
-      <mat-icon>menu_book</mat-icon> Recursos
-    </button>
-  </div>
+
   <div>
     <button mat-button [matMenuTriggerFor]="menuTestsRealizados" class="btn-test">
       <mat-icon>fact_check</mat-icon> Tests Realizados
     </button>
   </div>
+
   <div>
     <button mat-button [matMenuTriggerFor]="menuComentarios" class="btn-test">
       <mat-icon>comment</mat-icon> Comentarios
     </button>
   </div>
-  <div>
+
+  <!-- Recursos (ADMIN y PACIENTE) -->
+  <div *ngIf="role !== 'PSICOLOGO'">
+    <button mat-button [matMenuTriggerFor]="menuRecursos" class="btn-test">
+      <mat-icon>menu_book</mat-icon> Recursos
+    </button>
+  </div>
+
+  <!-- Pagos (ADMIN y PACIENTE) -->
+  <div *ngIf="role !== 'PSICOLOGO'">
     <button mat-button [matMenuTriggerFor]="menuPagos" class="btn-test">
       <mat-icon>payment</mat-icon> Pagos
     </button>
   </div>
-  <div>
+
+  <!-- Horarios (ADMIN y PSICOLOGO) -->
+  <div *ngIf="role !== 'PACIENTE'">
     <button mat-button [matMenuTriggerFor]="menuHorarios" class="btn-test">
       <mat-icon>schedule</mat-icon> Horarios
     </button>
   </div>
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuPreguntasTest" class="btn-test">
-      <mat-icon>help</mat-icon> Preguntas Test
-    </button>
-  </div>
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuRespuestasTest" class="btn-test">
-      <mat-icon>check_circle</mat-icon> Respuestas Test
-    </button>
-  </div>
-  <div>
+
+ <!-- Preguntas Test: visibles para ADMIN y PSICOLOGO -->
+ <div *ngIf="role === 'ADMIN' || role === 'PSICOLOGO'">
+   <button mat-button [matMenuTriggerFor]="menuPreguntasTest" class="btn-test">
+     <mat-icon>help</mat-icon> Preguntas Test
+   </button>
+ </div>
+
+ <!-- Respuestas Test: visibles para ADMIN y PACIENTE -->
+ <div *ngIf="role === 'ADMIN' || role === 'PACIENTE'">
+   <button mat-button [matMenuTriggerFor]="menuRespuestasTest" class="btn-test">
+     <mat-icon>check_circle</mat-icon> Respuestas Test
+   </button>
+ </div>
+
+  <!-- Reportes (todos ven distintos) -->
+  <div *ngIf="role">
     <button mat-button [matMenuTriggerFor]="menuReportes" class="btn-test">
       <mat-icon>file_copy</mat-icon> Reportes
     </button>
   </div>
+
+  <!-- Música, Imágenes, Chatbot (todos los roles) -->
   <div>
     <button mat-button [matMenuTriggerFor]="menuMusica" class="btn-test">
       <mat-icon>audiotrack</mat-icon> Música
     </button>
   </div>
+
   <div>
     <button mat-button [matMenuTriggerFor]="menuImagenes" class="btn-test">
       <mat-icon>image</mat-icon> Imágenes
     </button>
   </div>
+
   <div>
     <button mat-button [matMenuTriggerFor]="menuChatbot" class="btn-test">
       <mat-icon>chat</mat-icon> Chatbot
     </button>
   </div>
-  <div>
-  <button mat-button [matMenuTriggerFor]="menuFiltro" class="btn-test">
-    <mat-icon>filter_alt</mat-icon> Filtrar Usuarios
-  </button>
+
+  <!-- Filtro (solo ADMIN) -->
+  <div *ngIf="role === 'ADMIN'">
+    <button mat-button [matMenuTriggerFor]="menuFiltro" class="btn-test">
+      <mat-icon>filter_alt</mat-icon> Filtrar Usuarios
+    </button>
   </div>
 
-
-  <!-- BOTÓN USUARIO / CERRAR SESIÓN -->
+  <!-- Cierre de sesión -->
   <span class="toolbar-spacer"></span>
   <div class="right-menu">
     <button mat-button [matMenuTriggerFor]="menuSalir" class="btn-test">
@@ -95,17 +128,6 @@
     </button>
   </div>
 </mat-toolbar>
-
-<!-- Submenú Usuario -->
-<mat-menu #menuSalir="matMenu">
-  <button mat-menu-item (click)="cerrar()">
-    <mat-icon>logout</mat-icon>
-    <span>Cerrar sesión</span>
-  </button>
-  <button mat-menu-item>
-    Rol: <span>{{ role }}</span>
-  </button>
-</mat-menu>
 
 <!-- Menús desplegables -->
  
@@ -193,19 +215,48 @@
   <button mat-menu-item routerLink="/horarios/busquedas">Buscar horario</button>
 </mat-menu>
 
-<!-- REPORTES -->
 <mat-menu #menuReportes="matMenu">
-  <button mat-menu-item routerLink="/reports/cantidad-citas">Ver citas por terapia</button> 
-  <button mat-menu-item routerLink="/reports/ingresos">Ver ingresos por psicólogo</button> 
-  <button mat-menu-item routerLink="/reports/roles_usuario">Ver roles por usuario</button>
-  <button mat-menu-item routerLink="/reports/montos_usuario">Ver montos por usuario</button>
-  <button mat-menu-item routerLink="/reports/comentarios_usuario">Ver comentarios por usuario</button>
-  <button mat-menu-item routerLink="/reports/recursos_terapia">Ver recursos por terapia</button>
-  <button mat-menu-item routerLink="/reports/montos_terapia">Ver montos por terapia</button>
-  <button mat-menu-item routerLink="/reports/testrealizados_mes">Ver tests por mes</button>
-  <button mat-menu-item routerLink="/reports/sumapagos_mes">Ver suma de pagos por mes</button>
-  <button mat-menu-item routerLink="/reports/horariosdisponibles_psicologo">Ver suma de pagos por mes</button>
+  <!-- Solo ADMIN -->
+  <button mat-menu-item routerLink="/reports/roles_usuario" *ngIf="role === 'ADMIN'">
+    Ver roles por usuario
+  </button>
+  <button mat-menu-item routerLink="/reports/montos_usuario" *ngIf="role === 'ADMIN'">
+    Ver montos por usuario
+  </button>
+  <button mat-menu-item routerLink="/reports/comentarios_usuario" *ngIf="role === 'ADMIN'">
+    Ver comentarios por usuario
+  </button>
+  <button mat-menu-item routerLink="/reports/recursos_terapia" *ngIf="role === 'ADMIN'">
+    Ver recursos por terapia
+  </button>
+  <button mat-menu-item routerLink="/reports/montos_terapia" *ngIf="role === 'ADMIN'">
+    Ver montos por terapia
+  </button>
+  <button mat-menu-item routerLink="/reports/testrealizados_mes" *ngIf="role === 'ADMIN'">
+    Ver tests por mes
+  </button>
+  <button mat-menu-item routerLink="/reports/sumapagos_mes" *ngIf="role === 'ADMIN'">
+    Ver suma de pagos por mes
+  </button>
+  <!-- ADMIN y PSICOLOGO -->
+  <button mat-menu-item routerLink="/reports/cantidad_citas" *ngIf="role === 'ADMIN' || role === 'PSICOLOGO'">
+    Ver cantidad de citas
+  </button>
+  <button mat-menu-item routerLink="/reports/ingresos" *ngIf="role === 'ADMIN' || role === 'PSICOLOGO'">
+    Ver ingresos por psicólogo
+  </button>
+  <!-- PACIENTE y ADMIN -->
+  <button mat-menu-item routerLink="/reports/recursos_terapia" *ngIf="role === 'ADMIN' || role === 'PACIENTE'">
+    Ver recursos por terapia
+  </button>
+  <button mat-menu-item routerLink="/reports/comentarios_usuario" *ngIf="role === 'ADMIN' || role === 'PACIENTE'">
+    Ver comentarios por usuario
+  </button>
+  <button mat-menu-item routerLink="/reports/horariosdisponibles_psicologo" *ngIf="role === 'ADMIN'|| role === 'PACIENTE'">
+    Horarios disponibles por psicologo
+  </button>
 </mat-menu>
+
 
 <!-- MÚSICA -->
 <mat-menu #menuMusica="matMenu">

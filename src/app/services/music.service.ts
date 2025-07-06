@@ -15,22 +15,30 @@ export class MusicService {
 
   constructor(private http: HttpClient) {}
 
-  getList(): Observable<Music[]> {
-    const params = {
-      query: '',
-      filter: 'tag:relaxing tag:music duration:[30 TO *] license:"Creative Commons 0"',
-      fields: 'name,previews,duration',
-      page_size: '20',
-      token: this.TOKEN
-    };
-    return this.http.get<any>(this.API_URL, { params }).pipe(
-      map(res => res.results?.map((s: any) => ({
-        name: s.name,
-        previewUrl: s.previews['preview-lq-mp3'],
-        duration: s.duration
-      })))
-    );
-  }
+getList(): Observable<Music[]> {
+  const params = {
+    query: 'relaxing music',
+    fields: 'name,previews,duration',
+    page_size: '20'
+  };
+
+  const headers = {
+    Authorization: 'Token ' + this.TOKEN
+  };
+
+  return this.http.get<any>(this.API_URL, { params, headers }).pipe(
+    map(res =>
+      res.results
+        ?.filter((s: any) => s.previews?.['preview-lq-mp3'])
+        .map((s: any) => ({
+          name: s.name,
+          previewUrl: s.previews['preview-lq-mp3'],
+          duration: s.duration
+        })) || []
+    )
+  );
+}
+
 
   setList(lista: Music[]) {
     this.listaCambio.next(lista);

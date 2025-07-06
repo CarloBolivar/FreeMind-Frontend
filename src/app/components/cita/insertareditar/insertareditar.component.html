@@ -10,7 +10,14 @@
 
         <mat-form-field class="example-full-width">
           <mat-label>Estado</mat-label>
-          <input matInput formControlName="estado" />
+          <mat-select formControlName="estado">
+            <mat-option [value]="0">Registrada</mat-option>
+            <mat-option [value]="1">Confirmada</mat-option>
+            <mat-option [value]="2">Atendida</mat-option>
+            <mat-option [value]="3">Cancelada por paciente</mat-option>
+            <mat-option [value]="4">Cancelada por psicólogo</mat-option>
+            <mat-option [value]="5">No asistió</mat-option>
+          </mat-select>
           <mat-error *ngIf="form.get('estado')?.invalid && form.get('estado')?.touched">
             Estado es obligatorio.
           </mat-error>

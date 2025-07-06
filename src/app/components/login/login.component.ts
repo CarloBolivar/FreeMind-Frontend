@@ -1,4 +1,4 @@
- import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { JwtRequest } from '../../models/jwtRequest';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../../services/login.service';
@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { environment } from '../../../environment/environment';
+import { JwtResponse } from '../../models/jwtResponse';
+import { AuthService } from '../../services/auth.service'; 
 
 const base_url = environment.base;
 
@@ -33,10 +35,16 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     public router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private authService: AuthService 
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      console.log("🔐 Ya hay sesión activa, redirigiendo a dashboard...");
+      this.router.navigate(['dashboard']);
+    }
+  }
 
   login() {
     let request = new JwtRequest();
@@ -44,9 +52,11 @@ export class LoginComponent implements OnInit {
     request.contrasena = this.password;
 
     this.loginService.login(request).subscribe(
-      (data: any) => {
-        sessionStorage.setItem('token', data.jwttoken);
-        this.router.navigate(['usuarios']);
+      (data: JwtResponse) => {
+        localStorage.setItem('token', data.token); 
+        localStorage.setItem('rol', data.rol);
+        localStorage.setItem('nombre', data.nombreUsuario);
+        this.router.navigate(['dashboard']);
       },
       (error) => {
         this.mensaje = 'Credenciales incorrectas!!!';
