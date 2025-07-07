@@ -1,46 +1,77 @@
 .container {
-  max-width: 900px;
+  max-width: 600px;
   margin: 30px auto;
-  padding: 20px;
-  background-color: #f7f7f7;
+  padding: 25px 30px;
+  background-color: #EFF2F7;
   border-radius: 15px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
+  margin-bottom: 25px;
+  font-size: 26px;
   font-weight: 600;
-  color: #3f51b5;
+  color: #3F51B5;
 }
 
-.form-grid {
+form {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.left-column,
-.right-column {
-  flex: 0 0 48%;
-}
-
-.example-full-width {
+mat-form-field {
   width: 100%;
-  margin-bottom: 16px;
 }
 
-button.btn-accion {
-  background-color: #3f51b5;
-  color: white;
-  padding: 10px 24px;
-  border-radius: 8px;
+mat-form-field input,
+mat-form-field .mat-select-trigger {
   font-size: 15px;
-  display: block;
-  margin: 20px auto 0;
 }
 
-button.btn-accion:hover {
-  background-color: #303f9f;
+button[matButton] {
+  align-self: center;
+  background-color: #3F51B5;
+  color: white;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  text-transform: none;
+  min-width: 120px;
+}
+
+button[matButton]:hover {
+  background-color: #3D526F;
+}
+
+mat-error {
+  font-size: 13px;
+  color: #d32f2f;
+  margin-top: 3px;
+}
+
+mat-hint {
+  font-size: 12px;
+  color: #8492A6;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 15px;
+  }
+  
+  h1 {
+    font-size: 22px;
+  }
+
+  button[matButton] {
+    width: 100%;
+    min-width: unset;
+  }
 }

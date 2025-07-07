@@ -1,5 +1,5 @@
 .custom-toolbar {
-  background-color: rgb(31, 45, 61);
+  background-color: #1F2D3D; /* rgb(31, 45, 61) */
   overflow-x: auto;
   white-space: nowrap;
 }
@@ -16,23 +16,22 @@
 }
 
 .btn-test {
-  background-color: black;
+  background-color: #050504; /* negro personalizado según tu paleta */
   border-radius: 4px;
   padding: 6px 12px;
 }
 
 /* Si no usas la clase btn-rojo, puedes eliminar esto completamente */
 .btn-rojo:hover {
-  background-color: rgb(31, 45, 61);
+  background-color: #1F2D3D;
 }
 
 .btn-rojo mat-icon {
   color: white;
 }
 
-
 ::ng-deep .mat-mdc-menu-panel {
-  background-color: rgb(31, 45, 61) !important;
+  background-color: #1F2D3D !important;
   color: white !important;
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -46,5 +45,5 @@
 }
 
 ::ng-deep .mat-mdc-menu-item:hover {
-  background-color: #3949ab !important;
+  background-color: #3F51B5 !important; /* reemplaza #3949ab por color primario */
 }

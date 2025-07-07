@@ -159,7 +159,7 @@ section {
 }
 
 .border-box-light {
-  border: 1px solid #C2CEDB;
+  border: 1px solid #D3DCE6;
   border-radius: 8px;
 }
 
@@ -253,15 +253,14 @@ section {
 }
 
 ::ng-deep .snackbar-success button {
-  color: #1f2d3d !important; 
+  color: #1F2D3D !important; 
 }
 
 ::ng-deep .snackbar-success button:hover,
 ::ng-deep .snackbar-success button:focus {
   background-color: rgba(31, 45, 61, 0.22) !important; 
-  color: #1f2d3d49 !important; 
+  color: #1F2D3D49 !important; 
 }
-
 
 /* Responsive */
 @media (max-width: 768px) {

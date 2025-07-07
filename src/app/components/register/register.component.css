@@ -3,14 +3,16 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #F9FAFC; /* reemplaza #f5f5f5 y #f0f2f5 */
 }
 
 .login-card {
   width: 100%;
   max-width: 400px;
   padding: 2rem;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-color: #EFF2F7; /* reemplaza white */
   text-align: center;
 }
 
@@ -22,6 +24,7 @@
 .title {
   margin-bottom: 1.5rem;
   font-size: 24px;
+  color: #1F2D3D;
 }
 
 .full-width {
@@ -29,8 +32,9 @@
   margin-bottom: 1rem;
 }
 
-button[mat-raised-button].custom-button {
-  background-color: rgb(10, 19, 113);
+button[mat-raised-button].custom-button,
+.custom-button {
+  background-color: #3F51B5; /* reemplaza rgb(10,19,113) y #1976d2 */
   color: white;
   border: none;
   padding: 0.5rem 1.25rem;
@@ -39,38 +43,11 @@ button[mat-raised-button].custom-button {
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
+  margin-top: 10px;
 }
 
 .register-link {
-  color: #007bff;
+  color: #3F51B5; /* reemplaza #007bff */
   cursor: pointer;
   text-decoration: underline;
-}
-
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f2f5;
-}
-
-.login-card {
-  width: 100%;
-  max-width: 400px;
-  padding: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  background-color: white;
-}
-
-.full-width {
-  width: 100%;
-}
-
-.custom-button {
-  width: 100%;
-  background-color: #1976d2;
-  color: white;
-  margin-top: 10px;
 }
