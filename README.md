@@ -1,59 +1,48 @@
-# FreeMind
+FreeMind
+FreeMind es una aplicación web construida con el framework Angular, enfocada en el desarrollo de funcionalidades modulares y mantenibles. Este proyecto se ha desarrollado siguiendo las mejores prácticas vistas en clase, especialmente aquellas demostradas en las sesiones prácticas (demos) proporcionadas por la universidad.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+Propósito del proyecto
+El objetivo principal de FreeMind es servir como base para la implementación de funcionalidades modernas utilizando Angular, manteniendo una estructura limpia y escalable. El proyecto está pensado como un entorno de práctica y evaluación, donde se aplican conocimientos clave como:
 
-## Development server
+Uso del CLI de Angular para la generación y manejo de componentes
 
-To start a local development server, run:
+Aplicación de rutas y navegación entre vistas
 
-```bash
-ng serve
-```
+Interacción con servicios (Services) y modelo de datos
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Organización de código basada en módulos y carpetas
 
-## Code scaffolding
+Pruebas unitarias y desarrollo iterativo
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Estructura general
+El código fuente del proyecto se encuentra en la carpeta src/, donde se agrupan los componentes, servicios, modelos y vistas de manera modular. Las clases y funcionalidades respetan las convenciones utilizadas en los archivos demo del curso, lo cual garantiza consistencia con el entorno académico.
 
-```bash
-ng generate component component-name
-```
+El proyecto sigue el patrón típico de Angular con:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Componentes para encapsular funcionalidades visuales y lógicas
 
-```bash
-ng generate --help
-```
+Servicios para separar la lógica de negocio y manejar datos
 
-## Building
+Módulos organizados por contexto funcional
 
-To build the project run:
+Archivos HTML y CSS integrados a cada componente
 
-```bash
-ng build
-```
+Relevancia educativa
+FreeMind no es solo un proyecto técnico, sino también una herramienta didáctica. Está pensado para reforzar conceptos clave como:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Inyección de dependencias
 
-## Running unit tests
+Binding de datos y eventos
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Uso de formularios reactivos
 
-```bash
-ng test
-```
+Buenas prácticas de estructura de carpetas
 
-## Running end-to-end tests
+Reutilización de código y separación de responsabilidades
 
-For end-to-end (e2e) testing, run:
+El desarrollo de esta aplicación toma como base lo último visto en las sesiones prácticas y respeta el enfoque de trabajo incremental basado en historias de usuario.
 
-```bash
-ng e2e
-```
+Consideraciones finales
+Este proyecto puede ser extendido fácilmente y adaptado a nuevas funcionalidades. Es importante que cualquier desarrollo posterior mantenga la misma estructura y convenciones ya establecidas, especialmente aquellas aplicadas en las demos del curso.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Para más detalles técnicos sobre la ejecución o despliegue, se puede consultar la documentación oficial de Angular.
